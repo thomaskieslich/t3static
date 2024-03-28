@@ -4,6 +4,8 @@ composer.lock
 package-lock.json
 .env
 
+configuration/rector.php
+
 /results/*
 
 !*.gitkeep

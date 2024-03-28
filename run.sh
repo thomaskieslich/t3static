@@ -105,6 +105,12 @@ php-cs-fix)
 php-stan)
     php:stan
     ;;
+rector)
+    rector
+    ;;
+rector-fix)
+    rector:fix
+    ;;
 backend)
     test:init
     lint:composer
@@ -114,6 +120,7 @@ backend)
     lint:tsconfig
     php:cs
     php:stan
+    rector
     ;;
 *)
     echo "use parameters (all | json | yaml | typoscript | scss | js | …)"
