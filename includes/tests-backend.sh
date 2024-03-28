@@ -94,25 +94,7 @@ rector:fix() {
     return $EXIT_CODE
 }
 
-### Rector Full with more Sets ###
-rector:full() {
-    echo -e "\n ########## \n # rector # \n ########## \n"
-    "${TEST_PATH}/vendor/bin/rector" process ${PACKAGE_PATH}${PACKAGE_NAME} --config "${TEST_PATH}/configuration/rector-full.php" \
-        --dry-run || EXIT_CODE=$?
-    echo "rector completed"
-    return $EXIT_CODE
-}
-
-rector:full:fix() {
-    echo -e "\n ############## \n # rector:fix # \n ############## \n"
-    "${TEST_PATH}/vendor/bin/rector" process ${PACKAGE_PATH}${PACKAGE_NAME} --config "${TEST_PATH}/configuration/rector-full.php" ||
-        EXIT_CODE=$?
-    echo "rector:fix completed"
-    return $EXIT_CODE
-}
-
 ### TYPO3 Scanner
-### https://github.com/Tuurlijk/typo3scan
 typo3scan() {
     echo -e "\n ############# \n # TYPO3Scan # \n ############# \n"
     "${TEST_PATH}/vendor/bin/typo3scan" scan --target ${TYPO3SCAN_TARGET} ${PACKAGE_PATH}${PACKAGE_NAME} || EXIT_CODE=$?
