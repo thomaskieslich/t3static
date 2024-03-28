@@ -81,6 +81,9 @@ frontend)
     lint:scss
     lint:js
     ;;
+composer)
+    lint:composer
+    ;;
 *)
     echo "use parameters (all | json | yaml | typoscript | scss | js | .etc)"
     ;;

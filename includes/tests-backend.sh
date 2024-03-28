@@ -1,14 +1,6 @@
 #!/bin/bash
 
-## Linter
-lint:composer:root() {
-    echo -e "\n ############################ \n # Root Composer Validation # \n ############################ \n"
-    composer validate --strict || EXIT_CODE=$?
-    echo "Root Composer is Validated"
-    return $EXIT_CODE
-}
-
-lint:composer:extension() {
+lint:composer() {
     echo -e "\n ####################### \n # Composer Validation # \n ####################### \n"
     composer validate --working-dir "${PACKAGE_PATH}""${PACKAGE_NAME}" --with-dependencies --strict || EXIT_CODE=$?
     echo "${PACKAGE_NAME} Composer is Validated"

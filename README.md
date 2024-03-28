@@ -7,6 +7,9 @@ Collection of Tools to Test, Lint and Upgrade multiple TYPO3 Extensions.
 git clone git@github.com:thomaskieslich/t3static.git tests/t3static
 ```
 
+## Default Settings
+Copy .env.dist to .env and change Settings.
+
 ## Frontend Tests
 
 ### SCSS
