@@ -1,0 +1,10 @@
+{
+	"name": "t3static",
+	"description": "Collection of Tools to Test, Lint and Upgrade multiple TYPO3 Extensions.",
+	"version": "1.0.0",
+	"license": "GNU GENERAL PUBLIC LICENSE",
+	"devDependencies": {
+		"eslint-config-standard": "^17.1.0",
+		"stylelint-config-standard-scss": "^13.0.0"
+	}
+}
