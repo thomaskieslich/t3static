@@ -111,6 +111,9 @@ rector)
 rector-fix)
     rector:fix
     ;;
+typo3scan)
+    typo3scan
+    ;;
 backend)
     test:init
     lint:composer

@@ -19,10 +19,10 @@ Copy .stylelintrc.json.dist to your Scss Folder as .stylelintrc.json and adopt P
 
 ```bash
 ddev ssh
-./tests/t3static/run.sh -t scss
+./tests/t3static/t3static.sh -t scss
 
 # if fixable Errors try scss-fix
-./tests/t3static/run.sh -t scss-fix
+./tests/t3static/t3static.sh -t scss-fix
 
 ```
 
@@ -32,9 +32,9 @@ Use https://eslint.org with eslint-config-standard.
 
 ```bash
 ddev ssh
-./tests/t3static/run.sh -t js
+./tests/t3static/t3static.sh -t js
 
 # if fixable Errors try js-fix
-./tests/t3static/run.sh -t js-fix
+./tests/t3static/t3static.sh -t js-fix
 
 ```
