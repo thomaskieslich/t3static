@@ -64,26 +64,6 @@ php:cs:fix() {
     return $EXIT_CODE
 }
 
-php:lint() {
-    echo -e "\n ############ \n # php:lint # \n ############ \n"
-    find "${PACKAGE_PATH}${PACKAGE_NAME}/" -name '*.php' -print0 | xargs -r -0 -n 1 -P 4 php --syntax-check || EXIT_CODE=$?
-    echo "php:lint completed"
-    return $EXIT_CODE
-}
-
-php:sniff() {
-    echo -e "\n ############# \n # php:sniff # \n ############# \n"
-    "${TEST_PATH}/vendor/bin/phpcs" --standard="${TEST_PATH}"/configuration/phpcs.xml "${PACKAGE_PATH}${PACKAGE_NAME}/" || EXIT_CODE=$?
-    echo "php:sniff completed"
-    return $EXIT_CODE
-}
-
-php:sniff:fix() {
-    echo -e "\n ################# \n # php:sniff:fix # \n ################# \n"
-    "${TEST_PATH}/vendor/bin/phpcbf" --standard="${TEST_PATH}/configuration/phpcs.xml" "${PACKAGE_PATH}${PACKAGE_NAME}/"
-    echo "php:sniff:fix completed"
-}
-
 php:stan() {
     echo -e "\n ############ \n # php:stan # \n ############ \n"
     "${TEST_PATH}/vendor/bin/phpstan" analyse --level ${PHPSTAN_LEVEL} \
@@ -92,9 +72,6 @@ php:stan() {
         --allow-empty-baseline \
         --generate-baseline "${TEST_PATH}/results/phpstan-${PACKAGE_NAME}-errors.neon" \
         "${PACKAGE_PATH}${PACKAGE_NAME}/" || EXIT_CODE=$?
-
-#        --generate-baseline "${TEST_PATH}/configuration/phpstan-errors.neon" \
-#        --generate-baseline "${PACKAGE_PATH}${PACKAGE_NAME}/phpstan-errors.neon" \
 
     echo "php:stan completed"
     return $EXIT_CODE

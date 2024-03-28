@@ -84,7 +84,38 @@ frontend)
 composer)
     lint:composer
     ;;
+json)
+    lint:json
+    ;;
+yaml)
+    lint:yaml
+    ;;
+typoscript)
+    lint:typoscript
+    ;;
+tsconfig)
+    lint:tsconfig
+    ;;
+php-cs)
+    php:cs
+    ;;
+php-cs-fix)
+    php:cs:fix
+    ;;
+php-stan)
+    php:stan
+    ;;
+backend)
+    test:init
+    lint:composer
+    lint:json
+    lint:yaml
+    lint:typoscript
+    lint:tsconfig
+    php:cs
+    php:stan
+    ;;
 *)
-    echo "use parameters (all | json | yaml | typoscript | scss | js | .etc)"
+    echo "use parameters (all | json | yaml | typoscript | scss | js | …)"
     ;;
 esac
