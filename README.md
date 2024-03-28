@@ -23,3 +23,15 @@ ddev ssh
 
 ```
 
+### JavaScript
+
+Use https://eslint.org with eslint-config-standard.
+
+```bash
+ddev ssh
+./tests/t3static/run.sh -t js
+
+# if fixable Errors try js-fix
+./tests/t3static/run.sh -t js-fix
+
+```

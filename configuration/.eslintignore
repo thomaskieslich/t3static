@@ -1,0 +1,5 @@
+**/node_modules
+**/Dist
+app.js
+**/Vendor/**/*.js
+**/*.min.js
