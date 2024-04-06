@@ -1,5 +1,7 @@
 #!/bin/bash
 
+## Tests based on npm Packages
+
 lint:scss() {
     echo -e "\n ################ \n # Scss Linting # \n ################ \n"
     cd "${TEST_PATH}" || exit
@@ -49,4 +51,17 @@ lint:js:fix() {
         "../../${PACKAGE_PATH}${PACKAGE_NAME}/Resources/Public/JavaScript/**/*.js" --fix
     cd ../..
     echo "JavaScript is Linted and Fixed"
+}
+
+lint:md() {
+    echo -e "\n ################ \n # Markdown Linting # \n ################ \n"
+    npx markdownlint-cli2 "${PACKAGE_PATH}${PACKAGE_NAME}/**/*.md" \
+        --config "${TEST_PATH}/configuration/.markdownlint-cli2.yaml" || EXIT_CODE=$?
+    echo "Markdown is Linted Exit: $EXIT_CODE"
+    return $EXIT_CODE
+}
+
+lint:md:fix() {
+    echo -e "\n ################ \n # Markdown Linting # \n ################ \n"
+    npx markdownlint-cli2 --fix "${PACKAGE_PATH}${PACKAGE_NAME}/**/*.md" "#node_modules"
 }

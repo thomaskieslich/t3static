@@ -76,6 +76,12 @@ js)
 js-fix)
     lint:js:fix
     ;;
+md)
+    lint:md
+    ;;
+md-fix)
+    lint:md:fix
+    ;;
 frontend)
     test:init
     lint:scss
