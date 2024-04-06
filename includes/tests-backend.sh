@@ -30,8 +30,10 @@ lint:md() {
 }
 
 lint:md:fix() {
-    echo -e "\n ################ \n # Markdown Linting # \n ################ \n"
-    npx markdownlint-cli2 --fix "${PACKAGE_PATH}${PACKAGE_NAME}/**/*.md" "#node_modules"
+    echo -e "\n ################ \n # Markdown Linting with Fix # \n ################ \n"
+    npx markdownlint-cli2 --fix "${PACKAGE_PATH}${PACKAGE_NAME}/**/*.md" \
+            --config "${TEST_PATH}/configuration/.markdownlint-cli2.yaml"
+        echo "Markdown is Fixed."
 }
 
 lint:typoscript() {
