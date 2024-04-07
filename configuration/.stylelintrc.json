@@ -1,0 +1,18 @@
+{
+	"plugins": [
+		"stylelint-scss"
+	],
+	"extends": [
+		"stylelint-config-standard-scss"
+	],
+	"ignoreFiles": [
+		"./**/Base/**/*.scss",
+		"./**/Vendor/**/*.scss"
+	],
+	"rules": {
+		"color-function-notation": "legacy",
+		"selector-class-pattern": null,
+		"scss/comment-no-empty": null,
+		"scss/dollar-variable-empty-line-before": null
+	}
+}

@@ -23,6 +23,7 @@ ddev ssh
 ### SCSS
 
 Use https://stylelint.io with stylelint-config-standard-scss.
+Configure Options: https://stylelint.io/user-guide/configure/
 Copy .stylelintrc.json.dist to your Scss Folder as .stylelintrc.json and adopt Paths.
 
 ```bash
