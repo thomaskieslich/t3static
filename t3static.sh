@@ -45,8 +45,6 @@ done
 ## Init Local
 run:init() {
   cd ${TEST_PATH} || exit
-  rm -f composer.lock
-  rm -f package-lock.json
   composer install --no-progress --no-interaction
   npm install
   cd ../..
@@ -54,7 +52,7 @@ run:init() {
 
 test:init() {
   if [ -z "$(ls -A "${TEST_PATH}"/node_modules)" ] || [ -z "$(ls -A "${TEST_PATH}"/vendor)" ]; then
-    echo "Please run 'tests/t3static/run.sh -t init' in root Directory"
+    echo "Please run 'tests/t3static/t3static.sh -t init' in root Directory"
     exit 1
   else
     echo "Init composer and npm ok."
@@ -64,6 +62,7 @@ test:init() {
 # Get Test
 case "${TEST_TYPE}" in
 init)
+  test:init
   run:init
   ;;
 scss)
