@@ -2,45 +2,59 @@
 
 ## Tests for Frontend
 
+lint:css() {
+  echo -e "\n ################ \n # Css Linting # \n ################ \n"
+  npx --prefix ${TEST_PATH} stylelint \
+    --config ${TEST_PATH}/${CONFIGURATION_PATH}/.csslintrc.json \
+    --ignore-path ${TEST_PATH}/${CONFIGURATION_PATH}/.csslintignore \
+    "${PACKAGE_PATH}/${PACKAGE_NAME}/**/*.css" || EXIT_CODE=$?
+  echo "Css is Linted."
+}
+
+lint:css:fix() {
+  echo -e "\n ################ \n # Css Linting # \n ################ \n"
+  npx --prefix ${TEST_PATH} stylelint \
+    --config ${TEST_PATH}/${CONFIGURATION_PATH}/.csslintrc.json \
+    --ignore-path ${TEST_PATH}/${CONFIGURATION_PATH}/.csslintignore \
+    --fix \
+    "${PACKAGE_PATH}/${PACKAGE_NAME}/**/*.css" || EXIT_CODE=$?
+  echo "Css is Linted."
+}
+
 lint:scss() {
   echo -e "\n ################ \n # Scss Linting # \n ################ \n"
-  npx --prefix ${TEST_PATH} stylelint "${PACKAGE_PATH}/${PACKAGE_NAME}/**/*.scss" \
-    -c ${TEST_PATH}/${CONFIGURATION_PATH}/.stylelintrc.json
-  echo "Scss is Linted Exit: $EXIT_CODE"
+  npx --prefix ${TEST_PATH} stylelint \
+    --config ${TEST_PATH}/${CONFIGURATION_PATH}/.scsslintrc.json \
+    --ignore-path ${TEST_PATH}/${CONFIGURATION_PATH}/.scsslintignore \
+    "${PACKAGE_PATH}/${PACKAGE_NAME}/**/*.scss" || EXIT_CODE=$?
+  echo "Scss is Linted."
 }
 
 lint:scss:fix() {
   echo -e "\n #################### \n # Scss Linting Fix # \n #################### \n"
-  cd "${TEST_PATH}" || exit
-  npx stylelint "../../${PACKAGE_PATH}${PACKAGE_NAME}/**/*.scss" --fix
+  npx --prefix ${TEST_PATH} stylelint \
+    --config ${TEST_PATH}/${CONFIGURATION_PATH}/.scsslintrc.json \
+    --ignore-path ${TEST_PATH}/${CONFIGURATION_PATH}/.scsslintignore \
+    --fix \
+    "${PACKAGE_PATH}/${PACKAGE_NAME}/**/*.scss"
   echo "Scss is Linted and Fixed"
-  cd ../..
 }
 
 lint:js() {
   echo -e "\n ###################### \n # JavaScript Linting # \n ###################### \n"
-  cd "${TEST_PATH}" || exit
-  if [ -d "../../${PACKAGE_PATH}${PACKAGE_NAME}/Resources/Public/JavaScript" ]; then
-    npx eslint \
-      --config configuration/.eslintrc.json \
-      --ignore-path configuration/.eslintignore \
-      "../../${PACKAGE_PATH}${PACKAGE_NAME}/Resources/Public/JavaScript/**/*.js" || EXIT_CODE=$?
-    echo "JavaScript is Linted Exit: $EXIT_CODE"
-    cd ../..
-    return $EXIT_CODE
-  else
-    echo "!!! ../../${PACKAGE_PATH}${PACKAGE_NAME}/Resources/Public/JavaScript NOT Found "
-    cd ../..
-    return 2
-  fi
+  npx --prefix ${TEST_PATH} eslint \
+    --config ${TEST_PATH}/${CONFIGURATION_PATH}/.eslintrc.json \
+    --ignore-path ${TEST_PATH}/${CONFIGURATION_PATH}/.eslintignore \
+    "${PACKAGE_PATH}/${PACKAGE_NAME}/**/*.js" || EXIT_CODE=$?
+  echo "JavaScript is Linted."
 }
 
 lint:js:fix() {
-  echo -e "\n ########################## \n # JavaScript Linting Fix # \n ########################## \n"
-  cd "${TEST_PATH}" || exit
-  npx eslint --config configuration/.eslintrc.json \
-    --ignore-path configuration/.eslintignore \
-    "../../${PACKAGE_PATH}${PACKAGE_NAME}/Resources/Public/JavaScript/**/*.js" --fix
-  cd ../..
-  echo "JavaScript is Linted and Fixed"
+  echo -e "\n ###################### \n # JavaScript Linting Fix # \n ###################### \n"
+  npx --prefix ${TEST_PATH} eslint \
+    --config ${TEST_PATH}/${CONFIGURATION_PATH}/.eslintrc.json \
+    --ignore-path ${TEST_PATH}/${CONFIGURATION_PATH}/.eslintignore \
+    --fix \
+    "${PACKAGE_PATH}/${PACKAGE_NAME}/**/*.js"
+  echo "JavaScript is Linted and Fixed."
 }

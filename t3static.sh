@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+#set -x
 #set +e
 
 TEST_PATH='tests/t3static'
@@ -26,8 +26,8 @@ PHPSTAN_LEVEL=${PHPSTAN_LEVEL}
 TYPO3SCAN_TARGET=${TYPO3SCAN_TARGET}
 
 # Include Test Scripts
-source "${BASH_SOURCE%/*}/includes/tests-frontend.sh"
-source "${BASH_SOURCE%/*}/includes/tests-backend.sh"
+source "${BASH_SOURCE%/*}/inc/tests-frontend.sh"
+source "${BASH_SOURCE%/*}/inc/tests-backend.sh"
 
 # Get Options
 while getopts "p:t:" option; do
@@ -64,6 +64,12 @@ case "${TEST_TYPE}" in
 init)
   test:init
   run:init
+  ;;
+css)
+  lint:css
+  ;;
+css-fix)
+  lint:css:fix
   ;;
 scss)
   lint:scss

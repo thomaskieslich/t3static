@@ -1,0 +1,10 @@
+## Compressed
+**/*.min.css
+
+## Folders
+**/Base/**/*.css
+**/Fonts/**/*.css
+**/Vendor/**/*.css
+
+## Single
+packages/sitepackage/Resources/Public/Css/bootstrap5-rte.css
