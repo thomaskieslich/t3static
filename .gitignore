@@ -4,6 +4,6 @@ composer.lock
 package-lock.json
 .env
 
-/results/*
+/res/*
 
 !*.gitkeep

@@ -1,12 +1,11 @@
 #!/bin/bash
 
-## Tests based on npm Packages
+## Tests for Frontend
 
 lint:scss() {
   echo -e "\n ################ \n # Scss Linting # \n ################ \n"
-#  cd "${TEST_PATH}" || exit
-  pwd
-  npx --prefix ${TEST_PATH} stylelint "${PACKAGE_PATH}${PACKAGE_NAME}/**/*.scss" -c ${TEST_PATH}/configuration/.stylelintrc.json
+  npx --prefix ${TEST_PATH} stylelint "${PACKAGE_PATH}/${PACKAGE_NAME}/**/*.scss" \
+    -c ${TEST_PATH}/${CONFIGURATION_PATH}/.stylelintrc.json
   echo "Scss is Linted Exit: $EXIT_CODE"
 }
 
