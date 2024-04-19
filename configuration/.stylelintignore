@@ -1,2 +1,7 @@
+**/*.min.css
+**/*.min.scss
+
 **/Base/**/*.scss
 **/Vendor/**/*.scss
+/Base
+/Vendor

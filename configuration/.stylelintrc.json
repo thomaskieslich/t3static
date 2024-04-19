@@ -5,10 +5,6 @@
 	"extends": [
 		"stylelint-config-standard-scss"
 	],
-	"ignoreFiles": [
-		"./**/Base/**/*.scss",
-		"./**/Vendor/**/*.scss"
-	],
 	"rules": {
 		"color-function-notation": "legacy",
 		"selector-class-pattern": null,

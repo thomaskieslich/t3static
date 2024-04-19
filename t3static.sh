@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#set -x
+set -x
 #set +e
 
 TEST_PATH='tests/t3static'

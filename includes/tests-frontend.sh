@@ -4,11 +4,9 @@
 
 lint:scss() {
   echo -e "\n ################ \n # Scss Linting # \n ################ \n"
-  cd "${TEST_PATH}" || exit
-  npx stylelint \
-    "../../${PACKAGE_PATH}${PACKAGE_NAME}/**/*.scss" \
-    --config ./configuration/.stylelintrc.json \
-    || EXIT_CODE=$?
+#  cd "${TEST_PATH}" || exit
+  pwd
+  npx --prefix ${TEST_PATH} stylelint "${PACKAGE_PATH}${PACKAGE_NAME}/**/*.scss" -c ${TEST_PATH}/configuration/.stylelintrc.json
   echo "Scss is Linted Exit: $EXIT_CODE"
 }
 
