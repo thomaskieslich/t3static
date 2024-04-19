@@ -27,7 +27,7 @@ TYPO3SCAN_TARGET=${TYPO3SCAN_TARGET}
 
 # Include Test Scripts
 source "${BASH_SOURCE%/*}/inc/tests-frontend.sh"
-source "${BASH_SOURCE%/*}/inc/tests-backend.sh"
+source "${BASH_SOURCE%/*}/inc/tests-php.sh"
 
 # Get Options
 while getopts "p:t:" option; do
