@@ -4,7 +4,8 @@ set -x
 #set +e
 
 TEST_PATH='tests/t3static'
-PACKAGE_PATH='packages/'
+CONFIGURATION_PATH=".config"
+PACKAGE_PATH='packages'
 PACKAGE_DEFAULT='sitepackage'
 TEST_DEFAULT='all'
 
@@ -16,6 +17,7 @@ if [ -f ${BASH_SOURCE%/*}/.env ]; then
   source "${BASH_SOURCE%/*}/.env"
 fi
 
+CONFIGURATION_PATH=${CONFIGURATION_PATH}
 PACKAGE_PATH=${PACKAGE_PATH}
 PACKAGE_NAME=${PACKAGE_DEFAULT}
 TEST_TYPE=${TEST_DEFAULT}
@@ -42,10 +44,10 @@ done
 
 ## Init Local
 run:init() {
-  cd tests/t3static || exit
+  cd ${TEST_PATH} || exit
   rm -f composer.lock
   rm -f package-lock.json
-  composer install --no-progress
+  composer install --no-progress --no-interaction
   npm install
   cd ../..
 }
