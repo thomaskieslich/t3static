@@ -42,28 +42,18 @@ while getopts "p:t:" option; do
   esac
 done
 
-## Init Local
-run:init() {
+## Init Packages
+install:packages() {
   cd ${TEST_PATH} || exit
   composer install --no-progress --no-interaction
-  npm install
+  npm install --quiet
   cd ../..
-}
-
-test:init() {
-  if [ -z "$(ls -A "${TEST_PATH}"/node_modules)" ] || [ -z "$(ls -A "${TEST_PATH}"/vendor)" ]; then
-    echo "Please run 'tests/t3static/t3static.sh -t init' in root Directory"
-    exit 1
-  else
-    echo "Init composer and npm ok."
-  fi
 }
 
 # Get Test
 case "${TEST_TYPE}" in
-init)
-  test:init
-  run:init
+install)
+  install:packages
   ;;
 css)
   lint:css
@@ -83,14 +73,7 @@ js)
 js-fix)
   lint:js:fix
   ;;
-md)
-  lint:md
-  ;;
-md-fix)
-  lint:md:fix
-  ;;
 frontend)
-  test:init
   lint:scss
   lint:js
   ;;
@@ -128,7 +111,6 @@ typo3scan)
   typo3scan
   ;;
 backend)
-  test:init
   lint:composer
   lint:json
   lint:yaml
@@ -141,7 +123,6 @@ backend)
   typo3scan
   ;;
 all)
-  test:init
   lint:scss
   lint:js
   lint:composer
