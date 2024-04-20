@@ -1,12 +1,9 @@
 {
 	"plugins": [
-
 	],
 	"extends": [
-
+		"stylelint-config-recommended"
 	],
 	"rules": {
-		"color-function-notation": "legacy",
-		"selector-class-pattern": null
 	}
 }
