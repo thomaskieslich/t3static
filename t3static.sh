@@ -77,21 +77,6 @@ frontend)
   lint:scss
   lint:js
   ;;
-composer)
-  lint:composer
-  ;;
-json)
-  lint:json
-  ;;
-yaml)
-  lint:yaml
-  ;;
-typoscript)
-  lint:typoscript
-  ;;
-tsconfig)
-  lint:tsconfig
-  ;;
 php-cs)
   php:cs
   ;;
@@ -101,40 +86,15 @@ php-cs-fix)
 php-stan)
   php:stan
   ;;
-rector)
-  rector
-  ;;
-rector-fix)
-  rector:fix
-  ;;
-typo3scan)
-  typo3scan
-  ;;
 backend)
-  lint:composer
-  lint:json
-  lint:yaml
-  lint:md
-  lint:typoscript
-  lint:tsconfig
   php:cs
   php:stan
-  rector
-  typo3scan
   ;;
 all)
   lint:scss
   lint:js
-  lint:composer
-  lint:json
-  lint:yaml
-  lint:md
-  lint:typoscript
-  lint:tsconfig
   php:cs
   php:stan
-  rector
-  typo3scan
   ;;
 *)
   echo "use parameters (all | json | yaml | typoscript | scss | js | …)"
