@@ -4,11 +4,9 @@
 php:cs() {
   echo -e "\n ########## \n # php:cs # \n ########## \n"
   ${TEST_PATH}/vendor/bin/php-cs-fixer \
-    --allow-risky=yes \
     --diff \
     --dry-run \
-    --using-cache=yes \
-    --config=${TEST_PATH}/${CONFIGURATION_PATH}/.php-cs-fixer.php \
+    --config=${CONFIGURATION_PATH}/.php-cs-fixer.php \
     fix ${PACKAGE_PATH}/${PACKAGE_NAME} || EXIT_CODE=$?
   echo "php:cs completed"
   return $EXIT_CODE
@@ -16,9 +14,11 @@ php:cs() {
 
 php:cs:fix() {
   echo -e "\n ############## \n # php:cs:fix # \n ############## \n"
-  "${TEST_PATH}/vendor/bin/php-cs-fixer" fix "${PACKAGE_PATH}${PACKAGE_NAME}/" \
-    --using-cache no --config="${TEST_PATH}"/configuration/.php-cs-fixer.php || EXIT_CODE=$?
-  echo "php:cs:fix completed"
+  ${TEST_PATH}/vendor/bin/php-cs-fixer \
+    --diff \
+    --config=${TEST_PATH}/${CONFIGURATION_PATH}/.php-cs-fixer.php \
+    fix ${PACKAGE_PATH}/${PACKAGE_NAME} || EXIT_CODE=$?
+  echo "php:cs completed"
   return $EXIT_CODE
 }
 
