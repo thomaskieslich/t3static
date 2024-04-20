@@ -4,7 +4,7 @@ set -x
 set +e
 
 TEST_PATH=tests/t3static
-CONFIGURATION_PATH=${TEST_PATH}/.config
+CONFIGURATION_PATH=${TEST_PATH}/config
 PACKAGE_PATH=packages
 PACKAGE_DEFAULT=sitepackage
 TEST_DEFAULT=frontend
