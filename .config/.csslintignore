@@ -2,9 +2,9 @@
 **/*.min.css
 
 ## Folders
-**/Base/**/*.css
+# **/Base/**/*.css
 **/Fonts/**/*.css
 **/Vendor/**/*.css
 
 ## Single
-**/bootstrap5-rte.css
+# **/bootstrap5-rte.css

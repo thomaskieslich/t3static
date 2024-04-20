@@ -19,5 +19,7 @@ ddev ssh
 ```
 
 ## Frontend Tests
+[Frontend tests](doc/tests-frontend.md)
 
-
+## ToDo
+- Prettier for Styles and JavaScript
