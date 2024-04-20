@@ -24,12 +24,12 @@ php:cs:fix() {
 
 php:stan() {
     echo -e "\n ############ \n # php:stan # \n ############ \n"
-    "${TEST_PATH}/vendor/bin/phpstan" analyse --level ${PHPSTAN_LEVEL} \
-        --configuration "${TEST_PATH}/configuration/phpstan.neon" \
-        --autoload-file "vendor/autoload.php" \
+    ${TEST_PATH}/vendor/bin/phpstan analyse --level ${PHPSTAN_LEVEL} \
+        --configuration ${CONFIGURATION_PATH}/php-stan/phpstan.neon \
+        --autoload-file ${TEST_PATH}/vendor/autoload.php \
         --allow-empty-baseline \
-        --generate-baseline "${TEST_PATH}/results/phpstan-${PACKAGE_NAME}-errors.neon" \
-        "${PACKAGE_PATH}${PACKAGE_NAME}/" || EXIT_CODE=$?
+        --generate-baseline "${TEST_PATH}/res/phpstan-${PACKAGE_NAME}-errors.neon" \
+        ${PACKAGE_PATH}/${PACKAGE_NAME} || EXIT_CODE=$?
 
     echo "php:stan completed"
     return $EXIT_CODE

@@ -14,3 +14,5 @@ ddev ssh
 ./tests/t3static/t3static.sh -t php-cs-fix
 
 ```
+
+## php-stan
