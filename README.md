@@ -73,8 +73,9 @@ ddev ssh
 ./tests/t3static/t3static.sh -t install
 ```
 
-## Frontend Tests
-[Frontend tests](doc/tests-frontend.md)
+## Tests
+[Frontend Tests](doc/tests-frontend.md)
+[PHP Tests](doc/tests-php.md)
 
 ## ToDo
 - Prettier for Styles and JavaScript

@@ -1,6 +1,6 @@
 # Frontend Tests
 
-## CSS and SCSS
+## Lint and Fix CSS and SCSS
 
 Use [Stylelint](https://stylelint.io) with
 [stylelint-config-standard-scss](https://github.com/stylelint/stylelint-config-standard).
@@ -18,7 +18,7 @@ ddev ssh
 
 ```
 
-## JavaScript
+## Lint and Fix JavaScript
 
 Use [Eslint](https://eslint.org) with [eslint-config-standard](https://github.com/standard/eslint-config-standard).
 
