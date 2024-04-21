@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Rector\Config\RectorConfig;
 use Rector\Core\ValueObject\PhpVersion;
 use Rector\PostRector\Rector\NameImportingPostRector;
+use Rector\Set\ValueObject\SetList;
 use Ssch\TYPO3Rector\Configuration\Typo3Option;
 use Ssch\TYPO3Rector\Rector\General\ConvertImplicitVariablesToExplicitGlobalsRector;
 use Ssch\TYPO3Rector\Rector\General\ExtEmConfRector;
@@ -18,11 +19,11 @@ return static function (RectorConfig $rectorConfig): void {
 
     $rectorConfig->sets([
         Typo3LevelSetList::UP_TO_TYPO3_11,
-//        SetList::TYPE_DECLARATION,
-//        SetList::CODING_STYLE,
-//        SetList::CODE_QUALITY,
-//        SetList::DEAD_CODE,
-//        SetList::EARLY_RETURN,
+        SetList::TYPE_DECLARATION,
+        SetList::CODING_STYLE,
+        SetList::CODE_QUALITY,
+        SetList::DEAD_CODE,
+        SetList::EARLY_RETURN,
     ]);
 
     // Define your target version which you want to support
@@ -55,8 +56,8 @@ return static function (RectorConfig $rectorConfig): void {
         getcwd() . '/.Build/*',
         NameImportingPostRector::class => [
             'ClassAliasMap.php',
-            getcwd() . '/**/Configuration/*.php',
-            getcwd() . '/**/Configuration/**/*.php',
+//            getcwd() . '/**/Configuration/*.php',
+//            getcwd() . '/**/Configuration/**/*.php',
 //            'ext_localconf.php',
 //            'ext_tables.php',
         ]
@@ -77,7 +78,7 @@ return static function (RectorConfig $rectorConfig): void {
      * to GeneralUtility::makeInstance(\TYPO3\CMS\Core\Log\LogManager::class) calls.
      * But be warned, sometimes it produces false positives (edge cases), so watch out
      */
-//    $rectorConfig->rule(\Rector\Php55\Rector\String_\StringClassNameToClassConstantRector::class);
+    $rectorConfig->rule(\Rector\Php55\Rector\String_\StringClassNameToClassConstantRector::class);
 
     // Optional non-php file functionalities:
     // @see https://github.com/sabbelasichon/typo3-rector/blob/main/docs/beyond_php_file_processors.md
@@ -95,5 +96,5 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     // Modernize your TypoScript include statements for files and move from <INCLUDE /> to @import use the FileIncludeToImportStatementVisitor (introduced with TYPO3 9.0)
-//    $rectorConfig->rule(\Ssch\TYPO3Rector\FileProcessor\TypoScript\Rector\v9\v0\FileIncludeToImportStatementTypoScriptRector::class);
+    $rectorConfig->rule(\Ssch\TYPO3Rector\FileProcessor\TypoScript\Rector\v9\v0\FileIncludeToImportStatementTypoScriptRector::class);
 };

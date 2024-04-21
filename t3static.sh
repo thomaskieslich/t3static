@@ -119,6 +119,12 @@ typoscript)
 tsconfig)
     lint:tsconfig
     ;;
+rector)
+    rector
+    ;;
+rector-fix)
+    rector:fix
+    ;;
 typo3)
     lint:typoscript
     lint:tsconfig
