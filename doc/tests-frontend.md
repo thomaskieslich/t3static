@@ -1,5 +1,10 @@
 # Frontend Tests
 
+## Group Command
+```
+./tests/t3static/t3static.sh -t frontend
+```
+
 ## Lint and Fix CSS and SCSS
 
 Use [Stylelint](https://stylelint.io) with
