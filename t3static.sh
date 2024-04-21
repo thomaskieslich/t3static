@@ -100,6 +100,9 @@ json)
 md)
     lint:md
     ;;
+md-fix)
+    lint:md:fix
+    ;;
 yaml)
     lint:yaml
     ;;

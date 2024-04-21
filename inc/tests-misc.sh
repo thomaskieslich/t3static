@@ -10,7 +10,7 @@ lint:composer() {
 
 lint:json() {
     echo -e "\n ################# \n # Json Linting # \n ################# \n"
-    find "${PACKAGE_PATH}/${PACKAGE_NAME}" ! -path "*/node_modules/*" -name "*.json" -print0 | \
+    find "${PACKAGE_PATH}/${PACKAGE_NAME}" ! -path "*/node_modules/*" -name "*.json" -print0 |
         xargs --null -r php "${TEST_PATH}/vendor/bin/jsonlint" || EXIT_CODE=$?
     echo "Json is Linted."
     return $EXIT_CODE
@@ -24,9 +24,16 @@ lint:md() {
     return $EXIT_CODE
 }
 
+lint:md:fix() {
+    echo -e "\n ################ \n # Markdown Linting with Fix # \n ################ \n"
+    npx markdownlint-cli2 --fix "${PACKAGE_PATH}/${PACKAGE_NAME}/**/*.md" \
+        --config "${CONFIGURATION_PATH}/.markdownlint-cli2.yaml"
+    echo "Markdown is Linted Exit."
+}
+
 lint:yaml() {
     echo -e "\n ################# \n # Yaml Linting # \n ################# \n"
-    find "${PACKAGE_PATH}/${PACKAGE_NAME}" ! -path "*/node_modules/*" -name "*.y*ml" -print0 | \
+    find "${PACKAGE_PATH}/${PACKAGE_NAME}" ! -path "*/node_modules/*" -name "*.y*ml" -print0 |
         xargs --null -r php "${TEST_PATH}/vendor/bin/yaml-lint" --ansi || EXIT_CODE=$?
     echo "Yaml is Linted"
     return $EXIT_CODE
