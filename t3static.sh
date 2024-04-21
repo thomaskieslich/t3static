@@ -125,9 +125,14 @@ rector)
 rector-fix)
     rector:fix
     ;;
+typo3scan)
+    typo3scan
+    ;;
 typo3)
     lint:typoscript
     lint:tsconfig
+    rector
+    typo3scan
     ;;
 all)
     lint:scss

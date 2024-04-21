@@ -36,3 +36,10 @@ rector:fix() {
     echo "Rector Fix completed"
     return $EXIT_CODE
 }
+
+typo3scan() {
+    echo -e "\n ############# \n # TYPO3Scan # \n ############# \n"
+    "${TEST_PATH}/vendor/bin/typo3scan" scan --target ${TYPO3SCAN_TARGET} "${PACKAGE_PATH}/${PACKAGE_NAME}" || EXIT_CODE=$?
+    echo "TYPO3Scan completed"
+    return $EXIT_CODE
+}
