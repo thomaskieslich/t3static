@@ -29,6 +29,7 @@ TYPO3SCAN_TARGET=${TYPO3SCAN_TARGET}
 source "${BASH_SOURCE%/*}/inc/tests-frontend.sh"
 source "${BASH_SOURCE%/*}/inc/tests-php.sh"
 source "${BASH_SOURCE%/*}/inc/tests-misc.sh"
+source "${BASH_SOURCE%/*}/inc/tests-typo3.sh"
 
 # Get Options
 while getopts "p:t:" option; do
@@ -111,6 +112,16 @@ misc)
     lint:json
     lint:md
     lint:yaml
+    ;;
+typoscript)
+    lint:typoscript
+    ;;
+tsconfig)
+    lint:tsconfig
+    ;;
+typo3)
+    lint:typoscript
+    lint:tsconfig
     ;;
 all)
     lint:scss

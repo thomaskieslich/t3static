@@ -1,13 +1,12 @@
 ---
 
-#paths:
+paths:
 #  - Configuration/TypoScript/*
 
 filePatterns:
   - "*.typoscript"
-  - "*.tsconfig"
 
-#excludePatterns:
+excludePatterns:
 #  - "Constants.typoscript"
 
 sniffs:
