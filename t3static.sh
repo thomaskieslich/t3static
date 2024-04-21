@@ -1,7 +1,7 @@
 #!/bin/bash
 
-set -x
-set +e
+#set -x
+#set +e
 
 TEST_PATH=tests/t3static
 CONFIGURATION_PATH=${TEST_PATH}/config
