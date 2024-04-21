@@ -10,9 +10,9 @@ PACKAGE_DEFAULT=sitepackage
 TEST_DEFAULT=frontend
 
 PHPSTAN_LEVEL=3
-TYPO3SCAN_TARGET=12
+TYPO3SCAN_TARGET=11
 
-# Override Defaults
+# Override Defaults from .env
 if [ -f ${BASH_SOURCE%/*}/.env ]; then
     source "${BASH_SOURCE%/*}/.env"
 fi
@@ -31,7 +31,7 @@ source "${BASH_SOURCE%/*}/inc/tests-php.sh"
 source "${BASH_SOURCE%/*}/inc/tests-misc.sh"
 source "${BASH_SOURCE%/*}/inc/tests-typo3.sh"
 
-# Get Options
+# Get CLI Options
 while getopts "p:t:" option; do
     case $option in
     p)
@@ -57,6 +57,8 @@ case "${TEST_TYPE}" in
 install)
     install:packages
     ;;
+
+# tests-frontend
 css)
     lint:css
     ;;
@@ -75,10 +77,8 @@ js)
 js-fix)
     lint:js:fix
     ;;
-frontend)
-    lint:scss
-    lint:js
-    ;;
+
+# tests-php
 php-cs)
     php:cs
     ;;
@@ -88,10 +88,8 @@ php-cs-fix)
 php-stan)
     php:stan
     ;;
-php)
-    php:cs
-    php:stan
-    ;;
+
+# tests-misc
 composer)
     lint:composer
     ;;
@@ -107,12 +105,8 @@ md-fix)
 yaml)
     lint:yaml
     ;;
-misc)
-    lint:composer
-    lint:json
-    lint:md
-    lint:yaml
-    ;;
+
+# tests-typo3
 typoscript)
     lint:typoscript
     ;;
@@ -128,6 +122,22 @@ rector-fix)
 typo3scan)
     typo3scan
     ;;
+
+## Collections
+frontend)
+    lint:scss
+    lint:js
+    ;;
+misc)
+    lint:composer
+    lint:json
+    lint:md
+    lint:yaml
+    ;;
+php)
+    php:cs
+    php:stan
+    ;;
 typo3)
     lint:typoscript
     lint:tsconfig
@@ -137,10 +147,18 @@ typo3)
 all)
     lint:scss
     lint:js
+    lint:composer
+    lint:json
+    lint:md
+    lint:yaml
     php:cs
     php:stan
+    lint:typoscript
+    lint:tsconfig
+    rector
+    typo3scan
     ;;
 *)
-    echo "use parameters (all | json | yaml | typoscript | scss | js | …)"
+    echo "use parameters (frontend | misc | php | typo3 | …)"
     ;;
 esac
