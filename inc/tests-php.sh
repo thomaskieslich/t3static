@@ -26,7 +26,7 @@ php:stan() {
     echo -e "\n ############ \n # php:stan # \n ############ \n"
     ${TEST_PATH}/vendor/bin/phpstan analyse --level ${PHPSTAN_LEVEL} \
         --configuration ${CONFIGURATION_PATH}/php-stan/phpstan.neon \
-        --autoload-file ${TEST_PATH}/vendor/autoload.php \
+        --autoload-file vendor/autoload.php \
         --allow-empty-baseline \
         --generate-baseline "${TEST_PATH}/res/phpstan-${PACKAGE_NAME}-errors.neon" \
         ${PACKAGE_PATH}/${PACKAGE_NAME} || EXIT_CODE=$?

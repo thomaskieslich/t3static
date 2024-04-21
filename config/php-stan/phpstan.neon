@@ -4,7 +4,7 @@ includes:
 parameters:
   parallel:
       # Don't be overly greedy on machines with more CPU's to be a good neighbor especially on CI
-#      maximumNumberOfProcesses: 4
+      maximumNumberOfProcesses: 4
 
 #  level: 3
 #  ignoreErrors:
