@@ -76,7 +76,11 @@ ddev ssh
 ## Tests
 [Frontend Tests](doc/tests-frontend.md)
 
+[Misc Tests](doc/tests-misc.md)
+
 [PHP Tests](doc/tests-php.md)
+
+[TYPO3 Tests](doc/tests-typo3.md)
 
 ## ToDo
 - Prettier for Styles and JavaScript
