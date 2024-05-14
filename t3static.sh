@@ -125,6 +125,7 @@ typo3scan)
 
 ## Collections
 frontend)
+  lint:css
   lint:scss
   lint:js
   ;;
