@@ -7,6 +7,7 @@
 	],
 	"rules": {
 		"color-function-notation": "legacy",
+		"declaration-property-value-no-unknown": true,
 		"selector-class-pattern": null,
 		"scss/comment-no-empty": null,
 		"scss/dollar-variable-empty-line-before": null
