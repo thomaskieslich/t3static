@@ -47,6 +47,7 @@ done
 ## Init Packages
 install:packages() {
   cd ${TEST_PATH} || exit
+  rm -f composer.lock package-lock.json
   composer install --no-progress --no-interaction
   npm install --quiet
   cd ../..
