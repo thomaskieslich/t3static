@@ -114,11 +114,17 @@ typoscript)
 tsconfig)
   lint:tsconfig
   ;;
-rector)
-  rector
+rector-1)
+  rector-1
   ;;
-rector-fix)
-  rector:fix
+rector-1-fix)
+  rector-1:fix
+  ;;
+rector-2)
+  rector-2
+  ;;
+rector-2-fix)
+  rector-2:fix
   ;;
 typo3scan)
   typo3scan

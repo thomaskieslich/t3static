@@ -20,8 +20,8 @@ lint:tsconfig() {
         return $EXIT_CODE
 }
 
-rector() {
-    echo -e "\n ########## \n # Rector # \n ########## \n"
+rector-1() {
+    echo -e "\n ########## \n # Rector v1 # \n ########## \n"
     "${TEST_PATH}/vendor/bin/rector" process "${PACKAGE_PATH}/${PACKAGE_NAME}" \
         --config "${CONFIGURATION_PATH}/rector-1.php" \
         --dry-run || EXIT_CODE=$?
@@ -29,10 +29,27 @@ rector() {
     return $EXIT_CODE
 }
 
-rector:fix() {
+rector-1:fix() {
     echo -e "\n ########## \n # Rector Fix # \n ########## \n"
     "${TEST_PATH}/vendor/bin/rector" process "${PACKAGE_PATH}/${PACKAGE_NAME}" \
         --config "${CONFIGURATION_PATH}/rector-1.php" || EXIT_CODE=$?
+    echo "Rector Fix completed"
+    return $EXIT_CODE
+}
+
+rector-2() {
+    echo -e "\n ########## \n # Rector v2 # \n ########## \n"
+    "${TEST_PATH}/vendor/bin/rector" process "${PACKAGE_PATH}/${PACKAGE_NAME}" \
+        --config "${CONFIGURATION_PATH}/rector-2.php" \
+        --dry-run -vv || EXIT_CODE=$?
+    echo "Rector completed"
+    return $EXIT_CODE
+}
+
+rector-2:fix() {
+    echo -e "\n ########## \n # Rector Fix # \n ########## \n"
+    "${TEST_PATH}/vendor/bin/rector" process "${PACKAGE_PATH}/${PACKAGE_NAME}" \
+        --config "${CONFIGURATION_PATH}/rector-2.php" || EXIT_CODE=$?
     echo "Rector Fix completed"
     return $EXIT_CODE
 }

@@ -14,7 +14,7 @@
 		"michielroos/typo3scan": "^1.7.7",
 		"phpstan/phpstan": "^1.10.27",
 		"seld/jsonlint": "^1.10.0",
-		"ssch/typo3-rector": "^v1.8.0",
+		"ssch/typo3-rector": "^2.6.0",
 		"symfony/yaml": "^v6.4.8",
 		"typo3/coding-standards": "^0.7.0"
 	}
