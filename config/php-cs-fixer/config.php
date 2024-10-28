@@ -46,6 +46,7 @@ return (new \PhpCsFixer\Config())
             ->ignoreVCSIgnored(true)
             ->in(realpath(__DIR__ . '/../../'))
     )
+    ->setParallelConfig(new PhpCsFixer\Runner\Parallel\ParallelConfig(4, 20))
     ->setRiskyAllowed(true)
     ->setRules([
         '@DoctrineAnnotation' => true,
