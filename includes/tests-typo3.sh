@@ -23,13 +23,22 @@ lint:tsconfig() {
 rector() {
     echo -e "\n ########## \n # Rector # \n ########## \n"
     "${TEST_PATH}/vendor/bin/rector" process "${PACKAGE_PATH}/${PACKAGE_NAME}" \
+        --config "${CONFIGURATION_PATH}/rector.php" \
+        --dry-run || EXIT_CODE=$?
+    echo "Rector completed"
+    return $EXIT_CODE
+}
+
+rector1() {
+    echo -e "\n ########## \n # Rector # \n ########## \n"
+    "${TEST_PATH}/vendor/bin/rector" process "${PACKAGE_PATH}/${PACKAGE_NAME}" \
         --config "${CONFIGURATION_PATH}/rector-1.php" \
         --dry-run || EXIT_CODE=$?
     echo "Rector completed"
     return $EXIT_CODE
 }
 
-rector:fix() {
+rector1:fix() {
     echo -e "\n ########## \n # Rector Fix # \n ########## \n"
     "${TEST_PATH}/vendor/bin/rector" process "${PACKAGE_PATH}/${PACKAGE_NAME}" \
         --config "${CONFIGURATION_PATH}/rector-1.php" || EXIT_CODE=$?
