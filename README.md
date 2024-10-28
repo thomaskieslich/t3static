@@ -59,6 +59,24 @@ the CONFIGURATION_PATH in the .env File.
 Here the results from some Tests written (php-stan,…)
 
 ## Usage
+You can run test Groups like:
+```
+ddev t3static -t frontend
+ddev t3static -t misc
+ddev t3static -t php
+ddev t3static -t typo3
+```
+
+or Single tests like (more test defined in t3static.sh:
+```
+ddev t3static -t css
+# fix it
+ddev t3static -t css-fix
+
+ddev t3static -t rector
+ddev t3static -t typo3scan
+```
+
 ### Options
 ```
 choose test
