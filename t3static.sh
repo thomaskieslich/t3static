@@ -3,11 +3,11 @@
 #set -x
 #set +e
 
-TEST_PATH= t3static
+TEST_PATH=t3static
 CONFIGURATION_PATH=${TEST_PATH}/config
 PACKAGE_PATH=packages
 PACKAGE_DEFAULT=sitepackage
-TEST_DEFAULT=frontend
+TEST_DEFAULT=php
 
 PHPSTAN_LEVEL=3
 TYPO3SCAN_TARGET=11
