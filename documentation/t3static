@@ -4,4 +4,4 @@
 ## Usage: t3static [flags] [args]
 ## Example: "ddev t3static -p news_extended -t php-cs"
 
-./tests/t3static/t3static.sh "$@"
+./t3static/t3static.sh "$@"

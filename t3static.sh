@@ -3,7 +3,7 @@
 #set -x
 #set +e
 
-TEST_PATH=tests/t3static
+TEST_PATH= t3static
 CONFIGURATION_PATH=${TEST_PATH}/config
 PACKAGE_PATH=packages
 PACKAGE_DEFAULT=sitepackage
