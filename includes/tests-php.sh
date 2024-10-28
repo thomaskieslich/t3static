@@ -34,3 +34,16 @@ php:stan() {
     echo "php:stan completed"
     return $EXIT_CODE
 }
+
+php:stan:baseline() {
+    echo -e "\n ############ \n # php:stan # \n ############ \n"
+    "${TEST_PATH}/vendor/bin/phpstan" analyse --level "${PHPSTAN_LEVEL}" \
+        --configuration "${CONFIGURATION_PATH}/php-stan/phpstan.neon" \
+        --autoload-file "vendor/autoload.php" \
+        --allow-empty-baseline \
+        --generate-baseline "${TEST_PATH}/results/phpstan-${PACKAGE_NAME}-errors.neon" \
+        "${PACKAGE_PATH}/${PACKAGE_NAME}" || EXIT_CODE=$?
+
+    echo "php:stan completed"
+    return $EXIT_CODE
+}

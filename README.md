@@ -1,9 +1,9 @@
 # t3static
-Collection of Tools to Test, Lint, Fix and Upgrade multiple TYPO3 Extensions in a Monorepo. 
+Collection of Tools to Test, Lint, Fix and Upgrade multiple TYPO3 Extensions in a Monorepo.
 The rules are simple to bring the code in the individual extensions up to the same level.
 
-This is to have the most uniform code standards possible for projects with many custom extensions. 
-It should also be possible to recognise and fix simple problems in the code. 
+This is to have the most uniform code standards possible for projects with many custom extensions.
+It should also be possible to recognise and fix simple problems in the code.
 Use in continuous integration pipelines should be possible.
 A special goal of this tool collection is to test TYPO3 extensions without great effort and adjustments in the code.
 This Tool have its own node_modules and vendor Settings and Folders.
@@ -47,12 +47,12 @@ Available groups (usage -t GROUP)
 - php
 - typo3
 
-For Single tests have a Look into the includes Folder. 
+For Single tests have a Look into the includes Folder.
 The files based on the Group Names.
 
 ### configuration Folder
 Here are the Configuration Files the Single Test from includes folder.
-If you want to Override, make a copy like config-override and change 
+If you want to Override, make a copy like config-override and change
 the CONFIGURATION_PATH in the .env File.
 
 ### results Folder

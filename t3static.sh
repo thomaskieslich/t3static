@@ -88,6 +88,9 @@ php-cs-fix)
 php-stan)
   php:stan
   ;;
+php-stan-baseline)
+  php:stan:baseline
+  ;;
 
 # tests-misc
 composer)
