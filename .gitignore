@@ -1,10 +1,10 @@
-node_modules
-vendor
-composer.lock
-package-lock.json
-.env
+/node_modules
+/vendor
+/composer.lock
+/package-lock.json
+/.env
 
-/res/*
+/results/*
 /config-override
 
 !*.gitkeep

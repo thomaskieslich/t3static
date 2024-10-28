@@ -26,15 +26,14 @@ PHPSTAN_LEVEL=${PHPSTAN_LEVEL}
 TYPO3SCAN_TARGET=${TYPO3SCAN_TARGET}
 
 # Include Test Scripts
-source "${BASH_SOURCE%/*}/inc/tests-frontend.sh"
-source "${BASH_SOURCE%/*}/inc/tests-php.sh"
-source "${BASH_SOURCE%/*}/inc/tests-misc.sh"
-source "${BASH_SOURCE%/*}/inc/tests-typo3.sh"
+source "${BASH_SOURCE%/*}/includes/tests-frontend.sh"
+source "${BASH_SOURCE%/*}/includes/tests-php.sh"
+source "${BASH_SOURCE%/*}/includes/tests-misc.sh"
+source "${BASH_SOURCE%/*}/includes/tests-typo3.sh"
 
 # Get CLI Options
 while getopts "p:t:" option; do
-  case $option in
-  p)
+  case $option in p)
     PACKAGE_NAME=$OPTARG
     ;;
   t)
