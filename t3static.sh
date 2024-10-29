@@ -14,7 +14,7 @@ TYPO3SCAN_TARGET=11
 
 # Override Defaults from .env
 if [ -f ${BASH_SOURCE%/*}/.env ]; then
-  source "${BASH_SOURCE%/*}/.env"
+    source "${BASH_SOURCE%/*}/.env"
 fi
 
 CONFIGURATION_PATH=${CONFIGURATION_PATH}
@@ -33,148 +33,149 @@ source "${BASH_SOURCE%/*}/includes/tests-typo3.sh"
 
 # Get CLI Options
 while getopts "p:t:" option; do
-  case $option in p)
-    PACKAGE_NAME=$OPTARG
-    ;;
-  t)
-    TEST_TYPE=$OPTARG
-    ;;
-  *) ;;
-  esac
+    case $option in p)
+        PACKAGE_NAME=$OPTARG
+        ;;
+    t)
+        TEST_TYPE=$OPTARG
+        ;;
+    *) ;;
+    esac
 done
 
 ## Init Packages
 install:packages() {
-  cd ${TEST_PATH} || exit
-  rm -f composer.lock package-lock.json
-  composer install --no-progress --no-interaction
-  npm install --quiet
-  cd ../..
+    cd ${TEST_PATH} || exit
+    rm -f composer.lock package-lock.json
+    composer install --no-progress --no-interaction
+    npm install --quiet
+    cd ../..
 }
 
 # Get Test
 case "${TEST_TYPE}" in
 install)
-  install:packages
-  ;;
+    install:packages
+    ;;
 
 # tests-frontend
 css)
-  lint:css
-  ;;
+    lint:css
+    ;;
 css-fix)
-  lint:css:fix
-  ;;
+    lint:css:fix
+    ;;
 scss)
-  lint:scss
-  ;;
+    lint:scss
+    ;;
 scss-fix)
-  lint:scss:fix
-  ;;
+    lint:scss:fix
+    ;;
 js)
-  lint:js
-  ;;
+    lint:js
+    ;;
 js-fix)
-  lint:js:fix
-  ;;
+    lint:js:fix
+    ;;
 
 # tests-php
 php-cs)
-  php:cs
-  ;;
+    php:cs
+    ;;
 php-cs-fix)
-  php:cs:fix
-  ;;
+    php:cs:fix
+    ;;
 php-stan)
-  php:stan
-  ;;
+    php:stan
+    ;;
 php-stan-baseline)
-  php:stan:baseline
-  ;;
+    php:stan:baseline
+    ;;
 
 # tests-misc
 composer)
-  lint:composer
-  ;;
+    lint:composer
+    ;;
 json)
-  lint:json
-  ;;
+    lint:json
+    ;;
 md)
-  lint:md
-  ;;
+    lint:md
+    ;;
 md-fix)
-  lint:md:fix
-  ;;
+    lint:md:fix
+    ;;
 yaml)
-  lint:yaml
-  ;;
+    lint:yaml
+    ;;
 
 # tests-typo3
 typoscript)
-  lint:typoscript
-  ;;
+    lint:typoscript
+    ;;
 tsconfig)
-  lint:tsconfig
-  ;;
+    lint:tsconfig
+    ;;
 rector)
-  rector
-  ;;
+    rector
+    ;;
 rector-fix)
-  rector:fix
-  ;;
+    rector:fix
+    ;;
 typo3scan)
-  typo3scan
-  ;;
+    typo3scan
+    ;;
 
 ## Collections
 frontend)
-  lint:css
-  lint:scss
-  lint:js
-  ;;
+    lint:css
+    lint:scss
+    lint:js
+    ;;
 misc)
-  lint:composer
-  lint:json
-  lint:md
-  lint:yaml
-  ;;
+    lint:composer
+    lint:json
+    lint:md
+    lint:yaml
+    ;;
 php)
-  php:cs
-  php:stan
-  ;;
+    php:cs
+    php:stan
+    ;;
 typo3)
-  lint:typoscript
-  lint:tsconfig
-  rector
-  typo3scan
-  ;;
+    lint:typoscript
+    lint:tsconfig
+    rector
+    typo3scan
+    ;;
 backend)
-  lint:composer
-  lint:json
-  lint:md
-  lint:yaml
-  php:cs
-  php:stan
-  lint:typoscript
-  lint:tsconfig
-  rector
-  typo3scan
-  ;;
+    lint:composer
+    lint:json
+    lint:md
+    lint:yaml
+    php:cs
+    php:stan
+    lint:typoscript
+    lint:tsconfig
+    rector
+    typo3scan
+    ;;
 all)
-  lint:scss
-  lint:js
-  lint:composer
-  lint:json
-  lint:md
-  lint:yaml
-  php:cs
-  php:stan
-  lint:typoscript
-  lint:tsconfig
-  rector
-  typo3scan
-  ;;
+    lint:css
+    lint:scss
+    lint:js
+    lint:composer
+    lint:json
+    lint:md
+    lint:yaml
+    php:cs
+    php:stan
+    lint:typoscript
+    lint:tsconfig
+    rector
+    typo3scan
+    ;;
 *)
-  echo "use parameters (frontend | misc | php | typo3 | …)"
-  ;;
+    echo "use parameters (frontend | misc | php | typo3 | …)"
+    ;;
 esac
