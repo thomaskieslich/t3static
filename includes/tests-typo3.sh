@@ -29,6 +29,14 @@ rector() {
     return $EXIT_CODE
 }
 
+rector:fix() {
+    echo -e "\n ########## \n # Rector # \n ########## \n"
+    "${TEST_PATH}/vendor/bin/rector" process "${PACKAGE_PATH}/${PACKAGE_NAME}" \
+        --config "${CONFIGURATION_PATH}/rector.php" || EXIT_CODE=$?
+    echo "Rector completed"
+    return $EXIT_CODE
+}
+
 rector1() {
     echo -e "\n ########## \n # Rector # \n ########## \n"
     "${TEST_PATH}/vendor/bin/rector" process "${PACKAGE_PATH}/${PACKAGE_NAME}" \
