@@ -20,7 +20,7 @@ This Tool have its own node_modules and vendor Settings and Folders.
 2. Clone the Repository or download the Code into your project.
 
 ```bash
-git clone git@github.com:thomaskieslich/t3static.git tests/t3static
+git clone git@github.com:thomaskieslich/t3static.git
 ```
 
 3. change Default Settings
