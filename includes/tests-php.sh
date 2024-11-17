@@ -7,7 +7,7 @@ php:cs() {
         --diff \
         --dry-run \
         --using-cache=no \
-        --config="${CONFIGURATION_PATH}/php-cs-fixer/config.php" \
+        --config="${CONFIGURATION_PATH}/php-cs-fixer/coding-standards.php" \
         fix "${PACKAGE_PATH}/${PACKAGE_NAME}" || EXIT_CODE=$?
     echo "php:cs completed"
     return $EXIT_CODE
@@ -18,7 +18,7 @@ php:cs:fix() {
     "${TEST_PATH}/vendor/bin/php-cs-fixer" \
         --diff \
         --using-cache=no \
-        --config="${CONFIGURATION_PATH}/php-cs-fixer/config.php" \
+        --config="${CONFIGURATION_PATH}/php-cs-fixer/coding-standards.php" \
         fix "${PACKAGE_PATH}/${PACKAGE_NAME}" || EXIT_CODE=$?
     echo "php:cs:fix completed"
     return $EXIT_CODE
