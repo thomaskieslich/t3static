@@ -30,6 +30,7 @@ source "${BASH_SOURCE%/*}/includes/tests-frontend.sh"
 source "${BASH_SOURCE%/*}/includes/tests-php.sh"
 source "${BASH_SOURCE%/*}/includes/tests-misc.sh"
 source "${BASH_SOURCE%/*}/includes/tests-typo3.sh"
+source "${BASH_SOURCE%/*}/includes/tests-fractor.sh"
 
 # Get CLI Options
 while getopts "p:t:" option; do
@@ -124,6 +125,11 @@ rector-fix)
     ;;
 typo3scan)
     typo3scan
+    ;;
+
+## Fractor
+fractor)
+    fractor
     ;;
 
 ## Collections
