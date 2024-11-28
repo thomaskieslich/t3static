@@ -15,7 +15,7 @@ lint:css:fix() {
   echo -e "\n ################ \n # Css Linting # \n ################ \n"
   npx --prefix "${TEST_PATH}" stylelint \
     --config "${CONFIGURATION_PATH}/.csslintrc.json" \
-    --ignore-path "${CONFIGURATION_PATH}/.csslintignore" \
+    --ignore-path "${PACKAGE_PATH}/${PACKAGE_NAME}/.stylelintignore" \
     --fix \
     "${PACKAGE_PATH}/${PACKAGE_NAME}/**/*.css" || EXIT_CODE=$?
   echo "Css is Linted."
@@ -25,7 +25,7 @@ lint:scss() {
   echo -e "\n ################ \n # Scss Linting # \n ################ \n"
   npx --prefix "${TEST_PATH}" stylelint \
     --config "${CONFIGURATION_PATH}/.scsslintrc.json" \
-    --ignore-path "${CONFIGURATION_PATH}/.scsslintignore" \
+    --ignore-path "${PACKAGE_PATH}/${PACKAGE_NAME}/.stylelintignore" \
     "${PACKAGE_PATH}/${PACKAGE_NAME}/**/*.scss" || EXIT_CODE=$?
   echo "Scss is Linted."
 }
@@ -34,7 +34,7 @@ lint:scss:fix() {
   echo -e "\n #################### \n # Scss Linting Fix # \n #################### \n"
   npx --prefix "${TEST_PATH}" stylelint \
     --config "${CONFIGURATION_PATH}/.scsslintrc.json" \
-    --ignore-path "${CONFIGURATION_PATH}/.scsslintignore" \
+    --ignore-path "${PACKAGE_PATH}/${PACKAGE_NAME}/.stylelintignore" \
     --fix \
     "${PACKAGE_PATH}/${PACKAGE_NAME}/**/*.scss"
   echo "Scss is Linted and Fixed"
