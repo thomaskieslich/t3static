@@ -1,7 +1,10 @@
+## Compressed
 **/*.min.css
 **/*.min.scss
 
+## Folders
 **/Base/**/*.scss
 **/Vendor/**/*.scss
-/Base
-/Vendor
+
+## Single
+**/bootstrap5-rte.css

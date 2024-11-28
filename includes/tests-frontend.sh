@@ -6,7 +6,7 @@ lint:css() {
   echo -e "\n ################ \n # Css Linting # \n ################ \n"
   npx --prefix "${TEST_PATH}" stylelint \
     --config "${CONFIGURATION_PATH}/.csslintrc.json" \
-    --ignore-path "${CONFIGURATION_PATH}/.csslintignore" \
+    --ignore-path "${PACKAGE_PATH}/${PACKAGE_NAME}/.stylelintignore" \
     "${PACKAGE_PATH}/${PACKAGE_NAME}/**/*.css" || EXIT_CODE=$?
   echo "Css is Linted."
 }

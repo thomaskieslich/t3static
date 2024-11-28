@@ -12,6 +12,16 @@ Use [Stylelint](https://stylelint.io) with
 
 [Configure Options](https://stylelint.io/user-guide/configure/)
 
+## Local Configuration
+Copy config to config-override and change Path Const in .en to CONFIGURATION_PATH=${TEST_PATH}/config-override.
+Config File for `./tests/t3static/t3static.sh -t css` is .csslintrc.json.
+Config File for `./tests/t3static/t3static.sh -t scss` is .scsslintrc.json.
+
+If you like to exclude Folders in Extension copy .stylelintignore.dist to Extension 
+Root as .stylelintignore and change for your needs.
+
+
+### run Tests
 ```bash
 ddev ssh
 ./tests/t3static/t3static.sh -t css
