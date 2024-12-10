@@ -11,10 +11,9 @@ ddev ssh
 
 Check php code follow the Coding Guidelines.
 
-Use [php-cs-fixer](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer) for better Code
-Style.
+Use [php-cs-fixer](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer) for better Code Style.
 
-Config from https://git.typo3.org/typo3/typo3/-/tree/main/Build/php-cs-fixer
+Config from [TYPO3 Coding Standards](https://github.com/TYPO3/coding-standards)
 
 ```bash
 ddev ssh
@@ -26,6 +25,7 @@ ddev ssh
 ```
 
 ## phpstan
+
 https://phpstan.org
 
 ```bash
