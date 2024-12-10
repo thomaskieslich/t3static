@@ -2,11 +2,6 @@ includes:
     - phpstan-baseline.neon
 
 parameters:
+  level: 4
   parallel:
-      # Don't be overly greedy on machines with more CPU's to be a good neighbor especially on CI
       maximumNumberOfProcesses: 4
-
-#  level: 3
-#  ignoreErrors:
-#      - message: '#Variable \$_EXTKEY might not be defined#'
-#        path: '*/ext_emconf.php'
