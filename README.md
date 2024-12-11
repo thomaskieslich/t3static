@@ -15,6 +15,7 @@ This Tool have its own node_modules and vendor Settings and Folders.
 # t3static https://github.com/thomaskieslich/t3static
 /t3static
 /.ddev/commands/web/t3static
+/.php_cs.cache
 ```
 
 2. Clone the Repository or download the Code into your project.
