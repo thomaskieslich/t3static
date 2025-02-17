@@ -9,13 +9,13 @@
 		"sort-packages": true
 	},
 	"require-dev": {
-		"friendsofphp/php-cs-fixer": "v3.65.0",
-		"helmich/typo3-typoscript-lint": "v3.2.1",
+		"friendsofphp/php-cs-fixer": "v3.69.0",
+		"helmich/typo3-typoscript-lint": "v3.3.0",
 		"michielroos/typo3scan": "dev-master",
-		"phpstan/phpstan": "^1.12.12",
+		"phpstan/phpstan": "^2.1.5",
 		"seld/jsonlint": "^1.11.0",
-		"ssch/typo3-rector": "v2.12.0",
-		"symfony/yaml": "v6.4.0",
+		"ssch/typo3-rector": "v3.1.0",
+		"symfony/yaml": "v7.2.3",
 		"typo3/coding-standards": "v0.8.0"
 	}
 }
