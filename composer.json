@@ -11,7 +11,7 @@
 	"require-dev": {
 		"friendsofphp/php-cs-fixer": "v3.65.0",
 		"helmich/typo3-typoscript-lint": "v3.2.1",
-		"michielroos/typo3scan": "^1.7.7",
+		"michielroos/typo3scan": "dev-master",
 		"phpstan/phpstan": "^1.12.12",
 		"seld/jsonlint": "^1.11.0",
 		"ssch/typo3-rector": "v2.12.0",
