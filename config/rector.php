@@ -6,6 +6,7 @@ use Rector\Config\RectorConfig;
 use Rector\PostRector\Rector\NameImportingPostRector;
 use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRector;
 use Rector\ValueObject\PhpVersion;
+use Ssch\TYPO3Rector\CodeQuality\General\UseExtensionKeyInLocalizationUtilityRector;
 use Ssch\TYPO3Rector\Configuration\Typo3Option;
 use Ssch\TYPO3Rector\Set\Typo3LevelSetList;
 use Ssch\TYPO3Rector\Set\Typo3SetList;
@@ -28,7 +29,7 @@ return RectorConfig::configure()
         Typo3Option::PHPSTAN_FOR_RECTOR_PATH
     ])
     ->withRules([
-        AddVoidReturnTypeWhereNoReturnRector::class
+        AddVoidReturnTypeWhereNoReturnRector::class,
     ])
 //    ->withConfiguredRule(ExtEmConfRector::class, [
 //        ExtEmConfRector::PHP_VERSION_CONSTRAINT => '8.1.0-8.2.99',
@@ -41,6 +42,8 @@ return RectorConfig::configure()
         __DIR__ . '/**/Configuration/ExtensionBuilder/*',
         NameImportingPostRector::class => [
             'ClassAliasMap.php',
-        ]
+        ],
+        // results in wrong usage for named arguments: f.e. LocalizationUtility::translate(key: 'ms', 'ExtensionKey')
+        UseExtensionKeyInLocalizationUtilityRector::class,
     ])
 ;
