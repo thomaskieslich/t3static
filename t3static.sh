@@ -1,13 +1,16 @@
 #!/bin/bash
 
+# include util scripts
+source "${BASH_SOURCE%/*}/includes/util-echo.sh"
+source "${BASH_SOURCE%/*}/includes/util-choose-options.sh"
+source "${BASH_SOURCE%/*}/includes/util-test-types.sh"
+
 #set -x
 #set +e
 
 TEST_PATH=t3static
 CONFIGURATION_PATH=${TEST_PATH}/config
 PACKAGE_PATH=packages
-PACKAGE_DEFAULT=sitepackage
-TEST_DEFAULT=php
 
 PHPSTAN_LEVEL=4
 TYPO3SCAN_TARGET=13
@@ -19,8 +22,6 @@ fi
 
 CONFIGURATION_PATH=${CONFIGURATION_PATH}
 PACKAGE_PATH=${PACKAGE_PATH}
-PACKAGE_NAME=${PACKAGE_DEFAULT}
-TEST_TYPE=${TEST_DEFAULT}
 
 PHPSTAN_LEVEL=${PHPSTAN_LEVEL}
 TYPO3SCAN_TARGET=${TYPO3SCAN_TARGET}
@@ -30,6 +31,14 @@ source "${BASH_SOURCE%/*}/includes/tests-frontend.sh"
 source "${BASH_SOURCE%/*}/includes/tests-php.sh"
 source "${BASH_SOURCE%/*}/includes/tests-misc.sh"
 source "${BASH_SOURCE%/*}/includes/tests-typo3.sh"
+
+# set default values if not filled already
+if [ -z "${PACKAGE_NAME}" ]; then
+  PACKAGE_NAME=${PACKAGE_DEFAULT}
+fi
+if [ -z "${TEST_TYPE}" ]; then
+  TEST_TYPE=${TEST_DEFAULT}
+fi
 
 # Get CLI Options
 while getopts "p:t:" option; do
@@ -43,6 +52,12 @@ while getopts "p:t:" option; do
     esac
 done
 
+choose_package_if_empty
+choose_test_if_empty
+
+echoInfo "Test: ${TEST_TYPE}"
+echoInfo "Package: ${PACKAGE_NAME}"
+
 ## Init Packages
 install:packages() {
     cd ${TEST_PATH} || exit
@@ -53,129 +68,4 @@ install:packages() {
 }
 
 # Get Test
-case "${TEST_TYPE}" in
-install)
-    install:packages
-    ;;
-
-# tests-frontend
-css)
-    lint:css
-    ;;
-css-fix)
-    lint:css:fix
-    ;;
-scss)
-    lint:scss
-    ;;
-scss-fix)
-    lint:scss:fix
-    ;;
-js)
-    lint:js
-    ;;
-js-fix)
-    lint:js:fix
-    ;;
-
-# tests-php
-php-cs)
-    php:cs
-    ;;
-php-cs-fix)
-    php:cs:fix
-    ;;
-php-stan)
-    php:stan
-    ;;
-php-stan-baseline)
-    php:stan:baseline
-    ;;
-
-# tests-misc
-composer)
-    lint:composer
-    ;;
-json)
-    lint:json
-    ;;
-md)
-    lint:md
-    ;;
-md-fix)
-    lint:md:fix
-    ;;
-yaml)
-    lint:yaml
-    ;;
-
-# tests-typo3
-typoscript)
-    lint:typoscript
-    ;;
-tsconfig)
-    lint:tsconfig
-    ;;
-rector)
-    rector
-    ;;
-rector-fix)
-    rector:fix
-    ;;
-typo3scan)
-    typo3scan
-    ;;
-
-## Collections
-frontend)
-    lint:css
-    lint:scss
-    lint:js
-    ;;
-misc)
-    lint:composer
-    lint:json
-    lint:md
-    lint:yaml
-    ;;
-php)
-    php:cs
-    php:stan
-    ;;
-typo3)
-    lint:typoscript
-    lint:tsconfig
-    rector
-    typo3scan
-    ;;
-backend)
-    lint:composer
-    lint:json
-    lint:md
-    lint:yaml
-    php:cs
-    php:stan
-    lint:typoscript
-    lint:tsconfig
-    rector
-    typo3scan
-    ;;
-all)
-    lint:css
-    lint:scss
-    lint:js
-    lint:composer
-    lint:json
-    lint:md
-    lint:yaml
-    php:cs
-    php:stan
-    lint:typoscript
-    lint:tsconfig
-    rector
-    typo3scan
-    ;;
-*)
-    echo "use parameters (frontend | misc | php | typo3 | …)"
-    ;;
-esac
+run_test
