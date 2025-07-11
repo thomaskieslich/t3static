@@ -52,8 +52,12 @@ while getopts "p:t:" option; do
     esac
 done
 
-choose_package_if_empty
-choose_test_if_empty
+# only choose selection, if $TEST_TYPE is not install
+if [[ "$TEST_TYPE" != "install" ]]; then
+    choose_package_if_empty
+    choose_test_if_empty
+fi
+
 
 echoInfo "Test: ${TEST_TYPE}"
 echoInfo "Package: ${PACKAGE_NAME}"
