@@ -1,0 +1,9 @@
+# Exclude results folder
+results/
+results/*
+
+# Exclude .env files
+.env
+.env.*
+
+/config-override/*
