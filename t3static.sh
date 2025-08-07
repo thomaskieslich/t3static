@@ -9,8 +9,8 @@ PACKAGE_PATH=packages
 PACKAGE_DEFAULT=sitepackage
 TEST_DEFAULT=php
 
-PHPSTAN_LEVEL=3
-TYPO3SCAN_TARGET=11
+PHPSTAN_LEVEL=4
+TYPO3SCAN_TARGET=13
 
 # Override Defaults from .env
 if [ -f ${BASH_SOURCE%/*}/.env ]; then
