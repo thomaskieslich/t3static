@@ -24,8 +24,10 @@ This Tool have its own node_modules and vendor Settings and Folders.
 git clone git@github.com:thomaskieslich/t3static.git
 ```
 
-3. change Default Settings
-Copy t3static/.env.dist to t3static/.env and adopt the Settings/Paths to your Project.
+3. if you want to use default Settings, copy t3static/.env.dist to t3static/.env and adopt the Settings/Paths to your Project.
+```bash
+cp t3static/.env.dist t3static/.env
+```
 
 4. if you use ddev, copy t3static/documentation/t3static to .ddev/commands/web/t3static
 ```bash
@@ -88,6 +90,40 @@ choose test
 
 set Extensionname (folder name)
 -p ***extension
+```
+
+If you don’t define the test and the package as arguments or in the .env file, a prompt will ask you what to update.  
+You may omit neither, both, or just one of the arguments. The priority order is:
+1. CLI argument
+2. .env file
+3. Prompt
+
+```bash
+ddev t3static
+```
+
+```bash
+==> PACKAGE_NAME is empty.
+
+
+==> Please choose a folder:
+
+  1) package_1
+  2) package_2
+  3) sitepackage
+Enter number (1-3):
+
+==> TEST_TYPE is empty.
+
+
+==> Please choose a test:
+
+  1) all
+  2) backend
+  3) composer
+  4) css
+  ...
+Enter number (1-x): 
 ```
 
 ### Run t3static
