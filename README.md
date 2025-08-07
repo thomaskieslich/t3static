@@ -28,6 +28,9 @@ git clone git@github.com:thomaskieslich/t3static.git
 Copy t3static/.env.dist to t3static/.env and adopt the Settings/Paths to your Project.
 
 4. if you use ddev, copy t3static/documentation/t3static to .ddev/commands/web/t3static
+```bash
+cp t3static/documentation/t3static .ddev/commands/web/t3static
+```
 
 5. Install Packages
 ```bash
