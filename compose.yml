@@ -1,0 +1,11 @@
+services:
+  t3static:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: t3static
+    volumes:
+      - ${PWD}/t3static/.env:/var/www/html/t3static/results
+      - ${PWD}/t3static/.env:/var/www/html/t3static/.env
+      - ${PWD}/packages:/var/www/html/packages
+      - ${PWD}/vendor:/var/www/html/vendor
