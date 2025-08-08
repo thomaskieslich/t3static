@@ -76,6 +76,12 @@ run_test() {
     tsconfig)
         lint:tsconfig
         ;;
+    fractor)
+        fractor
+        ;;
+    fractor-fix)
+            fractor:fix
+            ;;
     rector)
         rector
         ;;
