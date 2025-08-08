@@ -58,23 +58,6 @@ rector:fix() {
     return $EXIT_CODE
 }
 
-rector1() {
-    echoTestHeader "Rector"
-    "${TEST_PATH}/vendor/bin/rector" process "${FULL_PACKAGE_PATH}" \
-        --config "${CONFIGURATION_PATH}/rector-1.php" \
-        --dry-run || EXIT_CODE=$?
-    echoTestFooter "Rector completed"
-    return $EXIT_CODE
-}
-
-rector1:fix() {
-    echoTestHeader "Rector Fix"
-    "${TEST_PATH}/vendor/bin/rector" process "${FULL_PACKAGE_PATH}" \
-        --config "${CONFIGURATION_PATH}/rector-1.php" || EXIT_CODE=$?
-    echoTestFooter "Rector Fix completed"
-    return $EXIT_CODE
-}
-
 typo3scan() {
     echoTestHeader "TYPO3Scan"
     "${TEST_PATH}/vendor/bin/typo3scan" scan --target ${TYPO3SCAN_TARGET} "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
