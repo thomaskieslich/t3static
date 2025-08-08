@@ -6,8 +6,8 @@ lint:css() {
   echoTestHeader "Css Linting"
   npx --prefix "${TEST_PATH}" stylelint \
     --config "${CONFIGURATION_PATH}/.csslintrc.json" \
-    --ignore-path "${PACKAGE_PATH}/${PACKAGE_NAME}/.stylelintignore" \
-    "${PACKAGE_PATH}/${PACKAGE_NAME}/**/*.css" || EXIT_CODE=$?
+    --ignore-path "${FULL_PACKAGE_PATH}/.stylelintignore" \
+    "${FULL_PACKAGE_PATH}/**/*.css" || EXIT_CODE=$?
   echoTestFooter "Css is Linted."
 }
 
@@ -15,9 +15,9 @@ lint:css:fix() {
   echoTestHeader "Css Linting"
   npx --prefix "${TEST_PATH}" stylelint \
     --config "${CONFIGURATION_PATH}/.csslintrc.json" \
-    --ignore-path "${PACKAGE_PATH}/${PACKAGE_NAME}/.stylelintignore" \
+    --ignore-path "${FULL_PACKAGE_PATH}/.stylelintignore" \
     --fix \
-    "${PACKAGE_PATH}/${PACKAGE_NAME}/**/*.css" || EXIT_CODE=$?
+    "${FULL_PACKAGE_PATH}/**/*.css" || EXIT_CODE=$?
   echoTestFooter "Css is Linted."
 }
 
@@ -25,8 +25,8 @@ lint:scss() {
   echoTestHeader "Scss Linting"
   npx --prefix "${TEST_PATH}" stylelint \
     --config "${CONFIGURATION_PATH}/.scsslintrc.json" \
-    --ignore-path "${PACKAGE_PATH}/${PACKAGE_NAME}/.stylelintignore" \
-    "${PACKAGE_PATH}/${PACKAGE_NAME}/**/*.scss" || EXIT_CODE=$?
+    --ignore-path "${FULL_PACKAGE_PATH}/.stylelintignore" \
+    "${FULL_PACKAGE_PATH}/**/*.scss" || EXIT_CODE=$?
   echoTestFooter "Scss is Linted."
 }
 
@@ -34,9 +34,9 @@ lint:scss:fix() {
   echoTestHeader "Scss Linting Fix"
   npx --prefix "${TEST_PATH}" stylelint \
     --config "${CONFIGURATION_PATH}/.scsslintrc.json" \
-    --ignore-path "${PACKAGE_PATH}/${PACKAGE_NAME}/.stylelintignore" \
+    --ignore-path "${FULL_PACKAGE_PATH}/.stylelintignore" \
     --fix \
-    "${PACKAGE_PATH}/${PACKAGE_NAME}/**/*.scss"
+    "${FULL_PACKAGE_PATH}/**/*.scss"
   echoTestFooter "Scss is Linted and Fixed"
 }
 
@@ -45,7 +45,7 @@ lint:js() {
   npx --prefix "${TEST_PATH}" eslint \
     --config "${CONFIGURATION_PATH}/.eslintrc.json" \
     --ignore-path "${CONFIGURATION_PATH}/.eslintignore" \
-    "${PACKAGE_PATH}/${PACKAGE_NAME}/**/*.js" || EXIT_CODE=$?
+    "${FULL_PACKAGE_PATH}/**/*.js" || EXIT_CODE=$?
   echoTestFooter "JavaScript is Linted."
 }
 
@@ -55,6 +55,6 @@ lint:js:fix() {
     --config "${CONFIGURATION_PATH}/.eslintrc.json" \
     --ignore-path "${CONFIGURATION_PATH}/.eslintignore" \
     --fix \
-    "${PACKAGE_PATH}/${PACKAGE_NAME}/**/*.js"
+    "${FULL_PACKAGE_PATH}/**/*.js"
   echoTestFooter "JavaScript is Linted and Fixed."
 }
