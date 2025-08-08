@@ -43,6 +43,7 @@ rector() {
     echoTestHeader "Rector"
     "${TEST_PATH}/vendor/bin/rector" process "${FULL_PACKAGE_PATH}" \
         --config "${CONFIGURATION_PATH}/rector.php" \
+        --clear-cache \
         --dry-run || EXIT_CODE=$?
     echoTestFooter "Rector completed"
     return $EXIT_CODE
@@ -51,6 +52,7 @@ rector() {
 rector:fix() {
     echoTestHeader "Rector"
     "${TEST_PATH}/vendor/bin/rector" process "${FULL_PACKAGE_PATH}" \
+        --clear-cache \
         --config "${CONFIGURATION_PATH}/rector.php" || EXIT_CODE=$?
     echoTestFooter "Rector completed"
     return $EXIT_CODE
