@@ -22,25 +22,19 @@ lint:tsconfig() {
 
 fractor() {
     echoTestHeader "Fractor"
-    ORIGINAL_PWD=$(pwd)
-    cd "${PACKAGE_PATH}/${PACKAGE_NAME}" || exit
-    "${ORIGINAL_PWD}/${TEST_PATH}/vendor/bin/fractor" process \
-        --config "${ORIGINAL_PWD}/${CONFIGURATION_PATH}/fractor.php" \
+    "${TEST_PATH}/vendor/bin/fractor" process \
+        --config "${CONFIGURATION_PATH}/fractor.php" \
         --clear-cache \
         --dry-run || EXIT_CODE=$?
-    cd "${ORIGINAL_PWD}" || exit
     echoTestFooter "Fractor completed"
     return $EXIT_CODE
 }
 
 fractor:fix() {
     echoTestHeader "Fractor"
-    ORIGINAL_PWD=$(pwd)
-    cd "${PACKAGE_PATH}/${PACKAGE_NAME}" || exit
-    "${ORIGINAL_PWD}/${TEST_PATH}/vendor/bin/fractor" process \
-        --config "${ORIGINAL_PWD}/${CONFIGURATION_PATH}/fractor.php" \
+    "${TEST_PATH}/vendor/bin/fractor" process \
+        --config "${CONFIGURATION_PATH}/fractor.php" \
         --clear-cache || EXIT_CODE=$?
-    cd "${ORIGINAL_PWD}" || exit
     echoTestFooter "Fractor completed"
     return $EXIT_CODE
 }
