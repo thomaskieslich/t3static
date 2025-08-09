@@ -75,5 +75,15 @@ install:packages() {
     cd ../..
 }
 
-# Get Test
-run_test
+# prepare and run Tests
+IFS=',' read -ra TESTS <<< "$TEST_TYPE"
+if [[ -n "${TESTS[*]}" ]]; then
+  for test_item in "${TESTS[@]}"; do
+    # Whitespace entfernen
+    test_item=$(echo "$test_item" | xargs)
+    # Process the trimmed test_item here
+    echo "Processing: $test_item"
+    export TEST_TYPE=$test_item
+    run_test
+  done
+fi
