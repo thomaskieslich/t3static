@@ -5,7 +5,16 @@ services:
       dockerfile: Dockerfile
     container_name: t3static
     volumes:
-      - ${PWD}/t3static/.env:/var/www/html/t3static/results
-      - ${PWD}/t3static/.env:/var/www/html/t3static/.env
-      - ${PWD}/packages:/var/www/html/packages
-      - ${PWD}/vendor:/var/www/html/vendor
+      - ${PWD}/.:/var/www/html
+      - type: tmpfs
+        target: /var/www/html/.ddev
+      - type: tmpfs
+        target: /var/www/html/public/fileadmin
+      - type: tmpfs
+        target: /var/www/html/public/typo3temp
+      - type: tmpfs
+        target: /var/www/html/var
+#      - ${PWD}/t3static/.env:/var/www/html/t3static/results
+#      - ${PWD}/t3static/.env:/var/www/html/t3static/.env
+#      - ${PWD}/packages:/var/www/html/packages
+#      - ${PWD}/vendor:/var/www/html/vendor

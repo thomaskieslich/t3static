@@ -1,6 +1,6 @@
 FROM php:8.4-cli
 
-# System-Abhängigkeiten für Node.js + PHP Extensions
+# System dependencies for Node.js + PHP Extensions
 RUN apt-get update && apt-get install -y \
     curl \
     gnupg \
@@ -9,17 +9,25 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     build-essential
 
-# Node.js LTS (aktuell z.B. 20.x) von Nodesource
+# Node.js LTS (currently e.g. 20.x) from Nodesource
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
     apt-get install -y nodejs
 
-# Composer installieren
+# Increase PHP CLI limits
+RUN { \
+      echo "max_execution_time=240"; \
+      echo "max_input_time=240"; \
+      echo "max_input_vars=1500"; \
+      echo "memory_limit=1G"; \
+    } > /usr/local/etc/php/conf.d/99-custom.ini
+
+# Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Composer global verfügbar machen und Pfad setzen
+# Make Composer globally available and set PATH
 ENV PATH="/root/.composer/vendor/bin:${PATH}"
 
-# Rest der Dateien kopieren
+# Copy remaining files
 COPY . /var/www/html/t3static
 
 WORKDIR /var/www/html
