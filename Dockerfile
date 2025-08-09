@@ -1,4 +1,4 @@
-FROM php:8.3-cli
+FROM php:8.4-cli
 
 # System dependencies for Node.js + PHP Extensions
 RUN apt-get update && apt-get install -y \
@@ -27,12 +27,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Make Composer globally available and set PATH
 ENV PATH="/root/.composer/vendor/bin:${PATH}"
 
-# Copy only composer.json and package.json files
-COPY composer.json package.json /tests/t3static/
-
-# Install composer and npm
-RUN cd /tests/t3static && composer install --no-dev --no-progress --no-ansi --no-interaction
-RUN cd /tests/t3static && npm install --quiet
+# Copy remaining files
+COPY . /tests/t3static
 
 WORKDIR /tests
+
+RUN ./t3static/t3static.sh -t install
 
