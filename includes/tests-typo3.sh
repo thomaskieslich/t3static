@@ -1,11 +1,13 @@
 #!/bin/bash
 
+source "${BASH_SOURCE%/*}/includes/util-config.sh"
+
 ### TYPO3 related Tests ###
 
 lint:typoscript() {
     echoTestHeader "TypoScript Linting"
     "${TEST_PATH}/vendor/bin/typoscript-lint" \
-        --config "${CONFIGURATION_PATH}/typoscript-lint.yaml" \
+        --config $(configPath 'typoscript-lint.yaml') \
         "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
     echoTestFooter "TypoScript is Linted"
     return $EXIT_CODE
@@ -14,7 +16,7 @@ lint:typoscript() {
 lint:tsconfig() {
     echoTestHeader "TsConfig Linting"
     "${TEST_PATH}/vendor/bin/typoscript-lint" \
-        --config "${CONFIGURATION_PATH}/tsconfig-lint.yaml" \
+        --config $(configPath 'tsconfig-lint.yaml') \
         "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
     echoTestFooter "TsConfig is Linted"
     return $EXIT_CODE
@@ -23,7 +25,7 @@ lint:tsconfig() {
 fractor() {
     echoTestHeader "Fractor"
     "${TEST_PATH}/vendor/bin/fractor" process \
-        --config "${CONFIGURATION_PATH}/fractor.php" \
+        --config $(configPath 'fractor.php') \
         --clear-cache \
         --dry-run || EXIT_CODE=$?
     echoTestFooter "Fractor completed"
@@ -33,16 +35,17 @@ fractor() {
 fractor:fix() {
     echoTestHeader "Fractor"
     "${TEST_PATH}/vendor/bin/fractor" process \
-        --config "${CONFIGURATION_PATH}/fractor.php" \
+        --config $(configPath 'fractor.php') \
         --clear-cache || EXIT_CODE=$?
     echoTestFooter "Fractor completed"
     return $EXIT_CODE
 }
 
 rector() {
+
     echoTestHeader "Rector"
     "${TEST_PATH}/vendor/bin/rector" process "${FULL_PACKAGE_PATH}" \
-        --config "${CONFIGURATION_PATH}/rector.php" \
+        --config $(configPath 'rector.php') \
         --clear-cache \
         --dry-run || EXIT_CODE=$?
     echoTestFooter "Rector completed"
@@ -53,7 +56,7 @@ rector:fix() {
     echoTestHeader "Rector"
     "${TEST_PATH}/vendor/bin/rector" process "${FULL_PACKAGE_PATH}" \
         --clear-cache \
-        --config "${CONFIGURATION_PATH}/rector.php" || EXIT_CODE=$?
+        --config $(configPath 'rector.php') || EXIT_CODE=$?
     echoTestFooter "Rector completed"
     return $EXIT_CODE
 }
