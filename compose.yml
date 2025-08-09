@@ -3,6 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: t3static:1.0.0
     container_name: t3static
     volumes:
       - ${PWD}/.:/var/www/html
@@ -14,7 +15,3 @@ services:
         target: /var/www/html/public/typo3temp
       - type: tmpfs
         target: /var/www/html/var
-#      - ${PWD}/t3static/.env:/var/www/html/t3static/results
-#      - ${PWD}/t3static/.env:/var/www/html/t3static/.env
-#      - ${PWD}/packages:/var/www/html/packages
-#      - ${PWD}/vendor:/var/www/html/vendor
