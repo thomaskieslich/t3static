@@ -76,6 +76,12 @@ run_test() {
     tsconfig)
         lint:tsconfig
         ;;
+    fractor)
+        fractor
+        ;;
+    fractor-fix)
+            fractor:fix
+            ;;
     rector)
         rector
         ;;
@@ -105,6 +111,7 @@ run_test() {
     typo3)
         lint:typoscript
         lint:tsconfig
+        fractor
         rector
         typo3scan
         ;;
@@ -117,6 +124,7 @@ run_test() {
         php:stan
         lint:typoscript
         lint:tsconfig
+        fractor
         rector
         typo3scan
         ;;
@@ -132,6 +140,7 @@ run_test() {
         php:stan
         lint:typoscript
         lint:tsconfig
+        fractor
         rector
         typo3scan
         ;;

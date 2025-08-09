@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker compose -f t3static/compose.yml run --rm t3static ./t3static/t3static.sh "$@"

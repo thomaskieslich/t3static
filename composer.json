@@ -6,16 +6,20 @@
 	"minimum-stability": "dev",
 	"prefer-stable": true,
 	"config": {
-		"sort-packages": true
+		"sort-packages": true,
+		"allow-plugins": {
+			"a9f/fractor-extension-installer": true
+		}
 	},
 	"require-dev": {
+		"a9f/typo3-fractor": "^v0.5.5",
 		"friendsofphp/php-cs-fixer": "v3.85.0",
 		"helmich/typo3-typoscript-lint": "v3.3.0",
 		"michielroos/typo3scan": "dev-master",
 		"phpstan/phpstan": "^2.1.22",
 		"seld/jsonlint": "^1.11.0",
 		"ssch/typo3-rector": "v3.6.2",
-		"symfony/yaml": "v6.4.24",
+		"symfony/yaml": "v7.3.2",
 		"typo3/coding-standards": "v0.8.0"
 	}
 }

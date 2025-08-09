@@ -58,6 +58,10 @@ if [[ "$TEST_TYPE" != "install" ]]; then
     choose_test_if_empty
 fi
 
+# Full path to Package
+FULL_PACKAGE_PATH=$(pwd)/${PACKAGE_PATH}/${PACKAGE_NAME}
+#  to use in php with getenv('FULL_PACKAGE_PATH')
+export FULL_PACKAGE_PATH
 
 echoInfo "Test: ${TEST_TYPE}"
 echoInfo "Package: ${PACKAGE_NAME}"
