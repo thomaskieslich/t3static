@@ -6,5 +6,4 @@ services:
     image: t3static:1.0.0
     container_name: t3static
     volumes:
-      - ${PWD}/${PACKAGE_PATH}:/app/${PACKAGE_PATH}
-      - ${PWD}/app-libs:/app-libs:ro
+      - ${PWD}/.:/tests
