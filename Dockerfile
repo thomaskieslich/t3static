@@ -28,9 +28,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 ENV PATH="/root/.composer/vendor/bin:${PATH}"
 
 # Copy remaining files
-COPY . /var/www/html/t3static
+COPY . /tests/t3static
 
-WORKDIR /var/www/html
+WORKDIR /tests
 
 RUN ./t3static/t3static.sh -t install
 
