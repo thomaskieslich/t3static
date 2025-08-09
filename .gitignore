@@ -6,5 +6,6 @@
 
 /results/*
 /config-override
+/composer.override.y*ml
 
 !*.gitkeep
