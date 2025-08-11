@@ -1,19 +1,19 @@
 FROM php:8.3-cli
 
-# System dependencies for Node.js + PHP Extensions
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     curl \
     gnupg \
     unzip \
     zip \
     ca-certificates \
-    build-essential
+    build-essential \
+    && curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
-# Node.js LTS (currently e.g. 20.x) from Nodesource
-RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
-    apt-get install -y nodejs
-
-# Increase PHP CLI limits
+# Configure PHP settings
 RUN { \
       echo "max_execution_time=240"; \
       echo "max_input_time=240"; \
@@ -24,15 +24,19 @@ RUN { \
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Make Composer globally available and set PATH
+# Set PATH for Composer
 ENV PATH="/root/.composer/vendor/bin:${PATH}"
 
-# Copy only composer.json and package.json files
-COPY composer.json package.json /tests/t3static/
+# Copy and install dependencies
+WORKDIR /app
+COPY composer.json package.json ./
 
-# Install composer and npm
-RUN cd /tests/t3static && composer install --no-dev --no-progress --no-ansi --no-interaction
-RUN cd /tests/t3static && npm install --quiet
+# Install dependencies with optimized flags
+RUN composer install --no-dev --no-progress --no-ansi --no-interaction --prefer-dist --optimize-autoloader \
+    && (npm ci --quiet --no-audit --no-fund 2>/dev/null || npm install --quiet --no-audit --no-fund) \
+    && composer clear-cache \
+    && npm cache clean --force
 
-WORKDIR /tests
+# Set working directory to /app
+WORKDIR /app
 
