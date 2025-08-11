@@ -3,13 +3,24 @@
 # include util scripts
 source "${BASH_SOURCE%/*}/includes/util-echo.sh"
 source "${BASH_SOURCE%/*}/includes/util-choose-options.sh"
+source "${BASH_SOURCE%/*}/includes/util-config.sh"
 source "${BASH_SOURCE%/*}/includes/util-test-types.sh"
 
 #set -x
 #set +e
 
+#######################
+# INIT DEFAULT VALUES #
+#######################
+
 TEST_PATH=t3static
-CONFIGURATION_PATH=${TEST_PATH}/config
+# harcoded path to config-folder
+CONFIGURATION_BASE_PATH=${TEST_PATH}/config
+# path for the executed config path. its default or a custom override
+# at execution: it checks, if a config at this path exists (maybe its the override)
+# if not, take the base path which contains all default config
+# set here the default one and override it later with the .env one
+CONFIGURATION_PATH=${CONFIGURATION_BASE_PATH}
 PACKAGE_PATH=packages
 
 PHPSTAN_LEVEL=4
@@ -25,6 +36,10 @@ PACKAGE_PATH=${PACKAGE_PATH}
 
 PHPSTAN_LEVEL=${PHPSTAN_LEVEL}
 TYPO3SCAN_TARGET=${TYPO3SCAN_TARGET}
+
+################
+# SETUP VALUES #
+################
 
 # Include Test Scripts
 source "${BASH_SOURCE%/*}/includes/tests-frontend.sh"
@@ -75,5 +90,8 @@ install:packages() {
     cd ../..
 }
 
-# Get Test
+############
+# RUN TEST #
+############
+
 run_test

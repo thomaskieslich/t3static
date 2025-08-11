@@ -56,10 +56,17 @@ Available groups (usage -t GROUP)
 For Single tests have a Look into the includes Folder.
 The files based on the Group Names.
 
-### configuration Folder
-Here are the Configuration Files the Single Test from includes folder.
-If you want to Override, make a copy like config-override and change
-the CONFIGURATION_PATH in the .env File.
+### Configurations
+
+All tests have a default configuration located in the config/ folder.  
+
+You can override these configuration files or use your own by creating a custom configuration folder and specifying its path in the .env file under CONFIGURATION_PATH.  
+
+You only need to place those files in the config-override folder that you actually want to override.
+If a configuration file is not present in config-override, the default configuration from the config folder will be used instead.
+
+default-path: config/  
+.env: CONFIGURATION_PATH
 
 ### results Folder
 Here the results from some Tests written (php-stan,…)
