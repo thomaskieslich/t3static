@@ -3,3 +3,4 @@ results
 config-override
 node_modules
 vendor
+*.lock
