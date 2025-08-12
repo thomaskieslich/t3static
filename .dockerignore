@@ -3,7 +3,9 @@ results/
 results/*
 
 # Exclude .env files
-.env
-.env.*
-
+.*
 /config-override/*
+
+# Exclude vendor and node directory
+node_modules/
+vendor/

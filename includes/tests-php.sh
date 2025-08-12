@@ -3,6 +3,7 @@
 ### PHP Tests ###
 php:cs() {
     echoTestHeader "php:cs"
+    pwd
     "${TEST_PATH}/vendor/bin/php-cs-fixer" \
         --diff \
         --dry-run \
