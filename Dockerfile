@@ -1,4 +1,4 @@
-FROM php:8.4-cli
+FROM php:8.3-cli
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -30,43 +30,11 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 ENV PATH="/usr/local/bin:${PATH}"
 
 # Copy and install dependencies in the correct order
-WORKDIR /app-libs
-
-COPY composer.json package.json ./
+COPY . /app/t3static/
 
 # Install dependencies with optimized flags
-RUN composer install --no-dev --no-progress --no-ansi --no-interaction --prefer-dist --optimize-autoloader \
+RUN cd /app/t3static && composer install --no-progress --no-ansi --no-interaction --prefer-dist --optimize-autoloader \
     && (npm ci --quiet --no-audit --no-fund 2>/dev/null || npm install --quiet --no-audit --no-fund) \
     && composer clear-cache
 
-# Set working directory to /app
 WORKDIR /app
-
-# Copy the startup script into the container
-COPY start.sh /usr/local/bin/start.sh
-
-# Make it executable
-RUN chmod +x /usr/local/bin/start.sh
-
-# Set the entrypoint to run the script
-ENTRYPOINT ["/usr/local/bin/start.sh"]
-
-# Add a command to ensure proper execution
-CMD ["/bin/bash"]
-
-# Copy the startup script into the container
-COPY start.sh /usr/local/bin/start.sh
-
-# Make it executable
-RUN chmod +x /usr/local/bin/start.sh
-
-# Set the entrypoint to run the script
-ENTRYPOINT ["/usr/local/bin/start.sh"]
-
-# Add a command to ensure proper execution
-CMD ["/bin/bash"]
-
-
-# Set working directory to /app
-WORKDIR /app
-
