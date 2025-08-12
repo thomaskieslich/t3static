@@ -27,7 +27,31 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Set PATH for Composer
 ENV PATH="/root/.composer/vendor/bin:${PATH}"
 
-# Copy and install dependencies
+# Copy and install dependencies in the correct order
+WORKDIR /app-libs
+
+# First copy only composer files to cache dependencies
+COPY composer.json ./
+
+# Install dependencies with optimized flags - make sure we install dev dependencies for tools
+RUN composer install --no-progress --no-ansi --no-interaction --prefer-dist --optimize-autoloader \
+    && composer clear-cache
+
+# Copy other files and install npm dependencies  
+COPY package.json ./
+RUN (npm ci --quiet --no-audit --no-fund 2>/dev/null || npm install --quiet --no-audit --no-fund) \
+    && npm cache clean --force
+
+# Copy the startup script into the container
+COPY start.sh /usr/local/bin/start.sh
+
+# Make it executable
+RUN chmod +x /usr/local/bin/start.sh
+
+# Set the entrypoint to run the script
+ENTRYPOINT ["/usr/local/bin/start.sh"]
+
+# Set working directory to /app
 WORKDIR /app
 COPY composer.json package.json ./
 
@@ -36,6 +60,19 @@ RUN composer install --no-dev --no-progress --no-ansi --no-interaction --prefer-
     && (npm ci --quiet --no-audit --no-fund 2>/dev/null || npm install --quiet --no-audit --no-fund) \
     && composer clear-cache \
     && npm cache clean --force
+
+# Copy the startup script into the container
+COPY start.sh /usr/local/bin/start.sh
+
+# Make it executable
+RUN chmod +x /usr/local/bin/start.sh
+
+# Set the entrypoint to run the script
+ENTRYPOINT ["/usr/local/bin/start.sh"]
+
+# Add a command to ensure proper execution
+CMD ["/bin/bash"]
+
 
 # Set working directory to /app
 WORKDIR /app
