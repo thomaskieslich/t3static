@@ -1,5 +1,11 @@
-# Exclude
-results
-config-override
-node_modules
-vendor
+# Exclude results folder
+results/
+results/*
+
+# Exclude .env files
+.*
+/config-override/*
+
+# Exclude vendor and node directory
+node_modules/
+vendor/
