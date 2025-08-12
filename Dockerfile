@@ -8,15 +8,8 @@ RUN apt-get update && apt-get install -y \
     zip \
     ca-certificates \
     build-essential \
-    git \
-    libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
-    libxml2-dev \
-    libzip-dev \
     && curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
     && apt-get install -y nodejs \
-    && docker-php-ext-install gd mysqli pdo_mysql dom zip intl \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
@@ -38,14 +31,12 @@ ENV PATH="/usr/local/bin:${PATH}"
 COPY . /app/t3static/
 
 # Install dependencies with optimized flags
-RUN cd /app/t3static && composer install --no-dev --no-progress --no-ansi --no-interaction --prefer-dist --optimize-autoloader \
+RUN cd /app/t3static && composer install --no-progress --no-ansi --no-interaction --prefer-dist --optimize-autoloader \
     && npm install --quiet --no-audit --no-fund \
     && composer clear-cache
 
 # Make the t3static.sh script executable
 RUN chmod +x /app/t3static/t3static.sh
 
-# Set working directory and entrypoint
+# Set working directory
 WORKDIR /app
-ENTRYPOINT ["/bin/bash", "./t3static/t3static.sh"]
-CMD ["help"]
