@@ -1,14 +1,13 @@
 FROM php:8.3-cli
 
+# Create app user and group
+RUN groupadd -r app && useradd -r -g app -m app
+
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
-    gnupg \
-    unzip \
-    zip \
     ca-certificates \
-    build-essential \
-    && curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
+    && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
     && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
@@ -24,19 +23,22 @@ RUN { \
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Set PATH for Composer
-ENV PATH="/usr/local/bin:${PATH}"
+# Copy t3static
+COPY --chown=app:app . /app/t3static
 
-# Copy and install dependencies in the correct order
-COPY . /app/t3static/
+# avoid local installed files
+RUN rm -f composer.lock package-json.lock && rm -rf node_modules vendor
 
-# Install dependencies with optimized flags
-RUN cd /app/t3static && composer install --no-progress --no-ansi --no-interaction --prefer-dist --optimize-autoloader \
-    && npm install --quiet --no-audit --no-fund \
-    && composer clear-cache
+# Set working directory and user
+WORKDIR /app/t3static
+USER app
 
-# Make the t3static.sh script executable
-RUN chmod +x /app/t3static/t3static.sh
+# Install PHP dependencies first (composer)
+ENV COMPOSER_ROOT_VERSION=1.0.0
+RUN composer install --no-progress --no-ansi --no-interaction --prefer-dist --optimize-autoloader --no-cache
 
-# Set working directory
+# Install Node.js dependencies (npm)
+RUN npm install --quiet --no-audit --no-fund && npm cache clean --force
+
+# Final working dir
 WORKDIR /app
