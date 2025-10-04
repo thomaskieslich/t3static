@@ -1,0 +1,13 @@
+services:
+  t3static:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: t3static:1.0.0
+    container_name: t3static
+    volumes:
+      - ${PWD}/${CONFIGURATION_PATH}:/app/${CONFIGURATION_PATH}
+      - ${PWD}/${TEST_PATH}/.env:/app/${TEST_PATH}/.env
+      - ${PWD}/${TEST_PATH}/results:/app/${TEST_PATH}/results
+      - ${PWD}/${PACKAGE_PATH}:/app/${PACKAGE_PATH}
+      - ${PWD}/vendor:/app/vendor

@@ -1,19 +1,18 @@
 FROM php:8.3-cli
 
-# System dependencies for Node.js + PHP Extensions
-RUN apt-get update && apt-get install -y \
+# Create app user and group
+RUN groupadd -r app && useradd -r -g app -m app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
-    gnupg \
-    unzip \
-    zip \
     ca-certificates \
-    build-essential
+    && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
-# Node.js LTS (currently e.g. 20.x) from Nodesource
-RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
-    apt-get install -y nodejs
-
-# Increase PHP CLI limits
+# Configure PHP settings
 RUN { \
       echo "max_execution_time=240"; \
       echo "max_input_time=240"; \
@@ -24,13 +23,22 @@ RUN { \
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Make Composer globally available and set PATH
-ENV PATH="/root/.composer/vendor/bin:${PATH}"
+# Copy t3static
+COPY --chown=app:app . /app/t3static
 
-# Copy remaining files
-COPY . /var/www/html/t3static
+# avoid local installed files
+RUN rm -f composer.lock package-json.lock && rm -rf node_modules vendor
 
-WORKDIR /var/www/html
+# Set working directory and user
+WORKDIR /app/t3static
+USER app
 
-RUN ./t3static/t3static.sh -t install
+# Install PHP dependencies first (composer)
+ENV COMPOSER_ROOT_VERSION=1.0.0
+RUN composer install --no-progress --no-ansi --no-interaction --prefer-dist --optimize-autoloader --no-cache
 
+# Install Node.js dependencies (npm)
+RUN npm install --quiet --no-audit --no-fund && npm cache clean --force
+
+# Final working dir
+WORKDIR /app
