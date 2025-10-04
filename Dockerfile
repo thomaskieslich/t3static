@@ -6,6 +6,9 @@ RUN groupadd -r app && useradd -r -g app -m app
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
+    gnupg \
+    unzip \
+    zip \
     ca-certificates \
     && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
     && apt-get install -y nodejs \
