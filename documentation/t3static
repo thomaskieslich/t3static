@@ -1,7 +1,0 @@
-#!/bin/bash
-
-## Description: Run t3static inside the web container
-## Usage: t3static [flags] [args]
-## Example: "ddev t3static -p news_extended -t php-cs"
-
-./t3static/t3static.sh "$@"

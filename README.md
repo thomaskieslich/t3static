@@ -1,85 +1,96 @@
 # t3static
 
-Collection of Tools to Test, Lint, Fix and Upgrade multiple TYPO3 Extensions in a Monorepo.
-The rules are simple to bring the code in the individual extensions up to the same level.
+Collection of Tools to Test, Lint, Fix and Upgrade multiple TYPO3 Extensions
+in a Monorepo.
+The rules are simple to bring the code in the individual extensions up to the
+same level.
 
-This is to have the most uniform code standards possible for projects with many custom extensions.
-It can recognise and fix simple problems in the code.
-Use in continuous integration pipelines is possible.
-A special goal of this tool collection is to test TYPO3 extensions without great effort and adjustments in the code.
+This is to have the most uniform code standards possible for projects with many
+custom extensions. It can recognise and fix simple problems in the code. Use in
+continuous integration pipelines is possible.
+A special goal of this tool collection is to test TYPO3 extensions without great
+effort and adjustments in the code.
 This Tool has its own node_modules and vendor Settings and Folders.
 
 ## Install
 
 1. Add this to your root .gitignore
-```
+
+```gitignore
 # t3static https://github.com/thomaskieslich/t3static
 /t3static
-/.ddev/commands/web/t3static
-/.php_cs.cache
 ```
 
-2. Clone the Repository or download the Code into your project.
+1. Clone the Repository or download the Code into your project.
 
 ```bash
 git clone git@github.com:thomaskieslich/t3static.git
 ```
 
-3. if you want to use default Settings, copy t3static/.env.dist to t3static/.env and adopt the Settings/Paths to your Project.
+1. If you want to use default settings, copy t3static/.env.dist to
+   t3static/.env and adopt the Settings/Paths to your Project.
+
 ```bash
 cp t3static/.env.dist t3static/.env
 ```
 
-4. run inside a docker container (recommended)
-You can run the tools independently from your local php and node versions.
-It build the docker image once for use in all Projects.
+1. Run inside a docker container (recommended)
+   You can run the tools independently from your local php and node versions.
+   It builds the docker image once for use in all Projects.
+
 ```bash
-
 ./t3static/run
-
-docker compose -f t3static/docker-compose.yml build --no-cache
 ```
 
-5. run local
+1. Run local
+
 ```bash
 ./t3static/t3static.sh -t install
 ```
 
 ## Structure
+
 ### ./t3static.sh (Main Script)
+
 - Load Environment Variables
 - Install Script
 - Load tests from includes Folder
 - Define Test Options and Groups
 
 Available groups (usage -t GROUP)
+
 - frontend
 - misc
 - php
 - typo3
 
-For Single tests have a Look into the includes Folder.
-The files based on the Group Names.
+For single tests have a look into the includes folder.
+The files are based on the group names.
 
 ### configuration Folder
-Here are the Configuration Files the Single Test from includes folder.
-If you want to Override, make a copy like config-override and change
-the CONFIGURATION_PATH in the .env File.
+
+Here are the configuration files for the single tests from the includes folder.
+If you want to override, make a copy like config-override and change the
+CONFIGURATION_PATH in the .env file.
 
 ### results Folder
-Here the results from some Tests written (php-stan,…)
+
+Here the results from some tests are written (php-stan,…)
 
 ## Usage
-You can run test Groups like:
-```
+
+You can run test groups like:
+
+```bash
 ddev t3static -t frontend
 ddev t3static -t misc
 ddev t3static -t php
 ddev t3static -t typo3
 ```
 
-or Single tests like (more test defined in t3static.sh:
-```
+or single tests like (more tests defined in t3static.sh):
+
+```bash
 ddev t3static -t css
 # fix it
 ddev t3static -t css-fix
@@ -89,7 +100,8 @@ ddev t3static -t typo3scan
 ```
 
 ### Options
-```
+
+```text
 choose test
 -t ***testname***
 
@@ -97,8 +109,10 @@ set Extensionname (folder name)
 -p ***extension
 ```
 
-If you don’t define the test and the package as arguments or in the .env file, a prompt will ask you what to update.
-You may omit neither, both, or just one of the arguments. The priority order is:
+If you don’t define the test and the package as arguments or in the .env file,
+a prompt will ask you what to update. You may omit neither, both, or just one of
+the arguments. The priority order is:
+
 1. CLI argument
 2. .env file
 3. Prompt
@@ -107,7 +121,7 @@ You may omit neither, both, or just one of the arguments. The priority order is:
 ddev t3static
 ```
 
-```bash
+```text
 ==> PACKAGE_NAME is empty.
 
 
@@ -132,7 +146,8 @@ Enter number (1-x):
 ```
 
 ### Run t3static
-```
+
+```bash
 # inside ddev
 ddev ssh
 ./t3static/t3static.sh -t php-stan
@@ -142,6 +157,7 @@ ddev t3static ./t3static/t3static.sh -t php-stan
 ```
 
 ## Tests
+
 [Frontend Tests](documentation/tests-frontend.md)
 
 [Misc Tests](documentation/tests-misc.md)
@@ -151,4 +167,5 @@ ddev t3static ./t3static/t3static.sh -t php-stan
 [TYPO3 Tests](documentation/tests-typo3.md)
 
 ## ToDo
+
 - Prettier for Styles and JavaScript
