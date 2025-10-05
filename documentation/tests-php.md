@@ -11,7 +11,8 @@ ddev ssh
 
 Check php code follow the Coding Guidelines.
 
-Use [php-cs-fixer](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer) for better Code Style.
+Use [php-cs-fixer](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer)
+for better Code Style.
 
 Config from [TYPO3 Coding Standards](https://github.com/TYPO3/coding-standards)
 
@@ -26,7 +27,7 @@ ddev ssh
 
 ## phpstan
 
-https://phpstan.org
+<https://phpstan.org>
 
 ```bash
 ddev ssh

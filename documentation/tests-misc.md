@@ -8,8 +8,9 @@ ddev ssh
 ```
 
 ## Composer
+
 Simple Composer Validating. \
-https://getcomposer.org
+<https://getcomposer.org>
 
 ```bash
 ddev ssh
@@ -17,6 +18,7 @@ ddev ssh
 ```
 
 ## Json
+
 Lint Json Files with [seld/jsonlint](https://github.com/Seldaek/jsonlint)
 
 ```bash
@@ -25,6 +27,7 @@ ddev ssh
 ```
 
 ## Markdown
+
 Lint and Fix Markdown Files with [markdownlint-cli2](https://github.com/DavidAnson/markdownlint-cli2)
 
 ```bash
@@ -33,6 +36,7 @@ ddev ssh
 ```
 
 ## Yaml
+
 Lint Yaml Files with [symfony/yaml](https://symfony.com/doc/current/components/yaml.html)
 
 ```bash

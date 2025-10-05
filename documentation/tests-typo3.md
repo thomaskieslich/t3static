@@ -35,7 +35,7 @@ Upgrade and refactor php code.
 
 Tool: [ssch/typo3-rector](https://github.com/sabbelasichon/typo3-rector)
 
-https://www.typo3-rector.com
+<https://www.typo3-rector.com>
 
 ```bash
 ddev ssh
