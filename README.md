@@ -194,6 +194,7 @@ Enter number (1-x):
 
 ## ToDo
 
+- github action to build docker Image
 - Prettier for Styles and JavaScript
 - linter for SQL
 - Override Single Configurations
