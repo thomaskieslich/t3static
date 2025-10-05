@@ -3,7 +3,7 @@
 ## Group Command
 
 ```bash
-./tests/t3static/t3static.sh -t frontend
+./t3static/t3static -t frontend
 ```
 
 ## Lint and Fix CSS and SCSS
@@ -17,8 +17,8 @@ Use [Stylelint](https://stylelint.io) with
 
 Copy config to config-override and change Path Const in .en to
 CONFIGURATION_PATH=config-override.
-Config File for `./tests/t3static/t3static.sh -t css` is .csslintrc.json.
-Config File for `./tests/t3static/t3static.sh -t scss` is .scsslintrc.json.
+Config File for `./t3static/t3static -t css` is .csslintrc.json.
+Config File for `./t3static/t3static -t scss` is .scsslintrc.json.
 
 If you like to exclude Folders in Extension copy .stylelintignore.dist to Extension
 Root as .stylelintignore and change for your needs.
@@ -27,12 +27,12 @@ Root as .stylelintignore and change for your needs.
 
 ```bash
 ddev ssh
-./tests/t3static/t3static.sh -t css
-./tests/t3static/t3static.sh -t scss
+./t3static/t3static -t css
+./t3static/t3static -t scss
 
 # if fixable Errors try fix Version
-./tests/t3static/t3static.sh -t css-fix
-./tests/t3static/t3static.sh -t scss-fix
+./t3static/t3static -t css-fix
+./t3static/t3static -t scss-fix
 
 ```
 
@@ -42,9 +42,9 @@ Use [Eslint](https://eslint.org) with [eslint-config-standard](https://github.co
 
 ```bash
 ddev ssh
-./tests/t3static/t3static.sh -t js
+./t3static/t3static -t js
 
 # if fixable Errors try js-fix
-./tests/t3static/t3static.sh -t js-fix
+./t3static/t3static -t js-fix
 
 ```
