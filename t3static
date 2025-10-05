@@ -20,6 +20,14 @@ source "${BASH_SOURCE%/*}/includes/tests-php.sh"
 source "${BASH_SOURCE%/*}/includes/tests-misc.sh"
 source "${BASH_SOURCE%/*}/includes/tests-typo3.sh"
 
+# set default values if not filled already
+if [ -z "${PACKAGE_NAME}" ]; then
+  PACKAGE_NAME=${PACKAGE_DEFAULT}
+fi
+if [ -z "${TEST_TYPE}" ]; then
+  TEST_TYPE=${TEST_DEFAULT}
+fi
+
 # Get CLI Options
 while getopts "p:t:" option; do
     case $option in p)
