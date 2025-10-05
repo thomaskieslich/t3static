@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Check for .env file existence, if not make a copy from .env.dist
-if [ ! -f t3static/.env ]; then
-  cp t3static/.env.dist t3static/.env
-  echo 'not .env found. copy .env.dist to .env'
+if [ ! -f "${BASH_SOURCE%/*}"/.env ]; then
+  cp "${BASH_SOURCE%/*}"/.env.dist "${BASH_SOURCE%/*}"/.env
+  echo 'custom .env not found. copy .env.dist to .env'
 fi
 
 # Run docker-compose
-docker compose -f t3static/docker-compose.yml run --rm t3static ./t3static/t3static "$@"
+docker compose -f "${BASH_SOURCE%/*}"/docker-compose.yml run --rm t3static ./t3static/t3static "$@"
