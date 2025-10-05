@@ -6,8 +6,10 @@ services:
     image: t3static:1.0.0
     container_name: t3static
     volumes:
-      - ${PWD}/${CONFIGURATION_PATH}:/app/${CONFIGURATION_PATH}
-      - ${PWD}/${TEST_PATH}/.env:/app/${TEST_PATH}/.env
-      - ${PWD}/${TEST_PATH}/results:/app/${TEST_PATH}/results
-      - ${PWD}/${PACKAGE_PATH}:/app/${PACKAGE_PATH}
-      - ${PWD}/vendor:/app/vendor
+      # t3static volumes
+      - ${PWD}/${CONFIGURATION_PATH:-t3static/config}:/app/${CONFIGURATION_PATH:-t3static/config}:ro
+      - ${PWD}/${TEST_PATH:-t3static}/.env:/app/${TEST_PATH:-t3static}/.env:ro
+      - ${PWD}/${TEST_PATH:-t3static}/results:/app/${TEST_PATH:-t3static}/results
+      # project volumes
+      - ${PWD}/${PACKAGE_PATH:-packages}:/app/${PACKAGE_PATH:-packages}
+      - ${PWD}/vendor:/app/vendor:ro

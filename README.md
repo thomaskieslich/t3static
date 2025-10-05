@@ -1,12 +1,13 @@
 # t3static
+
 Collection of Tools to Test, Lint, Fix and Upgrade multiple TYPO3 Extensions in a Monorepo.
 The rules are simple to bring the code in the individual extensions up to the same level.
 
 This is to have the most uniform code standards possible for projects with many custom extensions.
-It should also be possible to recognise and fix simple problems in the code.
-Use in continuous integration pipelines should be possible.
+It can recognise and fix simple problems in the code.
+Use in continuous integration pipelines is possible.
 A special goal of this tool collection is to test TYPO3 extensions without great effort and adjustments in the code.
-This Tool have its own node_modules and vendor Settings and Folders.
+This Tool has its own node_modules and vendor Settings and Folders.
 
 ## Install
 
@@ -29,14 +30,18 @@ git clone git@github.com:thomaskieslich/t3static.git
 cp t3static/.env.dist t3static/.env
 ```
 
-4. if you use ddev, copy t3static/documentation/t3static to .ddev/commands/web/t3static
+4. run inside a docker container (recommended)
+You can run the tools independently from your local php and node versions.
+It build the docker image once for use in all Projects.
 ```bash
-cp t3static/documentation/t3static .ddev/commands/web/t3static
+
+./t3static/run
+
+docker compose -f t3static/docker-compose.yml build --no-cache
 ```
 
-5. Install Packages
+5. run local
 ```bash
-ddev ssh
 ./t3static/t3static.sh -t install
 ```
 
@@ -92,7 +97,7 @@ set Extensionname (folder name)
 -p ***extension
 ```
 
-If you don’t define the test and the package as arguments or in the .env file, a prompt will ask you what to update.  
+If you don’t define the test and the package as arguments or in the .env file, a prompt will ask you what to update.
 You may omit neither, both, or just one of the arguments. The priority order is:
 1. CLI argument
 2. .env file
@@ -123,7 +128,7 @@ Enter number (1-3):
   3) composer
   4) css
   ...
-Enter number (1-x): 
+Enter number (1-x):
 ```
 
 ### Run t3static

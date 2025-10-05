@@ -1,32 +1,20 @@
 #!/bin/bash
 
+# Check for .env file existence, if not make a copy from .env.dist
+if [ ! -f "${BASH_SOURCE%/*}"/.env ]; then
+  cp "${BASH_SOURCE%/*}"/.env.dist "${BASH_SOURCE%/*}"/.env
+  echo 'custom .env not found. copy .env.dist to .env'
+fi
+
+# get Environment Settings
+source "${BASH_SOURCE%/*}/.env"
+
 # include util scripts
 source "${BASH_SOURCE%/*}/includes/util-echo.sh"
 source "${BASH_SOURCE%/*}/includes/util-choose-options.sh"
 source "${BASH_SOURCE%/*}/includes/util-test-types.sh"
 
-#set -x
-#set +e
-
-TEST_PATH=t3static
-CONFIGURATION_PATH=${TEST_PATH}/config
-PACKAGE_PATH=packages
-
-PHPSTAN_LEVEL=4
-TYPO3SCAN_TARGET=13
-
-# Override Defaults from .env
-if [ -f ${BASH_SOURCE%/*}/.env ]; then
-    source "${BASH_SOURCE%/*}/.env"
-fi
-
-CONFIGURATION_PATH=${CONFIGURATION_PATH}
-PACKAGE_PATH=${PACKAGE_PATH}
-
-PHPSTAN_LEVEL=${PHPSTAN_LEVEL}
-TYPO3SCAN_TARGET=${TYPO3SCAN_TARGET}
-
-# Include Test Scripts
+# include Test Scripts
 source "${BASH_SOURCE%/*}/includes/tests-frontend.sh"
 source "${BASH_SOURCE%/*}/includes/tests-php.sh"
 source "${BASH_SOURCE%/*}/includes/tests-misc.sh"
@@ -60,6 +48,7 @@ fi
 
 # Full path to Package
 FULL_PACKAGE_PATH=$(pwd)/${PACKAGE_PATH}/${PACKAGE_NAME}
+
 #  to use in php with getenv('FULL_PACKAGE_PATH')
 export FULL_PACKAGE_PATH
 
@@ -68,7 +57,7 @@ echoInfo "Package: ${PACKAGE_NAME}"
 
 ## Init Packages
 install:packages() {
-    cd ${TEST_PATH} || exit
+    cd "${TEST_PATH}" || exit
     rm -f composer.lock package-lock.json
     composer install --no-progress --no-interaction
     npm install --quiet
