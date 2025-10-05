@@ -4,7 +4,7 @@
 
 ```bash
 ddev ssh
-./tests/t3static/t3static.sh -t php
+./t3static/t3static -t php
 ```
 
 ## php-cs-fixer
@@ -18,10 +18,10 @@ Config from [TYPO3 Coding Standards](https://github.com/TYPO3/coding-standards)
 
 ```bash
 ddev ssh
-./tests/t3static/t3static.sh -t php-cs
+./t3static/t3static -t php-cs
 
 # if fixable Errors try fix Command
-./tests/t3static/t3static.sh -t php-cs-fix
+./t3static/t3static -t php-cs-fix
 
 ```
 
@@ -31,5 +31,5 @@ ddev ssh
 
 ```bash
 ddev ssh
-./tests/t3static/t3static.sh -t php-stan
+./t3static/t3static -t php-stan
 ```

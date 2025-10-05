@@ -4,7 +4,7 @@
 
 ```bash
 ddev ssh
-./tests/t3static/t3static.sh -t misc
+./t3static/t3static -t misc
 ```
 
 ## Composer
@@ -14,7 +14,7 @@ Simple Composer Validating. \
 
 ```bash
 ddev ssh
-./tests/t3static/t3static.sh -t composer
+./t3static/t3static -t composer
 ```
 
 ## Json
@@ -23,7 +23,7 @@ Lint Json Files with [seld/jsonlint](https://github.com/Seldaek/jsonlint)
 
 ```bash
 ddev ssh
-./tests/t3static/t3static.sh -t json
+./t3static/t3static -t json
 ```
 
 ## Markdown
@@ -32,7 +32,7 @@ Lint and Fix Markdown Files with [markdownlint-cli2](https://github.com/DavidAns
 
 ```bash
 ddev ssh
-./tests/t3static/t3static.sh -t md
+./t3static/t3static -t md
 ```
 
 ## Yaml
@@ -41,5 +41,5 @@ Lint Yaml Files with [symfony/yaml](https://symfony.com/doc/current/components/y
 
 ```bash
 ddev ssh
-./tests/t3static/t3static.sh -t yaml
+./t3static/t3static -t yaml
 ```

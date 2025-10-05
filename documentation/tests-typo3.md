@@ -4,7 +4,7 @@
 
 ```bash
 ddev ssh
-./tests/t3static/t3static.sh -t typo3
+./t3static/t3static -t typo3
 ```
 
 ## typoscript
@@ -15,7 +15,7 @@ Tool: [helmich/typo3-typoscript-lint](https://github.com/martin-helmich/typo3-ty
 
 ```bash
 ddev ssh
-./tests/t3static/t3static.sh -t typoscript
+./t3static/t3static -t typoscript
 ```
 
 ## tsconfig
@@ -26,7 +26,20 @@ Tool: [helmich/typo3-typoscript-lint](https://github.com/martin-helmich/typo3-ty
 
 ```bash
 ddev ssh
-./tests/t3static/t3static.sh -t tsconfig
+./t3static/t3static -t tsconfig
+```
+
+## Fractor
+
+Upgrade and refactor TYPO3 code with fractor.
+
+Tool: [a9f/typo3-fractor](https://github.com/andreaswolf/fractor-typo3-fractor)
+
+```bash
+ddev ssh
+./t3static/t3static -t fractor
+
+./t3static/t3static -t fractor-fix
 ```
 
 ## Rector
@@ -39,9 +52,9 @@ Tool: [ssch/typo3-rector](https://github.com/sabbelasichon/typo3-rector)
 
 ```bash
 ddev ssh
-./tests/t3static/t3static.sh -t rector
+./t3static/t3static -t rector
 
-./tests/t3static/t3static.sh -t rector-fix
+./t3static/t3static -t rector-fix
 ```
 
 ## TYPO3 Scanner
@@ -52,5 +65,5 @@ Tool: [michielroos/typo3scan](https://github.com/Tuurlijk/typo3scan-src)
 
 ```bash
 ddev ssh
-./tests/t3static/t3static.sh -t typo3scan
+./t3static/t3static -t typo3scan
 ```
