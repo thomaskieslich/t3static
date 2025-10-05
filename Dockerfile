@@ -1,4 +1,4 @@
-FROM php:8.3-cli
+FROM php:8.4-cli
 
 # Create app user and group
 RUN groupadd -r app && useradd -r -g app -m app
