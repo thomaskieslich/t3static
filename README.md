@@ -1,6 +1,6 @@
 # t3static
 
-Collection of Tools to Test, Lint, Fix and Upgrade multiple TYPO3 Extensions
+Collection of Tools to Test, Lint, Fix, and Upgrade multiple TYPO3 Extensions
 in a Monorepo.
 The rules are simple to bring the code in the individual extensions up to the
 same level.
@@ -14,43 +14,72 @@ This Tool has its own node_modules and vendor Settings and Folders.
 
 ## Install
 
+### As Package to include to your project git
+
+Download the package as zip to your project root and unzip.
+Rename the Folder to t3static. You can move the folder to a subfolder like
+tests/t3static, but then you must change the TEST_PATH in .env File.
+
+### As separate git repo to get updates
+
 1. Add this to your root .gitignore
 
-```gitignore
-# t3static https://github.com/thomaskieslich/t3static
-/t3static
-```
+    ```gitignore
+    # t3static https://github.com/thomaskieslich/t3static
+    /t3static
+    ```
 
-1. Clone the Repository or download the Code into your project.
+2. Clone the Repository
 
 ```bash
 git clone git@github.com:thomaskieslich/t3static.git
 ```
 
-1. If you want to use default settings, copy t3static/.env.dist to
+## Configure
+
+1. For default Settings just run t3static. If no .env found, the script create
+   one if not exist
+2. If you want to change configuration, copy t3static/.env.dist to
    t3static/.env and adopt the Settings/Paths to your Project.
 
+## Run tests
+
+Run test on a specific Package in your PACKAGE_PATH.
+
 ```bash
-cp t3static/.env.dist t3static/.env
+./t3static/run -p sitepackage
+./t3static/run -p tea
 ```
 
-1. Run inside a docker container (recommended)
-   You can run the tools independently from your local php and node versions.
-   It builds the docker image once for use in all Projects.
+### Run in a Docker Container
+
+Run inside a docker container (recommended)
+You can run the tools independently of your local php and node versions.
+It builds the docker image once for use in all Projects.
 
 ```bash
 ./t3static/run
 ```
 
-1. Run local
+### Run in a local Environment
+
+Your local Environment should have these versions:
+php 8.4
+node v22 - v24
+composer 2
+Test run quicker but not so stable
 
 ```bash
-./t3static/t3static.sh -t install
+# on first run you must install composer and npm dependancies
+./t3static/t3static -t install
+
+# later
+./t3static/t3static
 ```
 
 ## Structure
 
-### ./t3static.sh (Main Script)
+### ./t3static (Main Script)
 
 - Load Environment Variables
 - Install Script
@@ -82,21 +111,21 @@ Here the results from some tests are written (php-stan,…)
 You can run test groups like:
 
 ```bash
-ddev t3static -t frontend
-ddev t3static -t misc
-ddev t3static -t php
-ddev t3static -t typo3
+./t3static/run -t frontend
+./t3static/run -t misc
+./t3static/run -t php
+./t3static/run -t typo3
 ```
 
-or single tests like (more tests defined in t3static.sh):
+or single tests like (more tests defined in t3static):
 
 ```bash
-ddev t3static -t css
+./t3static/run -t css
 # fix it
-ddev t3static -t css-fix
+./t3static/run -t css-fix
 
-ddev t3static -t rector
-ddev t3static -t typo3scan
+./t3static/run -t rector
+./t3static/run -t typo3scan
 ```
 
 ### Options
@@ -118,7 +147,7 @@ the arguments. The priority order is:
 3. Prompt
 
 ```bash
-ddev t3static
+./t3static/run
 ```
 
 ```text
@@ -145,17 +174,6 @@ Enter number (1-3):
 Enter number (1-x):
 ```
 
-### Run t3static
-
-```bash
-# inside ddev
-ddev ssh
-./t3static/t3static.sh -t php-stan
-
-# ddev command
-ddev t3static ./t3static/t3static.sh -t php-stan
-```
-
 ## Tests
 
 [Frontend Tests](documentation/tests-frontend.md)
@@ -169,3 +187,6 @@ ddev t3static ./t3static/t3static.sh -t php-stan
 ## ToDo
 
 - Prettier for Styles and JavaScript
+- linter for SQL
+- Override Single Configurations
+- add Tests to github actions
