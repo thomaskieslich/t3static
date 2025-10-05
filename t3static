@@ -9,6 +9,14 @@ fi
 # get Environment Settings
 source "${BASH_SOURCE%/*}/.env"
 
+# Check if TEST_PATH_DOCKER is set and override TEST_PATH if needed
+if [ -n "$TEST_PATH_DOCKER" ]; then
+  TEST_PATH="${TEST_PATH_DOCKER}"
+fi
+
+# set CONFIGURATION_PATH depend on TEST_PATH
+CONFIGURATION_PATH="${TEST_PATH}/${CONFIGURATION_PATH}"
+
 # include util scripts
 source "${BASH_SOURCE%/*}/includes/util-echo.sh"
 source "${BASH_SOURCE%/*}/includes/util-choose-options.sh"
