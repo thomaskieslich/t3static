@@ -57,6 +57,10 @@ fi
 # Full path to Package
 FULL_PACKAGE_PATH=$(pwd)/${PACKAGE_PATH}/${PACKAGE_NAME}
 
+# Remove unnecessary slashes and export
+# shellcheck disable=SC2001
+FULL_PACKAGE_PATH=$(echo "$FULL_PACKAGE_PATH" | sed 's|//\{1,\}|/|g')
+
 #  to use in php with getenv('FULL_PACKAGE_PATH')
 export FULL_PACKAGE_PATH
 
