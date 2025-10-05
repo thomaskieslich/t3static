@@ -128,6 +128,14 @@ or single tests like (more tests defined in t3static):
 ./t3static/run -t typo3scan
 ```
 
+or multiple, comma-separated Tests like
+
+```bash
+./t3static/run -t css,js
+
+./t3static/run -t fractor,rector
+```
+
 ### Options
 
 ```text
