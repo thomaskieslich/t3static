@@ -6,7 +6,7 @@ choose_package_if_empty() {
         echoInfo "Please choose a folder:"
 
         # Read all folder names in PACKAGE_PATH into an array
-        IFS=$'\n' read -d '' -r -a folders < <(find "${PACKAGE_PATH}" -mindepth 1 -maxdepth 1 -type d -printf "%f\n" | sort && printf '\0')
+        IFS=$'\n' read -d '' -r -a folders < <(find "${PACKAGE_PATH}" -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | sort && printf '\0')
 
         # Exit if no folders are found
         if [ ${#folders[@]} -eq 0 ]; then
@@ -38,7 +38,7 @@ choose_test_if_empty() {
         echoInfo "TEST_TYPE is empty."
         echoInfo "Please choose a test:"
 
-        mapfile -t test_types < <(list_tests)
+        IFS=$'\n' read -d '' -r -a test_types < <(list_tests && printf '\0')
 
         if [ ${#test_types[@]} -eq 0 ]; then
             echoInfo "No test types found."
