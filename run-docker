@@ -9,9 +9,9 @@ loadEnv "${SCRIPT_DIR}"
 # Handle -rebuild option
 if [[ "$1" == "-rebuild" ]]; then
     echo "Building Docker image..."
-    docker compose -f "${BASH_SOURCE%/*}"/docker-compose.yml build --no-cache
-    shift  # Remove -build from arguments
+    docker compose -f "${SCRIPT_DIR}/docker-compose.yml" build --no-cache
+    shift  # Remove -rebuild from arguments
 fi
 
 # Run docker-compose
-docker compose -f "${BASH_SOURCE%/*}"/docker-compose.yml run --rm t3static ./t3static/t3static "$@"
+docker compose -f "${SCRIPT_DIR}/docker-compose.yml" run --rm t3static ./t3static/t3static "$@"
