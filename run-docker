@@ -6,8 +6,8 @@ source "${SCRIPT_DIR}/includes/run-common.sh"
 
 loadEnv "${SCRIPT_DIR}"
 
-# Handle -build option
-if [[ "$1" == "-build" ]]; then
+# Handle -rebuild option
+if [[ "$1" == "-rebuild" ]]; then
     echo "Building Docker image..."
     docker compose -f "${BASH_SOURCE%/*}"/docker-compose.yml build --no-cache
     shift  # Remove -build from arguments
