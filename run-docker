@@ -1,9 +1,16 @@
 #!/bin/bash
 
 # Check for .env file existence, if not make a copy from .env.dist
-if [ ! -f "${BASH_SOURCE%/*}"/.env ]; then
-  cp "${BASH_SOURCE%/*}"/.env.dist "${BASH_SOURCE%/*}"/.env
-  echo 'custom .env not found. copy .env.dist to .env'
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_DIR}/includes/run-common.sh"
+
+loadEnv "${SCRIPT_DIR}"
+
+# Handle -build option
+if [[ "$1" == "-build" ]]; then
+    echo "Building Docker image..."
+    docker compose -f "${BASH_SOURCE%/*}"/docker-compose.yml build --no-cache
+    shift  # Remove -build from arguments
 fi
 
 # Run docker-compose
