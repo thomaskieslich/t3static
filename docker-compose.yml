@@ -9,9 +9,13 @@ services:
       TEST_PATH_DOCKER: t3static
     volumes:
       # t3static volumes
-      - ${PWD}/${CONFIGURATION_PATH:-t3static/config}:/app/t3static/config}:ro
+      - ${PWD}/${TEST_PATH:-t3static}/${CONFIGURATION_PATH:-config}:/app/t3static/config:ro
       - ${PWD}/${TEST_PATH:-t3static}/.env:/app/t3static/.env:ro
       - ${PWD}/${TEST_PATH:-t3static}/results:/app/t3static/results
       # project volumes
       - ${PWD}/${PACKAGE_PATH:-packages}:/app/${PACKAGE_PATH:-packages}
       - ${PWD}/vendor:/app/vendor:ro
+
+networks:
+  t3static-network:
+    driver: bridge
