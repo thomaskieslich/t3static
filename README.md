@@ -35,15 +35,12 @@ tests/t3static, but then you must change the TEST_PATH in .env File.
 git clone git@github.com:thomaskieslich/t3static.git
 ```
 
-## Configure
+## Prepare and Configure
 
-1. For default Settings just run t3static. If no .env found, the script create one if not exist
-2. If you want to change configuration, copy t3static/.env.dist to
-   t3static/.env and adopt the Settings/Paths to your Project.
-
-## preparing Run tests
-
+You can just run `./t3static/run docker`or `./t3static/run local`.
 If .env not exists a copy from .env.dist will be created. If used Tools (composer, npm) not exist, they will be installed automatically.
+
+If you want to change configuration before first run, copy t3static/.env.dist to t3static/.env and adopt the Settings/Paths to your Project.
 
 ### Run tests in a Docker Container
 
