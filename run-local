@@ -1,41 +1,53 @@
 #!/bin/bash
+set -euo pipefail
 
-# Check and load .env
+# Get script directory reliably
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 loadEnv() {
     # Check for .env file existence, if not make a copy from .env.dist
-    if [ ! -f "${BASH_SOURCE%/*}"/.env ]; then
-        cp "${BASH_SOURCE%/*}"/.env.dist "${BASH_SOURCE%/*}"/.env
-        echo 'custom .env not found. copy .env.dist to .env'
+    if [ ! -f "${SCRIPT_DIR}/.env" ]; then
+        if [ ! -f "${SCRIPT_DIR}/.env.dist" ]; then
+            echo "ERROR: .env.dist not found"
+            exit 1
+        fi
+        cp "${SCRIPT_DIR}/.env.dist" "${SCRIPT_DIR}/.env"
+        echo "custom .env not found. copy .env.dist to .env"
     fi
 
     # Load environment and set up paths
-    source "${BASH_SOURCE%/*}/.env"
-
-    # Check if TEST_PATH is set and valid
-    if [ -z "${TEST_PATH}" ]; then
-        echo "ERROR: TEST_PATH is not set in .env"
+    if ! source "${SCRIPT_DIR}/.env"; then
+        echo "ERROR: Failed to load .env file"
         exit 1
     fi
 
+    # Check if TEST_PATH is set and valid
+    if [ -z "${TEST_PATH:-}" ]; then
+        echo "ERROR: TEST_PATH is not set in .env"
+        exit 1
+    fi
     if [ ! -d "${TEST_PATH}" ]; then
         echo "ERROR: TEST_PATH directory does not exist: ${TEST_PATH}"
         exit 1
     fi
-
-    echo "Local .env loaded."
-
 }
 
-# Install packages locally only if vendor or node_modules don't exist
 installPackages() {
+    # Check for required commands
+    if ! command -v composer &> /dev/null; then
+        echo "ERROR: composer is not installed"
+        exit 1
+    fi
+    if ! command -v npm &> /dev/null; then
+        echo "ERROR: npm is not installed"
+        exit 1
+    fi
 
     # Check and install composer dependencies
     if [ ! -d "${TEST_PATH}/vendor" ]; then
         echo "Installing composer packages..."
-        rm -f "${TEST_PATH}/composer.lock"
-        composer install --no-progress --no-interaction --working-dir="${TEST_PATH}"
-    else
-        echo "Composer packages already installed, skipping"
+            rm -f "${TEST_PATH}/composer.lock"
+            composer install --no-progress --no-interaction --working-dir="${TEST_PATH}"
     fi
 
     # Check and install npm dependencies
@@ -43,20 +55,19 @@ installPackages() {
         echo "Installing npm packages..."
         rm -f "${TEST_PATH}/package-lock.json"
         npm install --quiet --prefix="${TEST_PATH}"
-    else
-        echo "NPM packages already installed, skipping"
     fi
 }
-
-echo 'Bash Source:' ${BASH_SOURCE%/*}
 
 loadEnv
 installPackages
 
-# Run t3static with all passed arguments
-pwd
-echo 'Bash Source:' ${BASH_SOURCE%/*}
-echo 'TEST_PATH' ${TEST_PATH}
+# Validate t3static exists and is executable
+if [ ! -x "${SCRIPT_DIR}/t3static" ]; then
+    echo "ERROR: t3static not found or not executable at ${SCRIPT_DIR}/t3static"
+    exit 1
+fi
 
 # Run t3static with all passed arguments
-exec "${BASH_SOURCE%/*}/t3static" "$@"
+exec "${SCRIPT_DIR}/t3static" "$@"
+
+
