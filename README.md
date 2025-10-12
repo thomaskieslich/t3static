@@ -24,10 +24,10 @@ tests/t3static, but then you must change the TEST_PATH in .env File.
 
 1. Add this to your root .gitignore
 
-    ```gitignore
-    # t3static https://github.com/thomaskieslich/t3static
-    /t3static
-    ```
+```gitignore
+# t3static https://github.com/thomaskieslich/t3static
+/t3static
+```
 
 2. Clone the Repository
 
@@ -38,13 +38,15 @@ git clone git@github.com:thomaskieslich/t3static.git
 ## Prepare and Configure
 
 You can just run `./t3static/run docker`or `./t3static/run local`.
-If .env not exists a copy from .env.dist will be created. If used Tools (composer, npm) not exist, they will be installed automatically.
+If .env not exists a copy from .env.dist will be created. If used Tools
+(composer, npm) not exist, they will be installed automatically.
 
-If you want to change configuration before first run, copy t3static/.env.dist to t3static/.env and adopt the Settings/Paths to your Project.
+If you want to change the configuration before the first run,
+copy t3static/.env.dist
 
 ### Run tests in a Docker Container
 
-Run inside a docker container (recommended)
+Run inside a docker container (recommended).
 So you can run the Tools independently of your local php and node versions.
 It builds the docker image once for use in all Projects.
 
@@ -52,7 +54,7 @@ It builds the docker image once for use in all Projects.
 ./t3static/run-docker
 ```
 
-If Tools Versions are changed you should rebuild the Docker Image.
+If Tools Versions are changed, you should rebuild the Docker Image with:
 
 ```bash
 ./t3static/run-docker -rebuild
@@ -61,7 +63,7 @@ If Tools Versions are changed you should rebuild the Docker Image.
 ### Run in a local Environment
 
 Your local Environment should have these versions:
-php 8.4
+php 8.3 - 8.4
 node v22 - v24
 composer 2
 Test run quicker, but not so stable.
@@ -70,13 +72,15 @@ Test run quicker, but not so stable.
 ./t3static/run-local
 ```
 
+To Rebuild Tools, just delete node_modules and vendor Folder and rerun.
+
 ## Structure
 
 ### ./t3static (Main Script)
 
 - Load Environment Variables
 - Install Script
-- Load tests from includes Folder
+- Load tests from the includes Folder
 - Define Test Options and Groups
 
 Available groups (usage -t GROUP)
