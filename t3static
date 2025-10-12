@@ -67,14 +67,6 @@ export FULL_PACKAGE_PATH
 echoInfo "Test: ${TEST_TYPE}"
 echoInfo "Package: ${PACKAGE_NAME}"
 
-## Init Packages
-install:packages() {
-    cd "${TEST_PATH}" || exit
-    rm -f composer.lock package-lock.json
-    composer install --no-progress --no-interaction
-    npm install --quiet
-    cd ../..
-}
 
 # prepare and run Tests
 IFS=',' read -ra TESTS <<< "$TEST_TYPE"

@@ -24,10 +24,10 @@ tests/t3static, but then you must change the TEST_PATH in .env File.
 
 1. Add this to your root .gitignore
 
-    ```gitignore
-    # t3static https://github.com/thomaskieslich/t3static
-    /t3static
-    ```
+```gitignore
+# t3static https://github.com/thomaskieslich/t3static
+/t3static
+```
 
 2. Clone the Repository
 
@@ -35,47 +35,44 @@ tests/t3static, but then you must change the TEST_PATH in .env File.
 git clone git@github.com:thomaskieslich/t3static.git
 ```
 
-## Configure
+## Prepare and Configure
 
-1. For default Settings just run t3static. If no .env found, the script create
-   one if not exist
-2. If you want to change configuration, copy t3static/.env.dist to
-   t3static/.env and adopt the Settings/Paths to your Project.
+You can just run `./t3static/run docker`or `./t3static/run local`.
+If .env not exists a copy from .env.dist will be created. If used Tools
+(composer, npm) not exist, they will be installed automatically.
 
-## Run tests
+If you want to change the configuration before the first run,
+copy t3static/.env.dist
 
-Run test on a specific Package in your PACKAGE_PATH.
+### Run tests in a Docker Container
 
-```bash
-./t3static/run -p sitepackage
-./t3static/run -p tea
-```
-
-### Run in a Docker Container
-
-Run inside a docker container (recommended)
-You can run the tools independently of your local php and node versions.
+Run inside a docker container (recommended).
+So you can run the Tools independently of your local php and node versions.
 It builds the docker image once for use in all Projects.
 
 ```bash
-./t3static/run
+./t3static/run-docker
+```
+
+If Tools Versions are changed, you should rebuild the Docker Image with:
+
+```bash
+./t3static/run-docker -rebuild
 ```
 
 ### Run in a local Environment
 
 Your local Environment should have these versions:
-php 8.4
+php 8.3 - 8.4
 node v22 - v24
 composer 2
-Test run quicker but not so stable
+Test run quicker, but not so stable.
 
 ```bash
-# on first run you must install composer and npm dependancies
-./t3static/t3static -t install
-
-# later
-./t3static/t3static
+./t3static/run-local
 ```
+
+To Rebuild Tools, just delete node_modules and vendor Folder and rerun.
 
 ## Structure
 
@@ -83,7 +80,7 @@ Test run quicker but not so stable
 
 - Load Environment Variables
 - Install Script
-- Load tests from includes Folder
+- Load tests from the includes Folder
 - Define Test Options and Groups
 
 Available groups (usage -t GROUP)
@@ -111,21 +108,21 @@ Here the results from some tests are written (php-stan,…)
 You can run test groups like:
 
 ```bash
-./t3static/run -t frontend
-./t3static/run -t misc
-./t3static/run -t php
-./t3static/run -t typo3
+./t3static/run-docker -t frontend
+./t3static/run-docker -t misc
+./t3static/run-docker -t php
+./t3static/run-docker -t typo3
 ```
 
 or single tests like (more tests defined in t3static):
 
 ```bash
-./t3static/run -t css
+./t3static/run-docker -t css
 # fix it
-./t3static/run -t css-fix
+./t3static/run-docker -t css-fix
 
-./t3static/run -t rector
-./t3static/run -t typo3scan
+./t3static/run-docker -t rector
+./t3static/run-docker -t typo3scan
 ```
 
 or multiple, comma-separated Tests like
@@ -155,7 +152,7 @@ the arguments. The priority order is:
 3. Prompt
 
 ```bash
-./t3static/run
+./t3static/run-docker
 ```
 
 ```text

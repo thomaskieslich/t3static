@@ -1,0 +1,46 @@
+#!/bin/bash
+set -euo pipefail
+
+# Get script directory reliably
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_DIR}/includes/run-common.sh"
+
+installPackages() {
+    # Check for required commands
+    if ! command -v composer &> /dev/null; then
+        echo "ERROR: composer is not installed"
+        exit 1
+    fi
+    if ! command -v npm &> /dev/null; then
+        echo "ERROR: npm is not installed"
+        exit 1
+    fi
+
+    # Check and install composer dependencies
+    if [ ! -d "${TEST_PATH}/vendor" ]; then
+        echo "Installing composer packages..."
+            rm -f "${TEST_PATH}/composer.lock"
+            composer install --no-progress --no-interaction --working-dir="${TEST_PATH}"
+    fi
+
+    # Check and install npm dependencies
+    if [ ! -d "${TEST_PATH}/node_modules" ]; then
+        echo "Installing npm packages..."
+        rm -f "${TEST_PATH}/package-lock.json"
+        npm install --quiet --prefix="${TEST_PATH}"
+    fi
+}
+
+loadEnv "${SCRIPT_DIR}"
+installPackages
+
+# Validate t3static exists and is executable
+if [ ! -x "${SCRIPT_DIR}/t3static" ]; then
+    echo "ERROR: t3static not found or not executable at ${SCRIPT_DIR}/t3static"
+    exit 1
+fi
+
+# Run t3static with all passed arguments
+exec "${SCRIPT_DIR}/t3static" "$@"
+
+

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Check for .env file existence, if not make a copy from .env.dist
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_DIR}/includes/run-common.sh"
+
+loadEnv "${SCRIPT_DIR}"
+
+# Handle -rebuild option
+if [[ "$1" == "-rebuild" ]]; then
+    echo "Building Docker image..."
+    docker compose -f "${SCRIPT_DIR}/docker-compose.yml" build --no-cache
+    shift  # Remove -rebuild from arguments
+fi
+
+# Run docker-compose
+docker compose -f "${SCRIPT_DIR}/docker-compose.yml" run --rm t3static ./t3static/t3static "$@"
