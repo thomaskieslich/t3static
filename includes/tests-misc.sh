@@ -18,16 +18,16 @@ lint:json() {
 
 lint:md() {
     echoTestHeader "Markdown Linting"
-    npx --prefix "${TEST_PATH}" markdownlint-cli2 "${FULL_PACKAGE_PATH}/**/*.md" \
-        --config "${CONFIGURATION_PATH}/.markdownlint-cli2.yaml" || EXIT_CODE=$?
+    npx markdownlint-cli2 "${FULL_PACKAGE_PATH}/**/*.md" \
+        --config $(configPath '.markdownlint-cli2.yaml') || EXIT_CODE=$?
     echoTestFooter "Markdown is Linted Exit."
     return $EXIT_CODE
 }
 
 lint:md:fix() {
     echoTestHeader "Markdown Linting with Fix"
-    npx --prefix "${TEST_PATH}" markdownlint-cli2 --fix "${FULL_PACKAGE_PATH}/**/*.md" \
-        --config "${CONFIGURATION_PATH}/.markdownlint-cli2.yaml"
+    npx markdownlint-cli2 --fix "${FULL_PACKAGE_PATH}/**/*.md" \
+        --config $(configPath '.markdownlint-cli2.yaml')
     echoTestFooter "Markdown is Linted Exit."
 }
 
