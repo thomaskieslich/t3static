@@ -7,10 +7,10 @@ source "${SCRIPT_DIR}/includes/run-common.sh"
 loadEnv "${SCRIPT_DIR}"
 
 # Handle -rebuild option
-if [[ "$1" == "-rebuild" ]]; then
+if [[ "$1" == "--rebuild" ]]; then
     echo "Building Docker image..."
     docker compose -f "${SCRIPT_DIR}/docker-compose.yml" build --no-cache
-    shift  # Remove -rebuild from arguments
+    shift  # Remove --rebuild from arguments
 fi
 
 # Run docker-compose
