@@ -141,6 +141,9 @@ choose test
 
 set Extensionname (folder name)
 -p ***extension
+
+list all available test types
+--list-tests
 ```
 
 If you don’t define the test and the package as arguments or in the .env file,

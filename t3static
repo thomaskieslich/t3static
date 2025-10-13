@@ -28,6 +28,12 @@ source "${BASH_SOURCE%/*}/includes/tests-php.sh"
 source "${BASH_SOURCE%/*}/includes/tests-misc.sh"
 source "${BASH_SOURCE%/*}/includes/tests-typo3.sh"
 
+# list tests as list
+if [[ "$1" == "--list-tests" ]]; then
+    list_tests
+    exit 0
+fi
+
 # set default values if not filled already
 if [ -z "${PACKAGE_NAME}" ]; then
   PACKAGE_NAME=${PACKAGE_DEFAULT}
@@ -48,11 +54,9 @@ while getopts "p:t:" option; do
     esac
 done
 
-# only choose selection, if $TEST_TYPE is not install
-if [[ "$TEST_TYPE" != "install" ]]; then
-    choose_package_if_empty
-    choose_test_if_empty
-fi
+# choose selection package and test
+choose_package_if_empty
+choose_test_if_empty
 
 # Full path to Package
 FULL_PACKAGE_PATH=$(pwd)/${PACKAGE_PATH}/${PACKAGE_NAME}
