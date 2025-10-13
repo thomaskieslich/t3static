@@ -24,10 +24,10 @@ tests/t3static, but then you must change the TEST_PATH in .env File.
 
 1. Add this to your root .gitignore
 
-```gitignore
-# t3static https://github.com/thomaskieslich/t3static
-/t3static
-```
+    ```gitignore
+    # t3static https://github.com/thomaskieslich/t3static
+    /t3static
+    ```
 
 2. Clone the Repository
 
@@ -57,7 +57,7 @@ It builds the docker image once for use in all Projects.
 If Tools Versions are changed, you should rebuild the Docker Image with:
 
 ```bash
-./t3static/run-docker -rebuild
+./t3static/run-docker --rebuild
 ```
 
 ### Run in a local Environment
