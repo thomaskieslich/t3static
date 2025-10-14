@@ -9,8 +9,7 @@ php-cs() {
         --using-cache=no \
         --config="${CONFIGURATION_PATH}/php-cs-fixer/coding-standards.php" \
         fix "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
-
-    echoTestFooter "php:cs completed" "${EXIT_CODE}"
+    echoTestFooter "php:cs completed"
     return "$EXIT_CODE"
 }
 
@@ -21,8 +20,7 @@ php-cs-fix() {
         --using-cache=no \
         --config="${CONFIGURATION_PATH}/php-cs-fixer/coding-standards.php" \
         fix "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
-
-    echoTestFooter "php:cs:fix completed" "${EXIT_CODE}"
+    echoTestFooter "php:cs:fix completed"
     return "${EXIT_CODE}"
 }
 
@@ -33,12 +31,12 @@ php-stan() {
         --autoload-file "vendor/autoload.php" \
         "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
 
-    echoTestFooter "php:stan completed" "${EXIT_CODE}"
+    echoTestFooter "php:stan completed"
     return "${EXIT_CODE}"
 }
 
 php-stan-baseline() {
-    echoTestHeader "php:stan-baseline"
+    echoTestHeader "php:stan"
     "${TEST_PATH}/vendor/bin/phpstan" analyse --level "${PHPSTAN_LEVEL}" \
         --configuration "${CONFIGURATION_PATH}/php-stan/phpstan.neon" \
         --autoload-file "vendor/autoload.php" \
@@ -46,6 +44,6 @@ php-stan-baseline() {
         --generate-baseline "${TEST_PATH}/results/phpstan-${PACKAGE_NAME}-errors.neon" \
         "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
 
-    echoTestFooter "php:stan-baseline completed" "${EXIT_CODE}"
+    echoTestFooter "php:stan completed"
     return "${EXIT_CODE}"
 }

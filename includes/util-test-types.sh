@@ -5,8 +5,146 @@ SCRIPT_PATH="${BASH_SOURCE[0]}"
 
 # Return a list of all valid TEST_TYPE options by parsing this file
 list_tests() {
-    find "${SCRIPT_PATH%/*}" -maxdepth 1 -type f -name "tests-*" -print0 |
-        xargs -0 grep -h -E '^[[:space:]]*[a-z0-9_-]+\(\)' |
-        sed -E 's/^[[:space:]]*([a-z0-9_-]+)\(\).*/\1/' |
-        sort -u
+    grep -E '^[[:space:]]*[a-z0-9_-]+\)' "$SCRIPT_PATH" \
+        | sed -E 's/^[[:space:]]*([a-z0-9_-]+)\).*/\1/' \
+        | grep -v '^\*' \
+        | sort -u
+}
+
+# Run the test defined in TEST_TYPE
+run_test() {
+
+    case "${TEST_TYPE}" in
+    # tests-frontend
+    css)
+        lint:css
+        ;;
+    css-fix)
+        css-fix
+        ;;
+    scss)
+        lint:scss
+        ;;
+    scss-fix)
+        scss-fix
+        ;;
+    js)
+        lint:js
+        ;;
+    js-fix)
+        js-fix
+        ;;
+
+    # tests-php
+    php-cs)
+        php-cs
+        ;;
+    php-cs-fix)
+        php-cs-fix
+        ;;
+    php-stan)
+        php-stan
+        ;;
+    php-stan-baseline)
+        php-stan-baseline
+        ;;
+
+    # tests-misc
+    composer)
+        composer
+        ;;
+    json)
+        json
+        ;;
+    md)
+        md
+        ;;
+    md-fix)
+        md-fix
+        ;;
+    yaml)
+        yaml
+        ;;
+
+    # tests-typo3
+    typoscript)
+        typoscript
+        ;;
+    tsconfig)
+        tsconfig
+        ;;
+    fractor)
+        fractor
+        ;;
+    fractor-fix)
+            fractor-fix
+            ;;
+    rector)
+        rector
+        ;;
+    rector-fix)
+        rector-fix
+        ;;
+    typo3scan)
+        typo3scan
+        ;;
+
+    # grouped collections
+    frontend)
+        lint:css
+        lint:scss
+        lint:js
+        ;;
+    misc)
+        composer
+        json
+        md
+        yaml
+        ;;
+    php)
+        php-cs
+        php-stan
+        ;;
+    typo3)
+        typoscript
+        tsconfig
+        fractor
+        rector
+        typo3scan
+        ;;
+    backend)
+        composer
+        json
+        md
+        yaml
+        php-cs
+        php-stan
+        typoscript
+        tsconfig
+        fractor
+        rector
+        typo3scan
+        ;;
+    all)
+        lint:css
+        lint:scss
+        lint:js
+        composer
+        json
+        md
+        yaml
+        php-cs
+        php-stan
+        typoscript
+        tsconfig
+        fractor
+        rector
+        typo3scan
+        ;;
+    *)
+        echo "Unknown TEST_TYPE: '${TEST_TYPE}'"
+        echo "Use one of the following:"
+        list_tests
+        ;;
+    esac
 }
