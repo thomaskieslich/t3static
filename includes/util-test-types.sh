@@ -17,19 +17,19 @@ run_test() {
     case "${TEST_TYPE}" in
     # tests-frontend
     css)
-        lint:css
+        css
         ;;
     css-fix)
         css-fix
         ;;
     scss)
-        lint:scss
+        scss
         ;;
     scss-fix)
         scss-fix
         ;;
     js)
-        lint:js
+        js
         ;;
     js-fix)
         js-fix
