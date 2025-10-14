@@ -75,7 +75,7 @@ echoInfo "Test: ${TEST_TYPE}"
 echoInfo "Package: ${PACKAGE_NAME}"
 
 
-# prepare and run Tests
+# Prepare and run Tests
 IFS=',' read -ra TESTS <<< "$TEST_TYPE"
 if [[ -n "${TESTS[*]}" ]]; then
   for test_item in "${TESTS[@]}"; do
