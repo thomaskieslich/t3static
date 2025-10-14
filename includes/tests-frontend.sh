@@ -11,7 +11,7 @@ lint:css() {
   echoTestFooter "Css is Linted."
 }
 
-lint:css:fix() {
+css-fix() {
   echoTestHeader "Css Linting"
   npx --prefix "${TEST_PATH}" stylelint \
     --config "${CONFIGURATION_PATH}/.csslintrc.json" \
@@ -30,7 +30,7 @@ lint:scss() {
   echoTestFooter "Scss is Linted."
 }
 
-lint:scss:fix() {
+scss-fix() {
   echoTestHeader "Scss Linting Fix"
   npx --prefix "${TEST_PATH}" stylelint \
     --config "${CONFIGURATION_PATH}/.scsslintrc.json" \
@@ -49,7 +49,7 @@ lint:js() {
   echoTestFooter "JavaScript is Linted."
 }
 
-lint:js:fix() {
+js-fix() {
   echoTestHeader "JavaScript Linting Fix"
   npx --prefix "${TEST_PATH}" eslint \
     --config "${CONFIGURATION_PATH}/.eslintrc.json" \
