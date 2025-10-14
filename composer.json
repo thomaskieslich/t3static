@@ -8,6 +8,7 @@
 	"config": {
 		"sort-packages": true,
 		"allow-plugins": {
+			"ergebnis/composer-normalize": true,
 			"a9f/fractor-extension-installer": true
 		}
 	},
