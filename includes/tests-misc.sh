@@ -28,7 +28,9 @@ md-fix() {
     echoTestHeader "Markdown Linting with Fix"
     npx --prefix "${TEST_PATH}" markdownlint-cli2 --fix "${FULL_PACKAGE_PATH}/**/*.md" \
         --config "${CONFIGURATION_PATH}/.markdownlint-cli2.yaml"
+    local EXIT_CODE=$?
     echoTestFooter "Markdown is Linted Exit."
+    return "${EXIT_CODE}"
 }
 
 yaml() {
