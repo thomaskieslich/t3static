@@ -13,137 +13,82 @@ list_tests() {
 
 # Run the test defined in TEST_TYPE
 run_test() {
-    case "${TEST_TYPE}" in
-    install)
-        install:packages
-        ;;
 
+    case "${TEST_TYPE}" in
     # tests-frontend
     css)
-        lint:css
+        css
         ;;
     css-fix)
-        lint:css:fix
+        css-fix
         ;;
     scss)
-        lint:scss
+        scss
         ;;
     scss-fix)
-        lint:scss:fix
+        scss-fix
         ;;
     js)
-        lint:js
+        js
         ;;
     js-fix)
-        lint:js:fix
+        js-fix
         ;;
 
     # tests-php
     php-cs)
-        php:cs
+        php-cs
         ;;
     php-cs-fix)
-        php:cs:fix
+        php-cs-fix
         ;;
     php-stan)
-        php:stan
+        php-stan
         ;;
     php-stan-baseline)
-        php:stan:baseline
+        php-stan-baseline
         ;;
 
     # tests-misc
     composer)
-        lint:composer
+        composer
         ;;
     json)
-        lint:json
+        json
         ;;
     md)
-        lint:md
+        md
         ;;
     md-fix)
-        lint:md:fix
+        md-fix
         ;;
     yaml)
-        lint:yaml
+        yaml
         ;;
 
     # tests-typo3
     typoscript)
-        lint:typoscript
+        typoscript
         ;;
     tsconfig)
-        lint:tsconfig
+        tsconfig
         ;;
     fractor)
         fractor
         ;;
     fractor-fix)
-            fractor:fix
+            fractor-fix
             ;;
     rector)
         rector
         ;;
     rector-fix)
-        rector:fix
+        rector-fix
         ;;
     typo3scan)
         typo3scan
         ;;
 
-    # grouped collections
-    frontend)
-        lint:css
-        lint:scss
-        lint:js
-        ;;
-    misc)
-        lint:composer
-        lint:json
-        lint:md
-        lint:yaml
-        ;;
-    php)
-        php:cs
-        php:stan
-        ;;
-    typo3)
-        lint:typoscript
-        lint:tsconfig
-        fractor
-        rector
-        typo3scan
-        ;;
-    backend)
-        lint:composer
-        lint:json
-        lint:md
-        lint:yaml
-        php:cs
-        php:stan
-        lint:typoscript
-        lint:tsconfig
-        fractor
-        rector
-        typo3scan
-        ;;
-    all)
-        lint:css
-        lint:scss
-        lint:js
-        lint:composer
-        lint:json
-        lint:md
-        lint:yaml
-        php:cs
-        php:stan
-        lint:typoscript
-        lint:tsconfig
-        fractor
-        rector
-        typo3scan
-        ;;
     *)
         echo "Unknown TEST_TYPE: '${TEST_TYPE}'"
         echo "Use one of the following:"
