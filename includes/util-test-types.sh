@@ -89,58 +89,6 @@ run_test() {
         typo3scan
         ;;
 
-    # grouped collections
-    frontend)
-        lint:css
-        lint:scss
-        lint:js
-        ;;
-    misc)
-        composer
-        json
-        md
-        yaml
-        ;;
-    php)
-        php-cs
-        php-stan
-        ;;
-    typo3)
-        typoscript
-        tsconfig
-        fractor
-        rector
-        typo3scan
-        ;;
-    backend)
-        composer
-        json
-        md
-        yaml
-        php-cs
-        php-stan
-        typoscript
-        tsconfig
-        fractor
-        rector
-        typo3scan
-        ;;
-    all)
-        lint:css
-        lint:scss
-        lint:js
-        composer
-        json
-        md
-        yaml
-        php-cs
-        php-stan
-        typoscript
-        tsconfig
-        fractor
-        rector
-        typo3scan
-        ;;
     *)
         echo "Unknown TEST_TYPE: '${TEST_TYPE}'"
         echo "Use one of the following:"
