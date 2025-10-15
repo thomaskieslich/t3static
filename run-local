@@ -15,8 +15,9 @@ if [[ $# -gt 0 && "$1" == "--rebuild" ]]; then
     if [ -d "${TEST_PATH}/vendor" ]; then
         echo "Removing ${TEST_PATH}/vendor..."
         rm -rf "${TEST_PATH}/vendor" 2>/dev/null || {
-            echo "Warning: Could not remove vendor directory, trying with sudo..."
-            sudo rm -rf "${TEST_PATH}/vendor" || {
+            echo "Warning: Could not remove vendor directory, waiting 3 seconds and trying again..."
+            sleep 3
+            rm -rf "${TEST_PATH}/vendor" 2>/dev/null || {
                 echo "ERROR: Failed to remove vendor directory. Please remove manually."
                 exit 1
             }
@@ -27,8 +28,9 @@ if [[ $# -gt 0 && "$1" == "--rebuild" ]]; then
     if [ -d "${TEST_PATH}/node_modules" ]; then
         echo "Removing ${TEST_PATH}/node_modules..."
         rm -rf "${TEST_PATH}/node_modules" 2>/dev/null || {
-            echo "Warning: Could not remove node_modules directory, trying with sudo..."
-            sudo rm -rf "${TEST_PATH}/node_modules" || {
+            echo "Warning: Could not remove node_modules directory, waiting 3 seconds and trying again..."
+            sleep 3
+            rm -rf "${TEST_PATH}/node_modules" 2>/dev/null || {
                 echo "ERROR: Failed to remove node_modules directory. Please remove manually."
                 exit 1
             }
