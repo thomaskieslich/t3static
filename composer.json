@@ -8,18 +8,20 @@
 	"config": {
 		"sort-packages": true,
 		"allow-plugins": {
+			"ergebnis/composer-normalize": true,
 			"a9f/fractor-extension-installer": true
 		}
 	},
 	"require-dev": {
-		"a9f/typo3-fractor": "^v0.5.5",
-		"friendsofphp/php-cs-fixer": "3.88.2",
+		"a9f/typo3-fractor": "v0.5.6",
+		"ergebnis/composer-normalize": "2.48.2",
+		"friendsofphp/php-cs-fixer": "v3.85.1",
 		"helmich/typo3-typoscript-lint": "v3.3.0",
-		"michielroos/typo3scan": "*",
-		"phpstan/phpstan": "^2.1.22",
-		"seld/jsonlint": "^1.11.0",
+		"michielroos/typo3scan": "dev-master",
+		"phpstan/phpstan": "2.1.31",
+		"seld/jsonlint": "1.11.0",
 		"ssch/typo3-rector": "v3.6.2",
-		"symfony/yaml": "7.3.3",
+		"symfony/yaml": "v7.3.3",
 		"typo3/coding-standards": "v0.8.0"
 	}
 }
