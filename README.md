@@ -161,7 +161,6 @@ the arguments. The priority order is:
 ```text
 ==> PACKAGE_NAME is empty.
 
-
 ==> Please choose a folder:
 
   1) package_1
@@ -170,7 +169,6 @@ the arguments. The priority order is:
 Enter number (1-3):
 
 ==> TEST_TYPE is empty.
-
 
 ==> Please choose a test:
 
