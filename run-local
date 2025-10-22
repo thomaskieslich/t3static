@@ -78,10 +78,12 @@ checkPackages() {
 installPackages() {
     # Install composer packages
     echo "Installing composer packages..."
+    rm -rf "${TEST_PATH}/composer.lock"
     composer install --no-progress --no-interaction --working-dir="${TEST_PATH}"
 
     # Check and install npm dependencies
     echo "Installing npm packages..."
+    rm -rf "${TEST_PATH}/package-lock.json"
     npm install --loglevel=error --prefix="${TEST_PATH}"
 }
 
