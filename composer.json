@@ -1,23 +1,21 @@
 {
 	"name": "thomask/t3static",
 	"description": "Collection of Tools to Test, Lint and Upgrade multiple TYPO3 Extensions.",
-	"license": "GPL-3.0-or-later",
+	"license": "GNU GENERAL PUBLIC LICENSE",
 	"type": "library",
 	"minimum-stability": "dev",
 	"prefer-stable": true,
 	"config": {
 		"sort-packages": true,
 		"allow-plugins": {
-			"ergebnis/composer-normalize": true,
 			"a9f/fractor-extension-installer": true
 		}
 	},
 	"require-dev": {
 		"a9f/typo3-fractor": "^v0.5.0",
-		"ergebnis/composer-normalize":"^2.48.0",
 		"friendsofphp/php-cs-fixer": "^3.88.0",
 		"helmich/typo3-typoscript-lint": "v3.3.0",
-		"michielroos/typo3scan": "dev-master",
+		"michielroos/typo3scan": "*",
 		"phpstan/phpstan": "^2.1.0",
 		"seld/jsonlint": "^1.11.0",
 		"ssch/typo3-rector": "^v3.7.0",
