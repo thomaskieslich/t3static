@@ -1,7 +1,7 @@
 {
 	"name": "thomask/t3static",
 	"description": "Collection of Tools to Test, Lint and Upgrade multiple TYPO3 Extensions.",
-	"license": "GPL-2.0-or-later",
+	"license": "GNU GENERAL PUBLIC LICENSE",
 	"type": "library",
 	"minimum-stability": "dev",
 	"prefer-stable": true,
