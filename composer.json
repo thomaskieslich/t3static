@@ -12,14 +12,14 @@
 		}
 	},
 	"require-dev": {
-		"a9f/typo3-fractor": "^v0.5.0",
+		"a9f/typo3-fractor": "^0.5.0",
 		"friendsofphp/php-cs-fixer": "^3.88.0",
-		"helmich/typo3-typoscript-lint": "v3.3.0",
+		"helmich/typo3-typoscript-lint": "3.3.0",
 		"michielroos/typo3scan": "*",
 		"phpstan/phpstan": "^2.1.0",
 		"seld/jsonlint": "^1.11.0",
-		"ssch/typo3-rector": "^v3.7.0",
+		"ssch/typo3-rector": "^3.7.0",
 		"symfony/yaml": "^7.3.0",
-		"typo3/coding-standards": "v0.8.0"
+		"typo3/coding-standards": "0.8.0"
 	}
 }
