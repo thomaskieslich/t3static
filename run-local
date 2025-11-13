@@ -15,9 +15,8 @@ if [[ $# -gt 0 && "$1" == "--rebuild" ]]; then
     if [ -d "${TEST_PATH}/vendor" ]; then
         echo "Removing ${TEST_PATH}/vendor..."
         rm -rf "${TEST_PATH}/vendor" 2>/dev/null || {
-            echo "Warning: Could not remove vendor directory, waiting 3 seconds and trying again..."
-            sleep 3
-            rm -rf "${TEST_PATH}/vendor" 2>/dev/null || {
+            echo "Warning: Could not remove vendor directory, trying with sudo..."
+            sudo rm -rf "${TEST_PATH}/vendor" || {
                 echo "ERROR: Failed to remove vendor directory. Please remove manually."
                 exit 1
             }
@@ -28,9 +27,8 @@ if [[ $# -gt 0 && "$1" == "--rebuild" ]]; then
     if [ -d "${TEST_PATH}/node_modules" ]; then
         echo "Removing ${TEST_PATH}/node_modules..."
         rm -rf "${TEST_PATH}/node_modules" 2>/dev/null || {
-            echo "Warning: Could not remove node_modules directory, waiting 3 seconds and trying again..."
-            sleep 3
-            rm -rf "${TEST_PATH}/node_modules" 2>/dev/null || {
+            echo "Warning: Could not remove node_modules directory, trying with sudo..."
+            sudo rm -rf "${TEST_PATH}/node_modules" || {
                 echo "ERROR: Failed to remove node_modules directory. Please remove manually."
                 exit 1
             }
@@ -72,8 +70,6 @@ checkPackages() {
     # Install packages if required
     if [ "$installRequired" = true ]; then
         installPackages
-        echo "Tools installed. Tests can started."
-        exit 0
     fi
 }
 
@@ -93,9 +89,10 @@ checkPackages
 
 # Validate t3static exists and is executable
 if [ ! -x "${SCRIPT_DIR}/includes/base.sh" ]; then
-    echo "ERROR: Code not found or not executable at ${SCRIPT_DIR}/includes/base.sh"
+    echo "ERROR: t3static not found or not executable at ${SCRIPT_DIR}/includes/base.sh"
     exit 1
 fi
 
 # Run t3static with all passed arguments
 exec "${SCRIPT_DIR}/includes/base.sh" "$@"
+exit $?

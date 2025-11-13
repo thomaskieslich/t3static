@@ -46,7 +46,7 @@ if [ -z "${TEST_TYPE}" ]; then
 fi
 
 # Get CLI Options
-while getopts ":p:t:" option; do
+while getopts "p:t:" option; do
     case $option in p)
         PACKAGE_NAME=$OPTARG
         ;;
@@ -74,56 +74,16 @@ export FULL_PACKAGE_PATH
 echoInfo "Test: ${TEST_TYPE}"
 echoInfo "Package: ${PACKAGE_NAME}"
 
-# Prepare and run Tests
-IFS=',' read -ra TESTS <<<"$TEST_TYPE"
-if [[ ${#TESTS[@]} -gt 0 ]]; then
-    # Get available tests as an array
-    AVAILABLE_TESTS=()
-    while IFS= read -r line; do
-        AVAILABLE_TESTS+=("$line")
-    done < <(list_tests)
 
-    validate_and_execute_test() {
-        local test_name="$1"
-
-        if [[ ! "$test_name" =~ ^[a-zA-Z0-9_.-]+$ ]]; then
-            echo "Error: Invalid test name '$test_name'" >&2
-            return 1
-        fi
-
-        if ! declare -f "$test_name" >/dev/null; then
-            echo "Error: Test function '$test_name' not found" >&2
-            return 1
-        fi
-
-        local is_available=false
-        for available_test in "${AVAILABLE_TESTS[@]}"; do
-            if [[ "$test_name" == "$available_test" ]]; then
-                is_available=true
-                break
-            fi
-        done
-
-        if [[ "$is_available" == false ]]; then
-            echo "Error: Test '$test_name' is not in available tests list" >&2
-            return 1
-        fi
-
-        return 0
-    }
-
-    for test_item in "${TESTS[@]}"; do
-        # Remove whitespace
-        current_test=$(echo "$test_item" | xargs)
-
-        # Validate test name and check availability before execution
-        if validate_and_execute_test "$current_test"; then
-            echo "Processing: $current_test"
-            # Execute the test command (ensure it's safe)
-            "$current_test"
-        else
-            echo "Error: Cannot execute invalid test '$current_test'" >&2
-            exit 1
-        fi
-    done
+# prepare and run Tests
+IFS=',' read -ra TESTS <<< "$TEST_TYPE"
+if [[ -n "${TESTS[*]}" ]]; then
+  for test_item in "${TESTS[@]}"; do
+    # Whitespace entfernen
+    test_item=$(echo "$test_item" | xargs)
+    # Process the trimmed test_item here
+    echo "Processing: $test_item"
+    export TEST_TYPE=$test_item
+    run_test
+  done
 fi
