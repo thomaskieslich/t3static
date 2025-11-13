@@ -1,13 +1,16 @@
 #!/bin/bash
 
+# Get the parent directory (t3static) from the includes directory
+SCRIPT_DIR="${BASH_SOURCE%/*}/.."
+
 # Check for .env file existence, if not make a copy from .env.dist
-if [ ! -f "${BASH_SOURCE%/*}"/.env ]; then
-  cp "${BASH_SOURCE%/*}"/.env.dist "${BASH_SOURCE%/*}"/.env
+if [ ! -f "${SCRIPT_DIR}/.env" ]; then
+  cp "${SCRIPT_DIR}/.env.dist" "${SCRIPT_DIR}/.env"
   echo 'custom .env not found. copy .env.dist to .env'
 fi
 
 # get Environment Settings
-source "${BASH_SOURCE%/*}/.env"
+source "${SCRIPT_DIR}/.env"
 
 # Check if TEST_PATH_DOCKER is set and override TEST_PATH if needed
 if [ -n "$TEST_PATH_DOCKER" ]; then
@@ -18,15 +21,15 @@ fi
 CONFIGURATION_PATH="${TEST_PATH}/${CONFIGURATION_PATH}"
 
 # include util scripts
-source "${BASH_SOURCE%/*}/includes/util-echo.sh"
-source "${BASH_SOURCE%/*}/includes/util-choose-options.sh"
-source "${BASH_SOURCE%/*}/includes/util-test-types.sh"
+source "${BASH_SOURCE%/*}/util-echo.sh"
+source "${BASH_SOURCE%/*}/util-choose-options.sh"
+source "${BASH_SOURCE%/*}/util-test-types.sh"
 
 # include Test Scripts
-source "${BASH_SOURCE%/*}/includes/tests-frontend.sh"
-source "${BASH_SOURCE%/*}/includes/tests-php.sh"
-source "${BASH_SOURCE%/*}/includes/tests-misc.sh"
-source "${BASH_SOURCE%/*}/includes/tests-typo3.sh"
+source "${BASH_SOURCE%/*}/tests-frontend.sh"
+source "${BASH_SOURCE%/*}/tests-php.sh"
+source "${BASH_SOURCE%/*}/tests-misc.sh"
+source "${BASH_SOURCE%/*}/tests-typo3.sh"
 
 # list tests as list
 if [[ "$1" == "--list-tests" ]]; then

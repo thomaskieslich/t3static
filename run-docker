@@ -14,4 +14,4 @@ if [[ $# -gt 0 && "$1" == "--rebuild" ]]; then
 fi
 
 # Run docker-compose
-docker compose -f "${SCRIPT_DIR}/docker-compose.yml" run --rm t3static ./t3static/t3static "$@"
+docker compose -f "${SCRIPT_DIR}/docker-compose.yml" run --rm t3static ./t3static/includes/base.sh "$@"

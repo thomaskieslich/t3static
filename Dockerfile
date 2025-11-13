@@ -26,11 +26,11 @@ RUN { \
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Copy t3static
-COPY --chown=app:app . /app/t3static
+# Copy composer files first
+COPY --chown=app:app composer.json /app/t3static/
 
-# avoid local installed files
-RUN rm -f composer.lock package-json.lock && rm -rf node_modules vendor
+# Copy package files
+COPY --chown=app:app package*.json /app/t3static/
 
 # Set working directory and user
 WORKDIR /app/t3static
@@ -42,6 +42,9 @@ RUN composer install --no-progress --no-ansi --no-interaction --prefer-dist --op
 
 # Install Node.js dependencies (npm)
 RUN npm install --quiet --no-audit --no-fund && npm cache clean --force
+
+# Copy the rest of the application
+COPY --chown=app:app . /app/t3static
 
 # Final working dir
 WORKDIR /app
