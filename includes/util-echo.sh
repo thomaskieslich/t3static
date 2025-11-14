@@ -23,23 +23,15 @@ echoTestHeader() {
 # Example (color magenta):
 # ==> Rector completed
 echoTestFooter() {
-    if [[ -n "$2" ]]; then
-        local exit_message=""
-        local output=""
-        case "$2" in
-        1) exit_message="General error" ;;
-        2) exit_message="Misuse of shell builtin" ;;
-        126) exit_message="Command cannot be executed" ;;
-        127) exit_message="Command not found" ;;
-        130) exit_message="Script interrupted by user (CTRL+C)" ;;
-        *) exit_message="Unknown error" ;;
-        esac
-        local color="\033[1;31m" # Red for errors
-        output=$(echo -e "${color}EXIT_CODE: $2 - $exit_message\033[0m")
+    local message=$1
+    local code=$2
+    local exit_code=""
+
+    if [[ -z "$code" || "$code" == "0" ]]; then
+        exit_code="\033[1;32m(EXIT_CODE: 0)\033[0m"
     else
-        local color="\033[1;32m" # Green for success
-        output=$(echo -e "${color}Success\033[0m")
+        exit_code="\033[1;31m(EXIT_CODE: $code)\033[0m"
     fi
 
-    echo -e "\n\033[1;35m==> $1: $output\033[0m\n"
+    echo -e "\n\033[1;35m==> $message $exit_code\n"
 }
