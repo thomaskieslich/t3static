@@ -83,25 +83,27 @@ if [[ ${#TESTS[@]} -gt 0 ]]; then
         AVAILABLE_TESTS+=("$line")
     done < <(list_tests)
 
-    for test_item in "${TESTS[@]}"; do
-        # Remove whitespace
-        test_item=$(echo "$test_item" | xargs)
-
-        # Check if test_item is in available tests array
-        found=false
+    # Function to check if a test is available
+    is_test_available() {
+        local test_name="$1"
         for available_test in "${AVAILABLE_TESTS[@]}"; do
-            if [[ "$test_item" == "$available_test" ]]; then
-                found=true
-                break
+            if [[ "$test_name" == "$available_test" ]]; then
+                return 0
             fi
         done
+        return 1
+    }
 
-        if [[ "$found" == true ]]; then
-            echo "Processing: $test_item"
+    for test_item in "${TESTS[@]}"; do
+        # Remove whitespace
+        current_test=$(echo "$test_item" | xargs)
+
+        if is_test_available "$current_test"; then
+            echo "Processing: $current_test"
             # Execute the test command (ensure it's safe)
-            "$test_item"
+            "$current_test"
         else
-            echo "Error: Unknown test type '$test_item'" >&2
+            echo "Error: Unknown test type '$current_test'" >&2
             exit 1
         fi
     done
