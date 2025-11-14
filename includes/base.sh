@@ -83,27 +83,49 @@ if [[ ${#TESTS[@]} -gt 0 ]]; then
         AVAILABLE_TESTS+=("$line")
     done < <(list_tests)
 
-    # Function to check if a test is available
-    is_test_available() {
+    validate_and_execute_test() {
         local test_name="$1"
+
+        # Nur alphanumerische Zeichen, Bindestriche, Unterstriche und Punkte erlauben
+        if [[ ! "$test_name" =~ ^[a-zA-Z0-9_.-]+$ ]]; then
+            echo "Error: Invalid test name '$test_name'" >&2
+            return 1
+        fi
+
+        # Prüfe, ob die Funktion existiert
+        if ! declare -f "$test_name" >/dev/null; then
+            echo "Error: Test function '$test_name' not found" >&2
+            return 1
+        fi
+
+        # Prüfe, ob der Test in der verfügbaren Liste ist (optional)
+        local is_available=false
         for available_test in "${AVAILABLE_TESTS[@]}"; do
             if [[ "$test_name" == "$available_test" ]]; then
-                return 0
+                is_available=true
+                break
             fi
         done
-        return 1
+
+        if [[ "$is_available" == false ]]; then
+            echo "Error: Test '$test_name' is not in available tests list" >&2
+            return 1
+        fi
+
+        return 0
     }
 
     for test_item in "${TESTS[@]}"; do
         # Remove whitespace
         current_test=$(echo "$test_item" | xargs)
 
-        if is_test_available "$current_test"; then
+        # Validate test name and check availability before execution
+        if validate_and_execute_test "$current_test"; then
             echo "Processing: $current_test"
             # Execute the test command (ensure it's safe)
             "$current_test"
         else
-            echo "Error: Unknown test type '$current_test'" >&2
+            echo "Error: Cannot execute invalid test '$current_test'" >&2
             exit 1
         fi
     done
