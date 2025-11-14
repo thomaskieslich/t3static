@@ -6,18 +6,18 @@ typoscript() {
     echoTestHeader "TypoScript Linting"
     "${TEST_PATH}/vendor/bin/typoscript-lint" \
         --config "${CONFIGURATION_PATH}/typoscript-lint.yaml" \
-        "${FULL_PACKAGE_PATH}" || local EXIT_CODE=$?
-    echoTestFooter "TypoScript is Linted" ${EXIT_CODE}
-    return ${EXIT_CODE}
+        "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
+    echoTestFooter "TypoScript is Linted" "${EXIT_CODE}"
+    return "${EXIT_CODE}"
 }
 
 tsconfig() {
     echoTestHeader "TsConfig Linting"
     "${TEST_PATH}/vendor/bin/typoscript-lint" \
         --config "${CONFIGURATION_PATH}/tsconfig-lint.yaml" \
-        "${FULL_PACKAGE_PATH}" || local EXIT_CODE=$?
-    echoTestFooter "TsConfig is Linted" ${EXIT_CODE}
-    return ${EXIT_CODE}
+        "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
+    echoTestFooter "TsConfig is Linted" "${EXIT_CODE}"
+    return "${EXIT_CODE}"
 }
 
 fractor() {
@@ -25,18 +25,18 @@ fractor() {
     "${TEST_PATH}/vendor/bin/fractor" process \
         --config "${CONFIGURATION_PATH}/fractor.php" \
         --clear-cache \
-        --dry-run || local EXIT_CODE=$?
-    echoTestFooter "Fractor completed" ${EXIT_CODE}
-    return ${EXIT_CODE}
+        --dry-run || EXIT_CODE=$?
+    echoTestFooter "Fractor completed" "${EXIT_CODE}"
+    return "${EXIT_CODE}"
 }
 
 fractor-fix() {
     echoTestHeader "Fractor"
     "${TEST_PATH}/vendor/bin/fractor" process \
         --config "${CONFIGURATION_PATH}/fractor.php" \
-        --clear-cache || local EXIT_CODE=$?
-    echoTestFooter "Fractor completed" ${EXIT_CODE}
-    return ${EXIT_CODE}
+        --clear-cache || EXIT_CODE=$?
+    echoTestFooter "Fractor completed" "${EXIT_CODE}"
+    return "${EXIT_CODE}"
 }
 
 rector() {
@@ -44,23 +44,23 @@ rector() {
     "${TEST_PATH}/vendor/bin/rector" process "${FULL_PACKAGE_PATH}" \
         --config "${CONFIGURATION_PATH}/rector.php" \
         --clear-cache \
-        --dry-run || local EXIT_CODE=$?
-    echoTestFooter "Rector completed" ${EXIT_CODE}
-    return ${EXIT_CODE}
+        --dry-run || EXIT_CODE=$?
+    echoTestFooter "Rector completed" "${EXIT_CODE}"
+    return "${EXIT_CODE}"
 }
 
 rector-fix() {
     echoTestHeader "Rector"
     "${TEST_PATH}/vendor/bin/rector" process "${FULL_PACKAGE_PATH}" \
         --clear-cache \
-        --config "${CONFIGURATION_PATH}/rector.php" || local EXIT_CODE=$?
-    echoTestFooter "Rector completed" ${EXIT_CODE}
-    return ${EXIT_CODE}
+        --config "${CONFIGURATION_PATH}/rector.php" || EXIT_CODE=$?
+    echoTestFooter "Rector completed" "${EXIT_CODE}"
+    return "${EXIT_CODE}"
 }
 
 typo3scan() {
     echoTestHeader "TYPO3Scan"
-    "${TEST_PATH}/vendor/bin/typo3scan" scan --target ${TYPO3SCAN_TARGET} "${FULL_PACKAGE_PATH}" || local EXIT_CODE=$?
-    echoTestFooter "TYPO3Scan completed" ${EXIT_CODE}
-    return ${EXIT_CODE}
+    "${TEST_PATH}/vendor/bin/typo3scan" scan --target ${TYPO3SCAN_TARGET} "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
+    echoTestFooter "TYPO3Scan completed" "${EXIT_CODE}"
+    return "${EXIT_CODE}"
 }
