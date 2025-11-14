@@ -86,19 +86,16 @@ if [[ ${#TESTS[@]} -gt 0 ]]; then
     validate_and_execute_test() {
         local test_name="$1"
 
-        # Nur alphanumerische Zeichen, Bindestriche, Unterstriche und Punkte erlauben
         if [[ ! "$test_name" =~ ^[a-zA-Z0-9_.-]+$ ]]; then
             echo "Error: Invalid test name '$test_name'" >&2
             return 1
         fi
 
-        # Prüfe, ob die Funktion existiert
         if ! declare -f "$test_name" >/dev/null; then
             echo "Error: Test function '$test_name' not found" >&2
             return 1
         fi
 
-        # Prüfe, ob der Test in der verfügbaren Liste ist (optional)
         local is_available=false
         for available_test in "${AVAILABLE_TESTS[@]}"; do
             if [[ "$test_name" == "$available_test" ]]; then
