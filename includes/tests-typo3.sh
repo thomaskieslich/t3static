@@ -7,7 +7,7 @@ typoscript() {
     "${TEST_PATH}/vendor/bin/typoscript-lint" \
         --config "${CONFIGURATION_PATH}/typoscript-lint.yaml" \
         "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
-    echoTestFooter "TypoScript is Linted"
+    echoTestFooter "TypoScript is Linted" "${EXIT_CODE}"
     return "${EXIT_CODE}"
 }
 
@@ -16,7 +16,7 @@ tsconfig() {
     "${TEST_PATH}/vendor/bin/typoscript-lint" \
         --config "${CONFIGURATION_PATH}/tsconfig-lint.yaml" \
         "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
-    echoTestFooter "TsConfig is Linted"
+    echoTestFooter "TsConfig is Linted" "${EXIT_CODE}"
     return "${EXIT_CODE}"
 }
 
@@ -26,7 +26,7 @@ fractor() {
         --config "${CONFIGURATION_PATH}/fractor.php" \
         --clear-cache \
         --dry-run || EXIT_CODE=$?
-    echoTestFooter "Fractor completed"
+    echoTestFooter "Fractor completed" "${EXIT_CODE}"
     return "${EXIT_CODE}"
 }
 
@@ -35,7 +35,7 @@ fractor-fix() {
     "${TEST_PATH}/vendor/bin/fractor" process \
         --config "${CONFIGURATION_PATH}/fractor.php" \
         --clear-cache || EXIT_CODE=$?
-    echoTestFooter "Fractor completed"
+    echoTestFooter "Fractor completed" "${EXIT_CODE}"
     return "${EXIT_CODE}"
 }
 
@@ -45,7 +45,7 @@ rector() {
         --config "${CONFIGURATION_PATH}/rector.php" \
         --clear-cache \
         --dry-run || EXIT_CODE=$?
-    echoTestFooter "Rector completed"
+    echoTestFooter "Rector completed" "${EXIT_CODE}"
     return "${EXIT_CODE}"
 }
 
@@ -54,13 +54,13 @@ rector-fix() {
     "${TEST_PATH}/vendor/bin/rector" process "${FULL_PACKAGE_PATH}" \
         --clear-cache \
         --config "${CONFIGURATION_PATH}/rector.php" || EXIT_CODE=$?
-    echoTestFooter "Rector completed"
+    echoTestFooter "Rector completed" "${EXIT_CODE}"
     return "${EXIT_CODE}"
 }
 
 typo3scan() {
     echoTestHeader "TYPO3Scan"
     "${TEST_PATH}/vendor/bin/typo3scan" scan --target ${TYPO3SCAN_TARGET} "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
-    echoTestFooter "TYPO3Scan completed"
+    echoTestFooter "TYPO3Scan completed" "${EXIT_CODE}"
     return "${EXIT_CODE}"
 }

@@ -9,7 +9,7 @@ css() {
     --config "${CONFIGURATION_PATH}/.csslintrc.json" \
     --ignore-path "${FULL_PACKAGE_PATH}/.stylelintignore" \
     "${FULL_PACKAGE_PATH}/**/*.css" || EXIT_CODE=$?
-  echoTestFooter "Css is Linted."
+  echoTestFooter "Css is Linted." "${EXIT_CODE}"
   return "${EXIT_CODE}"
 }
 
@@ -21,7 +21,7 @@ css-fix() {
     --ignore-path "${FULL_PACKAGE_PATH}/.stylelintignore" \
     --fix \
     "${FULL_PACKAGE_PATH}/**/*.css" || EXIT_CODE=$?
-  echoTestFooter "Css is Linted."
+  echoTestFooter "Css is Linted." "${EXIT_CODE}"
   return "${EXIT_CODE}"
 }
 
@@ -32,7 +32,7 @@ scss() {
     --config "${CONFIGURATION_PATH}/.scsslintrc.json" \
     --ignore-path "${FULL_PACKAGE_PATH}/.stylelintignore" \
     "${FULL_PACKAGE_PATH}/**/*.scss" || EXIT_CODE=$?
-  echoTestFooter "Scss is Linted."
+  echoTestFooter "Scss is Linted." "${EXIT_CODE}"
   return "${EXIT_CODE}"
 }
 
@@ -44,7 +44,7 @@ scss-fix() {
     --ignore-path "${FULL_PACKAGE_PATH}/.stylelintignore" \
     --fix \
     "${FULL_PACKAGE_PATH}/**/*.scss" || EXIT_CODE=$?
-  echoTestFooter "Scss is Linted and Fixed"
+  echoTestFooter "Scss is Linted and Fixed" "${EXIT_CODE}"
   return "${EXIT_CODE}"
 }
 
@@ -55,7 +55,7 @@ js() {
     --config "${CONFIGURATION_PATH}/.eslintrc.json" \
     --ignore-path "${CONFIGURATION_PATH}/.eslintignore" \
     "${FULL_PACKAGE_PATH}/**/*.js" || EXIT_CODE=$?
-  echoTestFooter "JavaScript is Linted."
+  echoTestFooter "JavaScript is Linted." "${EXIT_CODE}"
   return "${EXIT_CODE}"
 }
 
@@ -67,6 +67,6 @@ js-fix() {
     --ignore-path "${CONFIGURATION_PATH}/.eslintignore" \
     --fix \
     "${FULL_PACKAGE_PATH}/**/*.js" || EXIT_CODE=$?
-  echoTestFooter "JavaScript is Linted and Fixed."
+  echoTestFooter "JavaScript is Linted and Fixed." "${EXIT_CODE}"
   return "${EXIT_CODE}"
 }
