@@ -74,12 +74,11 @@ export FULL_PACKAGE_PATH
 echoInfo "Test: ${TEST_TYPE}"
 echoInfo "Package: ${PACKAGE_NAME}"
 
-
 # Prepare and run Tests
 IFS=',' read -ra TESTS <<< "$TEST_TYPE"
 if [[ -n "${TESTS[*]}" ]]; then
   for test_item in "${TESTS[@]}"; do
-    # Whitespace entfernen
+    # remove Whitespace
     test_item=$(echo "$test_item" | xargs)
     # Process the trimmed test_item here
     echo "Processing: $test_item"
