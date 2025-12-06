@@ -46,7 +46,7 @@ if [ -z "${TEST_TYPE}" ]; then
 fi
 
 # Get CLI Options
-while getopts "p:t:" option; do
+while getopts ":p:t:" option; do
     case $option in p)
         PACKAGE_NAME=$OPTARG
         ;;
