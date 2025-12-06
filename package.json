@@ -4,9 +4,9 @@
 	"version": "1.0.0",
 	"license": "GNU GENERAL PUBLIC LICENSE",
 	"devDependencies": {
-		"eslint-config-standard": "^17.1.0",
-		"markdownlint-cli2": "^0.18.1",
-		"stylelint-config-standard": "^39.0.0",
-		"stylelint-config-standard-scss": "^16.0.0"
+		"eslint-config-standard": "17.1.0",
+		"markdownlint-cli2": "0.19.1",
+		"stylelint-config-standard": "39.0.1",
+		"stylelint-config-standard-scss": "16.0.0"
 	}
 }
