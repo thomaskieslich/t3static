@@ -1,12 +1,12 @@
 #!/bin/bash
 
 ### Misc Tests ###
- composer() {
-     echoTestHeader "Composer Validation"
-     command composer validate --working-dir "${FULL_PACKAGE_PATH}" --with-dependencies --strict || EXIT_CODE=$?
-     echoTestFooter "Composer is Validated." "${EXIT_CODE}"
-     return "${EXIT_CODE}"
- }
+composer() {
+    echoTestHeader "Composer Validation"
+    command composer validate --working-dir "${FULL_PACKAGE_PATH}" --with-dependencies --strict || EXIT_CODE=$?
+    echoTestFooter "Composer is Validated." "${EXIT_CODE}"
+    return "${EXIT_CODE}"
+}
 
 json() {
     echoTestHeader "Json Linting"
