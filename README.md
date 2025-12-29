@@ -1,5 +1,9 @@
 # t3static
 
+<span style="color:red;">!!!</span> Original Repository on: https://codeberg.org/kiesi/t3static <span style="color:red;">!!!</span>
+
+Mirror only on Github: https://github.com/thomaskieslich/t3static
+
 Collection of Tools to Test, Lint, Fix, and Upgrade multiple TYPO3 Extensions
 in a Monorepo.
 The rules are simple to bring the code in the individual extensions up to the
