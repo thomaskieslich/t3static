@@ -1,4 +1,5 @@
-FROM php:8.4-cli
+ARG PHP_VERSION=8.4
+FROM php:${PHP_VERSION}-cli
 
 # Create app user and group
 RUN groupadd -r app && useradd -r -g app -m app

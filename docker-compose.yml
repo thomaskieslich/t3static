@@ -2,6 +2,8 @@ services:
   t3static:
     build:
       context: .
+      args:
+        PHP_VERSION: ${PHP_VERSION:-8.4}
       dockerfile: Dockerfile
     image: t3static
     container_name: t3static
