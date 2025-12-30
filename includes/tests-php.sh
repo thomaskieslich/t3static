@@ -9,8 +9,8 @@ php-cs() {
         --using-cache=no \
         --config="${CONFIGURATION_PATH}/php-cs-fixer/coding-standards.php" \
         fix "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
-    echoTestFooter "php:cs completed"
-    return "$EXIT_CODE"
+    echoTestFooter "php:cs completed" "${EXIT_CODE}"
+    return "${EXIT_CODE}"
 }
 
 php-cs-fix() {
@@ -20,7 +20,7 @@ php-cs-fix() {
         --using-cache=no \
         --config="${CONFIGURATION_PATH}/php-cs-fixer/coding-standards.php" \
         fix "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
-    echoTestFooter "php:cs:fix completed"
+    echoTestFooter "php:cs:fix completed" "${EXIT_CODE}"
     return "${EXIT_CODE}"
 }
 
@@ -31,7 +31,7 @@ php-stan() {
         --autoload-file "vendor/autoload.php" \
         "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
 
-    echoTestFooter "php:stan completed"
+    echoTestFooter "php:stan completed" "${EXIT_CODE}"
     return "${EXIT_CODE}"
 }
 
@@ -44,6 +44,6 @@ php-stan-baseline() {
         --generate-baseline "${TEST_PATH}/results/phpstan-${PACKAGE_NAME}-errors.neon" \
         "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
 
-    echoTestFooter "php:stan completed"
+    echoTestFooter "php:stan completed" "${EXIT_CODE}"
     return "${EXIT_CODE}"
 }
