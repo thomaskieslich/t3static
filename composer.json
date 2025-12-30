@@ -13,14 +13,14 @@
 		}
 	},
 	"require-dev": {
-		"a9f/typo3-fractor": "v0.5.6",
-		"friendsofphp/php-cs-fixer": "3.88.2",
+		"a9f/typo3-fractor": "v0.5.8",
+		"friendsofphp/php-cs-fixer": "3.92.3",
 		"helmich/typo3-typoscript-lint": "v3.3.0",
 		"michielroos/typo3scan": "dev-master",
-		"phpstan/phpstan": "2.1.31",
+		"phpstan/phpstan": "2.1.33",
 		"seld/jsonlint": "1.11.0",
-		"ssch/typo3-rector": "v3.6.2",
-		"symfony/yaml": "v7.3.3",
+		"ssch/typo3-rector": "3.10.1",
+		"symfony/yaml": "7.4.1",
 		"typo3/coding-standards": "v0.8.0"
 	}
 }
