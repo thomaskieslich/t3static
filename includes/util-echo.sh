@@ -2,7 +2,6 @@
 
 # several functions to output echos in more visual way
 
-
 # Example (color blue):
 # ==> Test: rector
 echoInfo() {
@@ -24,5 +23,15 @@ echoTestHeader() {
 # Example (color magenta):
 # ==> Rector completed
 echoTestFooter() {
-    echo -e "\n\033[1;35m==> $1\033[0m\n"
+    local message=$1
+    local code=$2
+    local exit_code=""
+
+    if [[ -z "$code" || "$code" == "0" ]]; then
+        exit_code="\033[1;32m(EXIT_CODE: 0)\033[0m"
+    else
+        exit_code="\033[1;31m(EXIT_CODE: $code)\033[0m"
+    fi
+
+    echo -e "\n\033[1;35m==> $message $exit_code\n"
 }

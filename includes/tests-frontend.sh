@@ -2,59 +2,71 @@
 
 ## Tests for Frontend
 
-lint:css() {
+css() {
   echoTestHeader "Css Linting"
+  local EXIT_CODE=0
   npx --prefix "${TEST_PATH}" stylelint \
     --config "${CONFIGURATION_PATH}/.csslintrc.json" \
     --ignore-path "${FULL_PACKAGE_PATH}/.stylelintignore" \
     "${FULL_PACKAGE_PATH}/**/*.css" || EXIT_CODE=$?
-  echoTestFooter "Css is Linted."
+  echoTestFooter "Css is Linted." "${EXIT_CODE}"
+  return "${EXIT_CODE}"
 }
 
-lint:css:fix() {
+css-fix() {
   echoTestHeader "Css Linting"
+  local EXIT_CODE=0
   npx --prefix "${TEST_PATH}" stylelint \
     --config "${CONFIGURATION_PATH}/.csslintrc.json" \
     --ignore-path "${FULL_PACKAGE_PATH}/.stylelintignore" \
     --fix \
     "${FULL_PACKAGE_PATH}/**/*.css" || EXIT_CODE=$?
-  echoTestFooter "Css is Linted."
+  echoTestFooter "Css is Linted." "${EXIT_CODE}"
+  return "${EXIT_CODE}"
 }
 
-lint:scss() {
+scss() {
   echoTestHeader "Scss Linting"
+  local EXIT_CODE=0
   npx --prefix "${TEST_PATH}" stylelint \
     --config "${CONFIGURATION_PATH}/.scsslintrc.json" \
     --ignore-path "${FULL_PACKAGE_PATH}/.stylelintignore" \
     "${FULL_PACKAGE_PATH}/**/*.scss" || EXIT_CODE=$?
-  echoTestFooter "Scss is Linted."
+  echoTestFooter "Scss is Linted." "${EXIT_CODE}"
+  return "${EXIT_CODE}"
 }
 
-lint:scss:fix() {
+scss-fix() {
   echoTestHeader "Scss Linting Fix"
+  local EXIT_CODE=0
   npx --prefix "${TEST_PATH}" stylelint \
     --config "${CONFIGURATION_PATH}/.scsslintrc.json" \
     --ignore-path "${FULL_PACKAGE_PATH}/.stylelintignore" \
     --fix \
-    "${FULL_PACKAGE_PATH}/**/*.scss"
-  echoTestFooter "Scss is Linted and Fixed"
+    "${FULL_PACKAGE_PATH}/**/*.scss" || EXIT_CODE=$?
+  echoTestFooter "Scss is Linted and Fixed" "${EXIT_CODE}"
+  return "${EXIT_CODE}"
 }
 
-lint:js() {
+js() {
   echoTestHeader "JavaScript Linting"
+  local EXIT_CODE=0
   npx --prefix "${TEST_PATH}" eslint \
     --config "${CONFIGURATION_PATH}/.eslintrc.json" \
     --ignore-path "${CONFIGURATION_PATH}/.eslintignore" \
     "${FULL_PACKAGE_PATH}/**/*.js" || EXIT_CODE=$?
-  echoTestFooter "JavaScript is Linted."
+  echoTestFooter "JavaScript is Linted." "${EXIT_CODE}"
+  return "${EXIT_CODE}"
 }
 
-lint:js:fix() {
+js-fix() {
   echoTestHeader "JavaScript Linting Fix"
+  local EXIT_CODE=0
   npx --prefix "${TEST_PATH}" eslint \
     --config "${CONFIGURATION_PATH}/.eslintrc.json" \
     --ignore-path "${CONFIGURATION_PATH}/.eslintignore" \
     --fix \
-    "${FULL_PACKAGE_PATH}/**/*.js"
-  echoTestFooter "JavaScript is Linted and Fixed."
+    "${FULL_PACKAGE_PATH}/**/*.js" || EXIT_CODE=$?
+  echoTestFooter "JavaScript is Linted and Fixed." "${EXIT_CODE}"
+  return "${EXIT_CODE}"
 }

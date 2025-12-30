@@ -10,7 +10,8 @@ loadEnv "${SCRIPT_DIR}"
 if [[ $# -gt 0 && "$1" == "--rebuild" ]]; then
     echo "Building Docker image..."
     docker compose -f "${SCRIPT_DIR}/docker-compose.yml" build --no-cache
-    shift  # Remove --rebuild from arguments
+    echo "Docker Image dist build. Tests can started."
+    exit 0
 fi
 
 # Run docker-compose
