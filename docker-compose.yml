@@ -16,6 +16,7 @@ services:
       - ${PWD}/${TEST_PATH:-t3static}/results:/app/t3static/results
       # project volumes
       - ${PWD}/${PACKAGE_PATH:-packages}:/app/${PACKAGE_PATH:-packages}
+      - ${PWD}/composer.json:/app/composer.json:ro
       - ${PWD}/vendor:/app/vendor:ro
 
 networks:
