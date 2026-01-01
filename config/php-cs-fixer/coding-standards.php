@@ -5,7 +5,14 @@ $config->getFinder()
     ->ignoreVCSIgnored(true)
     ->in(realpath(__DIR__ . '/../../'));
 
-$config->setParallelConfig(new PhpCsFixer\Runner\Parallel\ParallelConfig(4, 20));
+$config->setRiskyAllowed(true);
+
+$config->setParallelConfig(
+    new PhpCsFixer\Runner\Parallel\ParallelConfig(
+        4,
+        20
+    )
+);
 
 $config->addRules([
     'single_line_comment_spacing' => true,

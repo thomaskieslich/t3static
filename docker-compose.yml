@@ -2,6 +2,8 @@ services:
   t3static:
     build:
       context: .
+      args:
+        PHP_VERSION: ${PHP_VERSION:-8.4}
       dockerfile: Dockerfile
     image: t3static
     container_name: t3static
@@ -14,6 +16,7 @@ services:
       - ${PWD}/${TEST_PATH:-t3static}/results:/app/t3static/results
       # project volumes
       - ${PWD}/${PACKAGE_PATH:-packages}:/app/${PACKAGE_PATH:-packages}
+      - ${PWD}/composer.json:/app/composer.json:ro
       - ${PWD}/vendor:/app/vendor:ro
 
 networks:
