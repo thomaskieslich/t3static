@@ -3,3 +3,6 @@
 app.js
 **/Vendor/**/*.js
 **/*.min.js
+
+**/Contrib/**/*.js
+**/Vendor/**/*.js
