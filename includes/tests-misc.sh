@@ -15,8 +15,7 @@ composer-validate() {
 composer-normalize() {
     echoTestHeader "Composer Normalize"
     EXIT_CODE=0
-    cd "${TEST_PATH}" || exit 1
-    command composer normalize \
+    command composer --working-dir="${TEST_PATH}" normalize \
         --dry-run \
         --indent-style tab \
         --indent-size 1 \
@@ -28,16 +27,15 @@ composer-normalize() {
 }
 
 composer-normalize-fix() {
-    echoTestHeader "Composer Normalize Fix"
+    echoTestHeader "Composer Normalize"
     EXIT_CODE=0
-    cd "${TEST_PATH}" || exit 1
-    command composer normalize \
+    command composer --working-dir="${TEST_PATH}" normalize \
         --indent-style tab \
         --indent-size 1 \
         --no-interaction \
         "${FULL_PACKAGE_PATH}/composer.json" ||
         EXIT_CODE=$?
-    echoTestFooter "${PACKAGE_NAME} Composer is Normalized."
+    echoTestFooter "${PACKAGE_NAME} Composer is Normalized. (DRY)"
     return "${EXIT_CODE}"
 }
 
