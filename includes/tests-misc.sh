@@ -1,60 +1,56 @@
 #!/bin/bash
 
 ### Misc Tests ###
+
 composer-validate() {
     echoTestHeader "Composer Validation"
-    EXIT_CODE=0
-    command composer \
+    run_with_exit_code command composer \
         --working-dir="${FULL_PACKAGE_PATH}" \
         validate \
-        --strict || EXIT_CODE=$?
+        --strict
+    local result=$?
     echoTestFooter "${PACKAGE_NAME} Composer is Validated."
-    return "${EXIT_CODE}"
+    return "${result}"
 }
 
 composer-normalize() {
-    echoTestHeader "Composer Normalize"
-    EXIT_CODE=0
-    command composer --working-dir="${TEST_PATH}" normalize \
-        --dry-run \
-        --indent-style tab \
-        --indent-size 1 \
-        --no-interaction \
-        "${FULL_PACKAGE_PATH}/composer.json" ||
-        EXIT_CODE=$?
-    echoTestFooter "${PACKAGE_NAME} Composer is Normalized. (DRY)"
-    return "${EXIT_CODE}"
+    _composer_normalize --dry-run
 }
 
 composer-normalize-fix() {
+    _composer_normalize
+}
+
+_composer_normalize() {
+    local dry_run_flag="$1"
     echoTestHeader "Composer Normalize"
-    EXIT_CODE=0
-    command composer --working-dir="${TEST_PATH}" normalize \
+    run_with_exit_code command composer --working-dir="${TEST_PATH}" normalize \
+        ${dry_run_flag:+"$dry_run_flag"} \
         --indent-style tab \
         --indent-size 1 \
         --no-interaction \
-        "${FULL_PACKAGE_PATH}/composer.json" ||
-        EXIT_CODE=$?
-    echoTestFooter "${PACKAGE_NAME} Composer is Normalized. (DRY)"
-    return "${EXIT_CODE}"
+        "${FULL_PACKAGE_PATH}/composer.json"
+    local result=$?
+    echoTestFooter "${PACKAGE_NAME} Composer is Normalized.${dry_run_flag:+ (DRY)}"
+    return "${result}"
 }
 
 json() {
     echoTestHeader "Json Linting"
-    EXIT_CODE=0
-    find "${FULL_PACKAGE_PATH}" ! -path "*/node_modules/*" -name "*.json" -print0 |
-        xargs --null -r php "${TEST_PATH}/vendor/bin/jsonlint" || EXIT_CODE=$?
+    run_with_exit_code find "${FULL_PACKAGE_PATH}" ! -path "*/node_modules/*" -name "*.json" -print0 |
+        xargs --null -r php "${TEST_PATH}/vendor/bin/jsonlint"
+    local result=$?
     echoTestFooter "Json is Linted."
-    return "${EXIT_CODE}"
+    return "${result}"
 }
 
 md() {
     echoTestHeader "Markdown Linting"
-    EXIT_CODE=0
-    npx --prefix "${TEST_PATH}" markdownlint-cli2 "${FULL_PACKAGE_PATH}/**/*.md" \
-        --config "${CONFIGURATION_PATH}/.markdownlint-cli2.yaml" || EXIT_CODE=$?
+    run_with_exit_code npx --prefix "${TEST_PATH}" markdownlint-cli2 "${FULL_PACKAGE_PATH}/**/*.md" \
+        --config "${CONFIGURATION_PATH}/.markdownlint-cli2.yaml"
+    local result=$?
     echoTestFooter "Markdown is Linted Exit."
-    return "${EXIT_CODE}"
+    return "${result}"
 }
 
 md-fix() {
@@ -66,9 +62,9 @@ md-fix() {
 
 yaml() {
     echoTestHeader "Yaml Linting"
-    EXIT_CODE=0
-    find "${FULL_PACKAGE_PATH}" ! -path "*/node_modules/*" -name "*.y*ml" -print0 |
-        xargs --null -r php "${TEST_PATH}/vendor/bin/yaml-lint" --ansi || EXIT_CODE=$?
+    run_with_exit_code find "${FULL_PACKAGE_PATH}" ! -path "*/node_modules/*" -name "*.y*ml" -print0 |
+        xargs --null -r php "${TEST_PATH}/vendor/bin/yaml-lint" --ansi
+    local result=$?
     echoTestFooter "Yaml is Linted"
-    return "${EXIT_CODE}"
+    return "${result}"
 }

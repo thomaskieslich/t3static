@@ -23,6 +23,7 @@ CONFIGURATION_PATH="${TEST_PATH}/${CONFIGURATION_PATH}"
 # include util scripts
 source "${BASH_SOURCE%/*}/util-echo.sh"
 source "${BASH_SOURCE%/*}/util-choose-options.sh"
+source "${BASH_SOURCE%/*}/util-exit-code.sh"
 source "${BASH_SOURCE%/*}/util-test-types.sh"
 
 # include Test Scripts
