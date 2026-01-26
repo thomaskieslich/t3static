@@ -8,7 +8,6 @@ php-cs() {
         --diff \
         --dry-run \
         --using-cache=no \
-        --quiet \
         --config="${CONFIGURATION_PATH}/php-cs-fixer/coding-standards.php" \
         fix "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
     echoTestFooter "php:cs completed" "${EXIT_CODE}"
@@ -21,7 +20,6 @@ php-cs-fix() {
     "${TEST_PATH}/vendor/bin/php-cs-fixer" \
         --diff \
         --using-cache=no \
-        --quiet \
         --config="${CONFIGURATION_PATH}/php-cs-fixer/coding-standards.php" \
         fix "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
     echoTestFooter "php:cs:fix completed" "${EXIT_CODE}"

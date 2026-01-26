@@ -14,12 +14,12 @@
 	},
 	"require-dev": {
 		"a9f/typo3-fractor": "v0.5.8",
-		"friendsofphp/php-cs-fixer": "3.92.3",
+		"friendsofphp/php-cs-fixer": "3.93.0",
 		"helmich/typo3-typoscript-lint": "v3.3.0",
 		"michielroos/typo3scan": "dev-master",
-		"phpstan/phpstan": "2.1.33",
+		"phpstan/phpstan": "2.1.37",
 		"seld/jsonlint": "1.11.0",
-		"ssch/typo3-rector": "3.10.1",
+		"ssch/typo3-rector": "3.11.0",
 		"symfony/yaml": "7.4.1",
 		"typo3/coding-standards": "v0.8.0"
 	}
