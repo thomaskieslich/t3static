@@ -3,24 +3,25 @@
 	"description": "Collection of Tools to Test, Lint and Upgrade multiple TYPO3 Extensions.",
 	"license": "GNU GENERAL PUBLIC LICENSE",
 	"type": "library",
-	"minimum-stability": "dev",
-	"prefer-stable": true,
-	"config": {
-		"sort-packages": true,
-		"allow-plugins": {
-			"ergebnis/composer-normalize": true,
-			"a9f/fractor-extension-installer": true
-		}
-	},
 	"require-dev": {
-		"a9f/typo3-fractor": "v0.5.8",
+		"a9f/typo3-fractor": "0.5.8",
+		"ergebnis/composer-normalize": "2.49.0",
 		"friendsofphp/php-cs-fixer": "3.93.0",
-		"helmich/typo3-typoscript-lint": "v3.3.0",
+		"helmich/typo3-typoscript-lint": "3.3.0",
 		"michielroos/typo3scan": "dev-master",
 		"phpstan/phpstan": "2.1.37",
 		"seld/jsonlint": "1.11.0",
 		"ssch/typo3-rector": "3.11.0",
 		"symfony/yaml": "7.4.1",
-		"typo3/coding-standards": "v0.8.0"
+		"typo3/coding-standards": "0.8.0"
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"config": {
+		"allow-plugins": {
+			"a9f/fractor-extension-installer": true,
+			"ergebnis/composer-normalize": true
+		},
+		"sort-packages": true
 	}
 }
