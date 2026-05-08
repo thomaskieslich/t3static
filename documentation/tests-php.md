@@ -1,15 +1,8 @@
 # PHP Tests
 
-## Group Command
-
-```bash
-ddev ssh
-./t3static/t3static -t php
-```
-
 ## php-cs-fixer
 
-Check php code follow the Coding Guidelines.
+Check php code follows the Coding Guidelines.
 
 Use [php-cs-fixer](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer)
 for better Code Style.
@@ -17,19 +10,28 @@ for better Code Style.
 Config from [TYPO3 Coding Standards](https://github.com/TYPO3/coding-standards)
 
 ```bash
-ddev ssh
-./t3static/t3static -t php-cs
+# check only
+./t3static/run-docker -p <extension> -t php-cs
 
-# if fixable Errors try fix Command
-./t3static/t3static -t php-cs-fix
+# fix
+./t3static/run-docker -p <extension> -t php-cs-fix
 
 ```
 
 ## phpstan
 
-<https://phpstan.org>
+Static analysis with [PHPStan](https://phpstan.org).
+The level is configured via `PHPSTAN_LEVEL` in `.env` (default: 3).
 
 ```bash
-ddev ssh
-./t3static/t3static -t php-stan
+./t3static/run-docker -p <extension> -t php-stan
+```
+
+## phpstan-baseline
+
+Generate a PHPStan baseline file to ignore existing errors.
+The baseline is written to `t3static/results/phpstan-<extension>-errors.neon`.
+
+```bash
+./t3static/run-docker -p <extension> -t php-stan-baseline
 ```

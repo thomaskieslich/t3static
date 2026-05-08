@@ -41,7 +41,7 @@ git clone git@github.com:thomaskieslich/t3static.git
 
 ## Prepare and Configure
 
-You can just run `./t3static/run docker`or `./t3static/run local`.
+You can just run `./t3static/run-docker` or `./t3static/run-local`.
 If .env not exists a copy from .env.dist will be created. If used Tools
 (composer, npm) not exist, they will be installed automatically.
 
@@ -64,6 +64,12 @@ If Tools Versions are changed, you should rebuild the Docker Image with:
 ./t3static/run-docker --rebuild
 ```
 
+You can also run for a specific extension:
+
+```bash
+./t3static/run-docker -p sitepackage -t php
+```
+
 ### Run in a local Environment
 
 Your local Environment should have these versions:
@@ -76,7 +82,11 @@ Test run quicker, but not so stable.
 ./t3static/run-local
 ```
 
-To Rebuild Tools, just delete node_modules and vendor Folder and rerun.
+To rebuild tools, run:
+
+```bash
+./t3static/run-local --rebuild
+```
 
 ## Structure
 
@@ -85,17 +95,13 @@ To Rebuild Tools, just delete node_modules and vendor Folder and rerun.
 - Load Environment Variables
 - Install Script
 - Load tests from the includes Folder
-- Define Test Options and Groups
 
-Available groups (usage -t GROUP)
+Available tests (use `--list-tests` to see all):
 
-- frontend
-- misc
-- php
-- typo3
-
-For single tests have a look into the includes folder.
-The files are based on the group names.
+- css, css-fix, scss, scss-fix, js, js-fix
+- php-cs, php-cs-fix, php-stan, php-stan-baseline
+- fractor, fractor-fix, rector, rector-fix, typo3scan, typoscript, tsconfig
+- composer-validate, composer-normalize, composer-normalize-fix, json, md, md-fix, yaml
 
 ### configuration Folder
 
@@ -109,16 +115,7 @@ Here the results from some tests are written (php-stan,…)
 
 ## Usage
 
-You can run test groups like:
-
-```bash
-./t3static/run-docker -t frontend
-./t3static/run-docker -t misc
-./t3static/run-docker -t php
-./t3static/run-docker -t typo3
-```
-
-or single tests like (more tests defined in t3static):
+You can run single tests like:
 
 ```bash
 ./t3static/run-docker -t css
@@ -129,12 +126,18 @@ or single tests like (more tests defined in t3static):
 ./t3static/run-docker -t typo3scan
 ```
 
-or multiple, comma-separated Tests like
+or multiple, comma-separated tests like
 
 ```bash
-./t3static/run -t css,js
+./t3static/run-docker -t css,js
 
-./t3static/run -t fractor,rector
+./t3static/run-docker -t fractor,rector
+```
+
+or for a specific extension:
+
+```bash
+./t3static/run-docker -p sitepackage -t php-cs
 ```
 
 ### Options
@@ -144,11 +147,17 @@ choose test
 -t ***testname***
 
 set Extensionname (folder name)
--p ***extension
+-p ***extension***
+
+rebuild tooling environment
+--rebuild
 
 list all available test types
 --list-tests
 ```
+
+Most tests have a fix variant named `<test>-fix` (e.g. `php-cs-fix`, `css-fix`, `js-fix`).
+See the [Tests](#tests) section below for details.
 
 If you don’t define the test and the package as arguments or in the .env file,
 a prompt will ask you what to update. You may omit neither, both, or just one of

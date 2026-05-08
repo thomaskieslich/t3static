@@ -1,20 +1,24 @@
 # Misc File Tests
 
-## Group Command
+## Composer Validate
 
-```bash
-ddev ssh
-./t3static/t3static -t misc
-```
-
-## Composer
-
-Simple Composer Validating. \
+Validate composer.json (strict mode).
 <https://getcomposer.org>
 
 ```bash
-ddev ssh
-./t3static/t3static -t composer
+./t3static/run-docker -p <extension> -t composer-validate
+```
+
+## Composer Normalize
+
+Normalize composer.json formatting with [ergebnis/composer-normalize](https://github.com/ergebnis/composer-normalize).
+
+```bash
+# check only
+./t3static/run-docker -p <extension> -t composer-normalize
+
+# fix
+./t3static/run-docker -p <extension> -t composer-normalize-fix
 ```
 
 ## Json
@@ -22,8 +26,7 @@ ddev ssh
 Lint Json Files with [seld/jsonlint](https://github.com/Seldaek/jsonlint)
 
 ```bash
-ddev ssh
-./t3static/t3static -t json
+./t3static/run-docker -p <extension> -t json
 ```
 
 ## Markdown
@@ -31,8 +34,11 @@ ddev ssh
 Lint and Fix Markdown Files with [markdownlint-cli2](https://github.com/DavidAnson/markdownlint-cli2)
 
 ```bash
-ddev ssh
-./t3static/t3static -t md
+# check only
+./t3static/run-docker -p <extension> -t md
+
+# fix
+./t3static/run-docker -p <extension> -t md-fix
 ```
 
 ## Yaml
@@ -40,6 +46,5 @@ ddev ssh
 Lint Yaml Files with [symfony/yaml](https://symfony.com/doc/current/components/yaml.html)
 
 ```bash
-ddev ssh
-./t3static/t3static -t yaml
+./t3static/run-docker -p <extension> -t yaml
 ```
