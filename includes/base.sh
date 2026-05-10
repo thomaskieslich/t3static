@@ -32,6 +32,12 @@ source "${BASH_SOURCE%/*}/tests-php.sh"
 source "${BASH_SOURCE%/*}/tests-misc.sh"
 source "${BASH_SOURCE%/*}/tests-typo3.sh"
 
+# Handle common typo: --list-test instead of --list-tests
+if [[ "${1:-}" == "--list-test" ]]; then
+    echo "ERROR: Did you mean '--list-tests' (with trailing 's')?" >&2
+    exit 1
+fi
+
 # list tests as list
 if [[ "$1" == "--list-tests" ]]; then
     list_tests
@@ -92,7 +98,7 @@ if [[ ${#TESTS[@]} -gt 0 ]]; then
             return 1
         fi
 
-        if ! declare -f "$test_name" >/dev/null; then
+        if ! declare -f -- "$test_name" >/dev/null; then
             echo "Error: Test function '$test_name' not found" >&2
             return 1
         fi
