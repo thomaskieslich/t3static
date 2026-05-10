@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # Check for .env file existence, if not make a copy from .env.dist
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

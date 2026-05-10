@@ -49,23 +49,15 @@ checkPackages() {
         exit 1
     fi
 
-    # Check and install composer dependencies
-    if [ ! -d "${TEST_PATH}/vendor" ]; then
-        installRequired=true
-    fi
+      # Check and install composer dependencies
+     if [ ! -f "${TEST_PATH}/vendor/autoload.php" ]; then
+         installRequired=true
+     fi
 
-    if [ ! -f "${TEST_PATH}/vendor/autoload.php" ]; then
-        installRequired=true
-    fi
-
-    # Check and install npm dependencies
-    if [ ! -d "${TEST_PATH}/node_modules" ]; then
-        installRequired=true
-    fi
-
-    if [ ! -f "${TEST_PATH}/node_modules/.package-lock.json" ]; then
-        installRequired=true
-    fi
+      # Check and install npm dependencies
+     if [ ! -f "${TEST_PATH}/node_modules/.package-lock.json" ]; then
+         installRequired=true
+     fi
 
     # Install packages if required
     if [ "$installRequired" = true ]; then
@@ -95,4 +87,3 @@ fi
 
 # Run t3static with all passed arguments
 exec "${SCRIPT_DIR}/includes/base.sh" "$@"
-exit $?
