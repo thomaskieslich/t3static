@@ -6,10 +6,13 @@ choose_package_if_empty() {
         echoInfo "Please choose a folder:"
 
         # Read all folder names in PACKAGE_PATH into an array
-        IFS=$'\n' read -d '' -r -a folders < <(find "${PACKAGE_PATH}" -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | sort && printf '\0')
+        folders=()
+        while IFS= read -r line; do
+            folders+=("$line")
+        done < <(find "${PACKAGE_PATH}" -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | sort)
 
         # Exit if no folders are found
-        if [ ${#folders[@]} -eq 0 ]; then
+        if [[ ${#folders[@]} -eq 0 ]]; then
             echoInfo "No folders found in ${PACKAGE_PATH}."
             exit 1
         fi
@@ -22,7 +25,7 @@ choose_package_if_empty() {
         # Prompt user to enter a valid number selection
         while true; do
             read -rp "Enter number (1-${#folders[@]}): " selection
-            if [[ "$selection" =~ ^[0-9]+$ ]] && [ "$selection" -ge 1 ] && [ "$selection" -le ${#folders[@]} ]; then
+            if [[ "$selection" =~ ^[0-9]+$ ]] && [[ "$selection" -ge 1 ]] && [[ "$selection" -le ${#folders[@]} ]]; then
                 PACKAGE_NAME="${folders[$((selection-1))]}"
                 break
             else
@@ -38,9 +41,12 @@ choose_test_if_empty() {
         echoInfo "TEST_TYPE is empty."
         echoInfo "Please choose a test:"
 
-        IFS=$'\n' read -d '' -r -a test_types < <(list_tests && printf '\0')
+        test_types=()
+        while IFS= read -r line; do
+            test_types+=("$line")
+        done < <(list_tests)
 
-        if [ ${#test_types[@]} -eq 0 ]; then
+        if [[ ${#test_types[@]} -eq 0 ]]; then
             echoInfo "No test types found."
             exit 1
         fi
@@ -51,7 +57,7 @@ choose_test_if_empty() {
 
         while true; do
             read -rp "Enter number (1-${#test_types[@]}): " selection
-            if [[ "$selection" =~ ^[0-9]+$ ]] && [ "$selection" -ge 1 ] && [ "$selection" -le ${#test_types[@]} ]; then
+            if [[ "$selection" =~ ^[0-9]+$ ]] && [[ "$selection" -ge 1 ]] && [[ "$selection" -le ${#test_types[@]} ]]; then
                 TEST_TYPE="${test_types[$((selection-1))]}"
                 break
             else

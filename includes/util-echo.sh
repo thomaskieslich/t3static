@@ -5,7 +5,7 @@
 # Example (color blue):
 # ==> Test: rector
 echoInfo() {
-    echo -e "\n\033[1;34m==> $1\033[0m\n"
+    echo -e "\n\033[1;34m==> $1\033[0m"
 }
 
 # Example (color magenta):
@@ -23,8 +23,8 @@ echoTestHeader() {
 # Example (color magenta):
 # ==> Rector completed
 echoTestFooter() {
-    local message=$1
-    local code=$2
+    local message="$1"
+    local code="$2"
     local exit_code=""
 
     if [[ -z "$code" || "$code" == "0" ]]; then
@@ -33,5 +33,5 @@ echoTestFooter() {
         exit_code="\033[1;31m(EXIT_CODE: $code)\033[0m"
     fi
 
-    echo -e "\n\033[1;35m==> $message $exit_code\n"
+    echo -e "\n\033[1;35m==> $message $exit_code\033[0m"
 }
