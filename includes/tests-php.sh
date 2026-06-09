@@ -3,7 +3,7 @@
 ### PHP Tests ###
 php-cs() {
     echoTestHeader "php:cs"
-    EXIT_CODE=0
+    local EXIT_CODE=0
     "${TEST_PATH}/vendor/bin/php-cs-fixer" \
         --diff \
         --dry-run \
@@ -16,7 +16,7 @@ php-cs() {
 
 php-cs-fix() {
     echoTestHeader "php:cs:fix"
-    EXIT_CODE=0
+    local EXIT_CODE=0
     "${TEST_PATH}/vendor/bin/php-cs-fixer" \
         --diff \
         --using-cache=no \
@@ -28,7 +28,7 @@ php-cs-fix() {
 
 php-stan() {
     echoTestHeader "php:stan"
-    EXIT_CODE=0
+    local EXIT_CODE=0
     "${TEST_PATH}/vendor/bin/phpstan" analyse \
         --level "${PHPSTAN_LEVEL}" \
         --memory-limit=512M \
@@ -42,7 +42,7 @@ php-stan() {
 
 php-stan-baseline() {
     echoTestHeader "php:stan:baseline"
-    EXIT_CODE=0
+    local EXIT_CODE=0
     "${TEST_PATH}/vendor/bin/phpstan" analyse --level "${PHPSTAN_LEVEL}" \
         --configuration "${CONFIGURATION_PATH}/php-stan/phpstan.neon" \
         --autoload-file "vendor/autoload.php" \
