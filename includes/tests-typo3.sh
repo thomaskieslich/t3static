@@ -4,6 +4,7 @@
 
 typoscript() {
     echoTestHeader "TypoScript Linting"
+    local EXIT_CODE=0
     "${TEST_PATH}/vendor/bin/typoscript-lint" \
         --config "${CONFIGURATION_PATH}/typoscript-lint.yaml" \
         "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
@@ -13,6 +14,7 @@ typoscript() {
 
 tsconfig() {
     echoTestHeader "TsConfig Linting"
+    local EXIT_CODE=0
     "${TEST_PATH}/vendor/bin/typoscript-lint" \
         --config "${CONFIGURATION_PATH}/tsconfig-lint.yaml" \
         "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
@@ -22,6 +24,7 @@ tsconfig() {
 
 fractor() {
     echoTestHeader "Fractor"
+    local EXIT_CODE=0
     "${TEST_PATH}/vendor/bin/fractor" process \
         --config "${CONFIGURATION_PATH}/fractor.php" \
         --clear-cache \
@@ -32,6 +35,7 @@ fractor() {
 
 fractor-fix() {
     echoTestHeader "Fractor"
+    local EXIT_CODE=0
     "${TEST_PATH}/vendor/bin/fractor" process \
         --config "${CONFIGURATION_PATH}/fractor.php" \
         --clear-cache || EXIT_CODE=$?
@@ -41,6 +45,7 @@ fractor-fix() {
 
 rector() {
     echoTestHeader "Rector"
+    local EXIT_CODE=0
     "${TEST_PATH}/vendor/bin/rector" process "${FULL_PACKAGE_PATH}" \
         --config "${CONFIGURATION_PATH}/rector.php" \
         --clear-cache \
@@ -51,6 +56,7 @@ rector() {
 
 rector-fix() {
     echoTestHeader "Rector"
+    local EXIT_CODE=0
     "${TEST_PATH}/vendor/bin/rector" process "${FULL_PACKAGE_PATH}" \
         --clear-cache \
         --config "${CONFIGURATION_PATH}/rector.php" || EXIT_CODE=$?
@@ -60,6 +66,7 @@ rector-fix() {
 
 typo3scan() {
     echoTestHeader "TYPO3Scan"
+    local EXIT_CODE=0
     "${TEST_PATH}/vendor/bin/typo3scan" scan --target ${TYPO3SCAN_TARGET} "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
     echoTestFooter "TYPO3Scan completed" "${EXIT_CODE}"
     return "${EXIT_CODE}"
