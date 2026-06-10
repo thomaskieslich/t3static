@@ -34,7 +34,7 @@ fractor() {
 }
 
 fractor-fix() {
-    echoTestHeader "Fractor"
+    echoTestHeader "Fractor Fix"
     local EXIT_CODE=0
     "${TEST_PATH}/vendor/bin/fractor" process \
         --config "${CONFIGURATION_PATH}/fractor.php" \
@@ -55,7 +55,7 @@ rector() {
 }
 
 rector-fix() {
-    echoTestHeader "Rector"
+    echoTestHeader "Rector Fix"
     local EXIT_CODE=0
     "${TEST_PATH}/vendor/bin/rector" process "${FULL_PACKAGE_PATH}" \
         --clear-cache \
@@ -67,7 +67,7 @@ rector-fix() {
 typo3scan() {
     echoTestHeader "TYPO3Scan"
     local EXIT_CODE=0
-    "${TEST_PATH}/vendor/bin/typo3scan" scan --target ${TYPO3SCAN_TARGET} "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
+    "${TEST_PATH}/vendor/bin/typo3scan" scan --target "${TYPO3SCAN_TARGET}" "${FULL_PACKAGE_PATH}" || EXIT_CODE=$?
     echoTestFooter "TYPO3Scan completed" "${EXIT_CODE}"
     return "${EXIT_CODE}"
 }
