@@ -34,6 +34,10 @@ if [[ $# -gt 0 && "$1" == "--rebuild" ]]; then
             }
         }
     fi
+
+    # --rebuild is handled by this wrapper and must not be passed to base.sh,
+    # which only accepts -p and -t options.
+    shift
 fi
 
 checkPackages() {
