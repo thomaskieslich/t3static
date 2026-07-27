@@ -1,0 +1,8 @@
+#
+# .markdownlint.yaml file
+#
+
+# Disable some built-in rules
+no-trailing-spaces: true
+no-multiple-blanks: true
+line-length: true
