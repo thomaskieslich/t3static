@@ -48,3 +48,15 @@ Lint Yaml Files with [symfony/yaml](https://symfony.com/doc/current/components/y
 ```bash
 ./t3static/run-docker -p <extension> -t yaml
 ```
+
+## EditorConfig
+
+Validate and fix text files based on `.editorconfig` declarations with [armin/editorconfig-cli](https://github.com/a-r-m-i-n/editorconfig-cli).
+
+```bash
+# check only
+./t3static/run-docker -p <extension> -t editorconfig
+
+# fix
+./t3static/run-docker -p <extension> -t editorconfig-fix
+```

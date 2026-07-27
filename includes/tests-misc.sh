@@ -68,3 +68,21 @@ yaml() {
     echoTestFooter "Yaml is Linted"
     return "${result}"
 }
+
+editorconfig() {
+    echoTestHeader "EditorConfig Validation"
+    local result=0
+    php "${TEST_PATH}/vendor/bin/ec" \
+        -d "${FULL_PACKAGE_PATH}" \
+        -s max_line_length || result=$?
+    echoTestFooter "EditorConfig validated" "${result}"
+    return "${result}"
+}
+
+editorconfig-fix() {
+    echoTestHeader "EditorConfig Fix"
+    php "${TEST_PATH}/vendor/bin/ec" \
+        -d "${FULL_PACKAGE_PATH}" \
+        --fix
+    echoTestFooter "EditorConfig fixed"
+}

@@ -13,6 +13,7 @@
 		"seld/jsonlint": "^1.11",
 		"ssch/typo3-rector": "^3.14",
 		"symfony/yaml": "^7.4",
+		"armin/editorconfig-cli": "^2.2",
 		"typo3/coding-standards": "^0.8"
 	},
 	"minimum-stability": "dev",
@@ -20,6 +21,7 @@
 	"config": {
 		"allow-plugins": {
 			"a9f/fractor-extension-installer": true,
+			"armin/editorconfig-cli": true,
 			"ergebnis/composer-normalize": true
 		},
 		"sort-packages": true
