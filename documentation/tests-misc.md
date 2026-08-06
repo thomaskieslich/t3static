@@ -51,7 +51,7 @@ Lint Yaml Files with [symfony/yaml](https://symfony.com/doc/current/components/y
 
 ## EditorConfig
 
-Validate and fix text files based on `.editorconfig` declarations with [armin/editorconfig-cli](https://github.com/a-r-m-i-n/editorconfig-cli).
+Validate and fix text files in the selected extension based on its `.editorconfig` declarations with [armin/editorconfig-cli](https://github.com/a-r-m-i-n/editorconfig-cli). The `max_line_length` declaration is intentionally not validated.
 
 ```bash
 # check only
@@ -60,3 +60,5 @@ Validate and fix text files based on `.editorconfig` declarations with [armin/ed
 # fix
 ./t3static/run-docker -p <extension> -t editorconfig-fix
 ```
+
+`editorconfig-fix` modifies files. Run `editorconfig` again after fixing to verify the result.
