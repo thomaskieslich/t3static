@@ -101,7 +101,7 @@ Available tests (use `--list-tests` to see all):
 - css, css-fix, scss, scss-fix, js, js-fix
 - php-cs, php-cs-fix, php-stan, php-stan-baseline
 - fractor, fractor-fix, rector, rector-fix, typo3scan, typoscript, tsconfig
-- composer-validate, composer-normalize, composer-normalize-fix, json, md, md-fix, yaml
+- composer-validate, composer-normalize, composer-normalize-fix, editorconfig, editorconfig-fix, json, md, md-fix, yaml
 
 ### configuration Folder
 
